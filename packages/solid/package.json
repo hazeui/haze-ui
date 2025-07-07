@@ -18,19 +18,23 @@
     "dist"
   ],
   "scripts": {
+    "dev": "vite --config ./dev/vite.config.ts",
+    "devbuild": "tsc -b && vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bash build.sh"
   },
   "peerDependencies": {
-    "unocss": "^66.2.3"
+    "unocss": "^66.2.3",
+    "solid-js": "^1.9.7"
   },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "solid-js": "^1.9.7"
-  },
   "devDependencies": {
-    "bun-plugin-solid": "^1.0.0"
+    "typescript": "~5.8.3",
+    "unocss": "^66.3.3",
+    "vite": "^7.0.0",
+    "vite-plugin-solid": "^2.11.6"
   }
 }

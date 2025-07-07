@@ -8,7 +8,7 @@ function App() {
 
       <Button txt="bruh"/>
     
-      <p className="bg-red">
+      <p className="kekw">
         Click on the Vite and React logos to learn more
       </p>
     </>

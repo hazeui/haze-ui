@@ -6,9 +6,9 @@ function App() {
 
   return (
     <>
-      <Button class='bg-blue'/>
+      <Button class='bruh'/>
      
-      <p class="bg-red-5 p5">
+      <p class="kekw">
         Click on the Vite and Solid logos to learn more
       </p>
     </>

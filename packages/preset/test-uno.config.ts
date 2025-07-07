@@ -1,7 +1,13 @@
 import { defineConfig, presetMini } from "unocss";
-import hazeuiPreset from "../../packages/preset/";
+import hazeuiPreset from "./index";
 
 export default defineConfig({
   presets: [presetMini, hazeuiPreset()],
+
+  shortcuts: {
+    bruh: "m10 p10 bg-indigo",
+    kekw: "bg-blue2 p10"
+  },
+
   // ...UnoCSS options
 });
