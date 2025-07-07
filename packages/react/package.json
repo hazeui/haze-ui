@@ -1,0 +1,29 @@
+{
+  "name": "@haze-ui/react",
+  "version": "0.0.0",
+  "description": "Haze-ui React component library for the web using unocss",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "exports": {
+    "./button": {
+      "import": "./dist/button.js"
+    }
+  },
+  "main": "./dist",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "bash ./build.sh"
+  },
+  "peerDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "unocss": "^66.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
