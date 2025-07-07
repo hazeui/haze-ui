@@ -7,7 +7,7 @@
   "type": "module",
   "exports": {
     "./button": {
-      "import": "./dist/button.js"
+      "import": "./dist/button.jsx"
     }
   },
   "main": "./dist",
