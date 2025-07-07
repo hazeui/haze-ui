@@ -21,20 +21,20 @@
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
-  "main": "./dist",
+	"main": "./dist",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-    "./preset": {
-    "types": "./dist/preset/index.d.ts",
-    "import": "./dist/preset/index.js"
-  }
+		"./preset": {
+			"types": "./dist/preset/index.d.ts",
+			"import": "./dist/preset/index.js"
+		}
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0",
-		"unocss": "^66.2.3"
+		"unocss": "^66.3.3"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",
