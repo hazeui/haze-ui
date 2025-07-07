@@ -1,10 +1,10 @@
 {
-  "name": "@haze-ui/react",
-  "version": "0.0.0",
-  "description": "Haze-ui React component library for the web using unocss",
+  "name": "@haze-ui/solid",
+  "version": "1.0.0",
+  "description": "component lib",
   "license": "ISC",
   "author": "",
-  "type": "module",
+  "type": "commonjs",
   "exports": {
     "./button": {
       "import": "./dist/button.jsx"
@@ -19,14 +19,18 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bash ./build.sh"
+    "build": "bash build.sh"
   },
   "peerDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
     "unocss": "^66.2.3"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.7"
+  },
+  "devDependencies": {
+    "bun-plugin-solid": "^1.0.0"
   }
 }
