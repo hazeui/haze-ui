@@ -11,7 +11,7 @@ const Button = (props: Props) => {
   const increaseN = () => setN(n + 1);
 
   return (
-    <button onClick={increaseN} className="btn">
+    <button onClick={increaseN} className="bruh">
       {props.iconL && <div className={props.iconL}></div>}
       {props.txt}
       {n}
