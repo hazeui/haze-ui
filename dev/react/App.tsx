@@ -6,7 +6,7 @@ function App() {
   return (
     <>
 
-      <div className='fex gap3' un-children='!h-fit' >
+      <div className='fex gap3'  >
 
       <Button txt="Submit" className="btn-primary-sm" isLoading={true}/>
       <Button txt="Submit" className="btn-alt-md"/>
