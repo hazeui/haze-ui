@@ -1,0 +1,25 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "./dist",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.7"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "unocss": "^66.3.3",
+    "vite": "^7.0.0",
+    "vite-plugin-solid": "^2.11.6"
+  }
+}

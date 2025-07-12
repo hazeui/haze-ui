@@ -4,13 +4,13 @@ import react from "@vitejs/plugin-react";
 
 import { defineConfig } from "vite";
 
-import UnocssConfig from "../../preset/test-uno.config.ts";
+import UnocssConfig from "../../packages/preset/test-uno.config.ts";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: path.resolve(__dirname), // 👈 this is the key
+  // root: path.resolve(__dirname), // 👈 this is the key
 
   // plugins: [
   //   react(),
@@ -26,7 +26,7 @@ export default defineConfig({
     alias: [
       {
         find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../components/$1"),
+        replacement: resolvePath("../../packages/react/components/$1"),
       },
     ],
   },

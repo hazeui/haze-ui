@@ -8,7 +8,7 @@ const resolvePath = (dir) => path.resolve(__dirname, dir);
 export default defineConfig({
   root: path.resolve(__dirname), // 👈 this is the key
   plugins: [
-    UnoCSS({ configFile: resolvePath("../../preset/test-uno.config.ts") }),
+    UnoCSS({ configFile: resolvePath("../../packages/preset/test-uno.config.ts") }),
     solid(),
   ],
 
@@ -16,7 +16,7 @@ export default defineConfig({
     alias: [
       {
         find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../components/$1"),
+        replacement: resolvePath("../../packages/solid/components/$1"),
       },
     ],
   },

@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-
-interface Props {
-  txt: string;
+export interface props {
+  txt?: string;
   iconL?: string;
+  isLoading?: boolean;
+  loaderTxt?: string;
+  iconR?: string;
+  [x: string]: any;
 }
 
-const Button = (props: Props) => {
-  const [n, setN] = useState(0);
-
-  const increaseN = () => setN(n + 1);
-
+const Btn = ({ iconL, iconR, txt, isLoading, loaderTxt, ...x }: props) => {
   return (
-    <button onClick={increaseN} className="bruh">
-      {props.iconL && <div className={props.iconL}></div>}
-      {props.txt}
-      {n}
+    <button className="btn-outline" {...x}>
+      {iconL && <div className={iconL} />}
+      {isLoading && <div className="i-eos-icons:loading" />}
+      {txt && txt}
+      {iconR && <div className={iconR} />}
     </button>
   );
 };
 
-export default Button;
+export default Btn;

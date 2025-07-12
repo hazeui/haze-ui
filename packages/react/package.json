@@ -19,10 +19,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bash ./build.sh",
-    "dev": "vite --config ./dev/vite.config.ts",
-    "devbuild": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "bash ./build.sh"
   },
   "peerDependencies": {
     "react": "^19.1.0",
@@ -37,10 +34,8 @@
   "devDependencies": {
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.5.2",
     "globals": "^16.2.0",
     "typescript": "~5.8.3",
-    "unocss": "^66.3.3",
-    "vite": "^7.0.0"
+    "unocss": "^66.3.3"
   }
 }
