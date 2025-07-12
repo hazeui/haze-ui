@@ -1,22 +1,52 @@
-<!-- Button.svelte -->
 <script lang="ts">
+  import type { HTMLButtonAttributes } from "svelte/elements";
 
-  const { txt, iconL } = $props<{
-    txt: string;
+  interface Props extends HTMLButtonAttributes {
+    txt?: string;
     iconL?: string;
-  }>();
+    isLoading?: boolean;
+    loaderTxt?: string;
+    iconR?: string;
+    disabled?: boolean;
+    class?: string;
+    variant?: "primary" | "outline" | "alt";
+    [x: string]: any;
+  }
 
-  let n = $state(0);
+  let {
+    txt,
+    iconL,
+    iconR,
+    isLoading,
+    loaderTxt,
+    disabled,
+    class: myclass,
+    variant = "primary",
+    ...x
+  }: Props = $props();
 
-  const increaseN = () => {
-    n+=1
-  };
+  const isDisabled = isLoading || disabled;
+  const css = `btn-${variant} ${isDisabled ? "muted" : ""} ${myclass}`;
 </script>
 
-<button onclick={increaseN} class="btn">
+<button class={css} disabled={isLoading || disabled} {...x}>
   {#if iconL}
     <div class={iconL}></div>
   {/if}
-  {txt}
-  {n}
+
+  {#if isLoading}
+    <div class="i-eos-icons:loading"></div>
+  {/if}
+
+  {#if txt && !isLoading}
+    {txt}
+  {/if}
+
+  {#if isLoading && loaderTxt}
+    {loaderTxt}
+  {/if}
+
+  {#if iconR}
+    <div class={iconR}></div>
+  {/if}
 </button>

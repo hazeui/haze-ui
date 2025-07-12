@@ -1,28 +1,17 @@
-import { definePreset, Preset } from "unocss";
+import { definePreset, Preset, transformerVariantGroup } from "unocss";
 
-const btnVariants = {
-  primary: "bg-primary text-white",
-  alt: "bg-slate2 text-fg",
-  outline: "bg-bg text-fg border-border border-2 border-solid",
-  ghost: "bg-bg",
-};
+const btnVariants = {};
 
-const btnSizes = {
-  sm: "text-sm px3 py1.5",
-  md: "text-base px4 py2", // default
-  lg: "text-lg px5 py2.5",
-  xl: "text-xl px6 py3",
-};
+const btnSizes = {};
 
 export default definePreset((options): Preset<object> => {
   return {
     name: "haze-ui",
-    rules: [
-      // ...
-    ],
     variants: [
       // ...
     ],
+
+    transformers: [transformerVariantGroup()],
 
     theme: {
       colors: {
@@ -39,25 +28,32 @@ export default definePreset((options): Preset<object> => {
       },
     },
 
+    rules: [
+      [
+        /^brightness-(\d+)$/,
+        ([, d]) => ({
+          filter: `brightness(${+d / 100})`,
+        }),
+      ],
+    ],
+
     shortcuts: [
       {
         btn: `rounded inline-flex items-center justify-center border-0
-              gap2 cursor-pointer transition-colors duration-200`,
+              gap2 transition-colors duration-200 size-md`,
+
+        muted: "brightness-90 hover:cursor-not-allowed",
+
+        "size-sm": "text-sm px3 py1.5",
+        "size-md": "text-base px4 py2", // default
+        "size-lg": "text-lg px5 py2.5",
+        "size-xl": "text-xl px6 py3",
+
+        "btn-primary": "btn bg-primary text-white hover:brightness-90",
+        "btn-alt": "btn bg-slate2 text-fg hover:brightness-90",
+        "btn-outline":
+          "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
       },
-
-      [
-        /^btn-(.*)$/,
-        ([, x]) => {
-          const [variant, size] = x.split("-");
-
-          return (
-            "btn " +
-            (btnVariants[variant as keyof typeof btnVariants] || btnVariants.primary) +
-            " " +
-            (btnSizes[size as keyof typeof btnSizes] || btnSizes.md)
-          );
-        },
-      ],
     ],
   };
 });

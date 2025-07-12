@@ -1,23 +1,40 @@
-import { createSignal } from "solid-js";
+import { ComponentProps } from "solid-js";
 
-interface Props {
-  txt: string;
+type BtnProps = {
+  txt?: string;
   iconL?: string;
-  class?:string;
-}
+  isLoading?: boolean;
+  loaderTxt?: string;
+  iconR?: string;
+  disabled?: boolean;
+  class?: string;
+  variant?: "primary" | "outline" | "alt";
+  [x: string]: any;
+} & ComponentProps<"button">;
 
-const Button = (props: Props) => {
-  const [n, setN] = createSignal(0);
-
-  const increaseN = () => setN(n() + 1);
+const Btn = ({
+  iconL,
+  iconR,
+  txt,
+  isLoading,
+  disabled,
+  class: myclass = "",
+  loaderTxt,
+  variant = "primary",
+  ...x
+}: BtnProps) => {
+  const isDisabled = isLoading || disabled;
+  const css = `btn-${variant} ${isDisabled ? "muted" : ""} ${myclass}`;
 
   return (
-    <button onClick={increaseN} class={`btn ${props.class}`}>
-      {props.iconL && <div class={props.iconL}></div>}
-      {props.txt}
-      {n()}
+    <button class={css} disabled={isDisabled} {...x}>
+      {iconL && <div class={iconL} />}
+      {isLoading && <div class="i-eos-icons:loading text-sm" />}
+      {txt && !isLoading && txt}
+      {isLoading && loaderTxt && loaderTxt}
+      {iconR && <div class={iconR} />}
     </button>
   );
 };
 
-export default Button;
+export default Btn;

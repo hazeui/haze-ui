@@ -1,16 +1,11 @@
 {
-  "name": "",
-  "version": "1.0.0",
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "./dist",
-  "files": [
-    "dist"
-  ],
+  "name": "so",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc -b && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -18,8 +13,7 @@
   },
   "devDependencies": {
     "typescript": "~5.8.3",
-    "unocss": "^66.3.3",
-    "vite": "^7.0.0",
-    "vite-plugin-solid": "^2.11.6"
+    "vite": "^7.0.4",
+    "vite-plugin-solid": "^2.11.7"
   }
 }

@@ -1,18 +1,36 @@
-export interface props {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   txt?: string;
   iconL?: string;
   isLoading?: boolean;
   loaderTxt?: string;
   iconR?: string;
+  disabled?: boolean;
+  className?: string;
+  variant?: "primary" | "outline" | "alt";
   [x: string]: any;
 }
 
-const Btn = ({ iconL, iconR, txt, isLoading, loaderTxt, ...x }: props) => {
+const Btn = ({
+  iconL,
+  iconR,
+  txt,
+  isLoading,
+  loaderTxt,
+  disabled,
+  className = "",
+  variant = "primary",
+  ...x
+}: Props) => {
+  const isDisabled = isLoading || disabled;
+
+  const css = `btn-${variant} ${isDisabled ? "muted" : ""} ${className} `;
+
   return (
-    <button className="btn-outline" {...x}>
+    <button className={css} disabled={isDisabled} {...x}>
       {iconL && <div className={iconL} />}
-      {isLoading && <div className="i-eos-icons:loading" />}
-      {txt && txt}
+      {isLoading && <div className="i-eos-icons:loading text-sm" />}
+      {txt && !isLoading && txt}
+      {isLoading && loaderTxt && loaderTxt}
       {iconR && <div className={iconR} />}
     </button>
   );
