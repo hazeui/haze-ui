@@ -14,7 +14,7 @@ const btnSizes = {
   xl: "text-xl px6 py3",
 };
 
-export default definePreset((options) => {
+export default definePreset((options): Preset<object> => {
   return {
     name: "haze-ui",
     rules: [
@@ -52,9 +52,9 @@ export default definePreset((options) => {
 
           return (
             "btn " +
-            (btnVariants[variant] || btnVariants.primary) +
+            (btnVariants[variant as keyof typeof btnVariants] || btnVariants.primary) +
             " " +
-            (btnSizes[size] || btnSizes.md)
+            (btnSizes[size as keyof typeof btnSizes] || btnSizes.md)
           );
         },
       ],

@@ -35,7 +35,6 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "globals": "^16.2.0",
-    "typescript": "~5.8.3",
-    "unocss": "^66.3.3"
+    "typescript": "~5.8.3"
   }
 }
