@@ -5,12 +5,10 @@ import UnoCSS from "unocss/vite";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 
+import UnocssConfig from "../../packages/preset/test-uno.config.ts";
+
 export default defineConfig({
-  root: path.resolve(__dirname), // 👈 this is the key
-  plugins: [
-    UnoCSS({ configFile: resolvePath("../../packages/preset/test-uno.config.ts") }),
-    solid(),
-  ],
+  plugins: [UnoCSS(UnocssConfig), solid()],
 
   resolve: {
     alias: [

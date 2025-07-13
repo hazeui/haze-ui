@@ -1,9 +1,5 @@
 import { definePreset, Preset, transformerVariantGroup } from "unocss";
 
-const btnVariants = {};
-
-const btnSizes = {};
-
 export default definePreset((options): Preset<object> => {
   return {
     name: "haze-ui",
@@ -19,7 +15,7 @@ export default definePreset((options): Preset<object> => {
         bg: "#ffffff",
         primary: "#7C86FF",
         border: "#cfdce9",
-        input: "#F1F5F9",
+        input: "#e6edf4",
         ring: "#a9b0ff",
       },
 
@@ -53,6 +49,11 @@ export default definePreset((options): Preset<object> => {
         "btn-alt": "btn bg-slate2 text-fg hover:brightness-90",
         "btn-outline":
           "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
+
+        input:
+          "duration-150 p3 rounded border-0 outline-0 ring-(1 border) focus:(ring-2 ring-primary)",
+
+        "input-solid": 'input bg-input ring-0'
       },
     ],
   };

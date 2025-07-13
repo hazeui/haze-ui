@@ -3,25 +3,32 @@ import { createRoot } from "react-dom/client";
 import "../shared.css";
 import "virtual:uno.css";
 import Button from "haze-ui/button";
+import Input from "haze-ui/input";
 
 function App() {
   return (
-    <>
-      <div className="fex gap3">
+    <main className="grid p5">
+      <div className="flex gap3 mb5">
         <Button
           txt="Submit"
           variant="outline"
           isLoading={true}
           loaderTxt="Kekw"
-          className='size-sm'
+          className="size-sm"
         />
         <Button txt="Submit" variant="alt" />
         <Button txt="Submit" variant="outline" />
         <Button txt="Submit" variant="primary" />
       </div>
 
-      <p className="kekw">Click on the Vite and React logos to learn more</p>
-    </>
+      <Input
+        iconL="i-line-md:email-filled"
+        placeholder="Enter email here"
+      />
+
+      <br />
+      <input type="text" placeholder="enter email" className="input-solid" />
+    </main>
   );
 }
 

@@ -3,13 +3,13 @@ import { render } from "solid-js/web";
 import "virtual:uno.css";
 import "../shared.css";
 import Button from "haze-ui/button";
+import Input from "haze-ui/input";
 
 function App() {
   return (
     <>
       <Button
         txt="Submit"
-        variant="alt"
         isLoading={true}
         loaderTxt="Kekw"
       />
@@ -17,7 +17,14 @@ function App() {
       <Button txt="Submit" variant="outline" />
       <Button txt="Submit" />
 
-      <p class="kekw">Click on the Vite and Solid logos to learn more</p>
+      
+      <Input
+        iconL="i-line-md:email-filled"
+        placeholder="Enter email here"
+      />
+
+      <br />
+      <input type="text" placeholder="enter email" className="input-solid" />
     </>
   );
 }
