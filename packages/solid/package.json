@@ -9,6 +9,9 @@
     "./button": {
       "import": "./dist/button.jsx"
     },
+    "./input": {
+      "import": "./dist/input.jsx"
+    },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
     }

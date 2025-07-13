@@ -9,6 +9,9 @@
     "./button": {
       "import": "./dist/button.jsx"
     },
+    "./input": {
+      "import": "./dist/input.jsx"
+    },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
     }
@@ -34,7 +37,6 @@
   "devDependencies": {
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "globals": "^16.2.0",
     "typescript": "~5.8.3"
   }
 }

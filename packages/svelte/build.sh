@@ -1,3 +1,4 @@
-cp -r ../preset src/lib
-vite build && npm run prepack
-rm -rf src/lib/preset
+mkdir dist
+cp ./components/* dist
+mkdir dist/preset
+cp -r ../preset/index.ts dist/preset
