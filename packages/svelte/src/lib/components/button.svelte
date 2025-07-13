@@ -26,7 +26,14 @@
   }: Props = $props();
 
   const isDisabled = isLoading || disabled;
-  const css = `btn-${variant} ${isDisabled ? "muted" : ""} ${myclass}`;
+  
+  const variants: any = {
+    primary: "btn-primary",
+    alt: "btn-alt",
+    outline: "btn-outline",
+  };
+
+  const css = `${variants[variant]} ${isDisabled ? "muted" : ""} ${myclass}`;
 </script>
 
 <button class={css} disabled={isLoading || disabled} {...x}>

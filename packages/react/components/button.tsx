@@ -23,7 +23,13 @@ const Btn = ({
 }: Props) => {
   const isDisabled = isLoading || disabled;
 
-  const css = `btn-${variant} ${isDisabled ? "muted" : ""} ${className} `;
+  const variants: any = {
+    primary: "btn-primary",
+    alt: "btn-alt",
+    outline: "btn-outline",
+  };
+
+  const css = `${variants[variant]} ${isDisabled ? "muted" : ""} ${className}`;
 
   return (
     <button className={css} disabled={isDisabled} {...x}>
