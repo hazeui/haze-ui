@@ -7,10 +7,12 @@
   "type": "module",
   "exports": {
     "./button": {
-      "import": "./dist/button.jsx"
+      "import": "./dist/button.jsx",
+      "types": "./dist/button.d.ts"
     },
     "./input": {
-      "import": "./dist/input.jsx"
+      "import": "./dist/input.jsx",
+      "types": "./dist/input.d.ts"
     },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"

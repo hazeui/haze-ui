@@ -1,6 +1,6 @@
 import React from "react";
 
-type Props = {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: "outline" | "solid";
   iconL?: string | React.ReactNode;
   iconR?: string | React.ReactNode;
@@ -8,7 +8,7 @@ type Props = {
   className?: string;
   parentCss?: string;
   [x: string]: any;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+}
 
 const Input = ({
   className,
@@ -32,11 +32,7 @@ const Input = ({
     <div className={css}>
       {iconL && typeof iconL == "string" ? <div className={iconL} /> : iconL}
 
-      <input
-        {...x}
-        disabled={disabled}
-        className={inputCss}
-      />
+      <input {...x} disabled={disabled} className={inputCss} />
 
       {iconR && typeof iconR == "string" ? <div className={iconR} /> : iconR}
     </div>
