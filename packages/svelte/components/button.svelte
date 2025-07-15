@@ -9,7 +9,7 @@
     iconR?: string;
     disabled?: boolean;
     class?: string;
-    variant?: "primary" | "outline" | "alt";
+    variant?: "primary" | "outline" | "soft" | "ghost";
     [x: string]: any;
   }
 
@@ -29,7 +29,8 @@
   
   const variants: any = {
     primary: "btn-primary",
-    alt: "btn-alt",
+    soft: "btn-soft",
+    ghost: "btn-ghost",
     outline: "btn-outline",
   };
 

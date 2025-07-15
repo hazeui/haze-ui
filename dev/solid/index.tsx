@@ -13,7 +13,7 @@ function App() {
         isLoading={true}
         loaderTxt="Kekw"
       />
-      <Button txt="Submit" variant="alt" />
+      <Button txt="Submit" variant="soft" />
       <Button txt="Submit" variant="outline" />
       <Button txt="Submit" />
 

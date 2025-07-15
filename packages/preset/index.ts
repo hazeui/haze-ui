@@ -24,15 +24,6 @@ export default definePreset((options): Preset<object> => {
       },
     },
 
-    rules: [
-      [
-        /^brightness-(\d+)$/,
-        ([, d]) => ({
-          filter: `brightness(${+d / 100})`,
-        }),
-      ],
-    ],
-
     shortcuts: [
       {
         btn: `rounded inline-flex items-center justify-center border-0
@@ -46,14 +37,15 @@ export default definePreset((options): Preset<object> => {
         "size-xl": "text-xl px6 py3",
 
         "btn-primary": "btn bg-primary text-white hover:brightness-90",
-        "btn-alt": "btn bg-slate2 text-fg hover:brightness-90",
+        "btn-soft": "btn bg-slate-2 text-fg hover:brightness-90",
+        "btn-ghost": "btn bg-transparent text-fg hover:bg-input",
         "btn-outline":
           "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
 
         input:
           "duration-150 p3 rounded border-0 outline-0 ring-(1 border) focus:(ring-2 ring-primary)",
 
-        "input-solid": 'input bg-input ring-0'
+        "input-solid": "input bg-input ring-0",
       },
     ],
   };

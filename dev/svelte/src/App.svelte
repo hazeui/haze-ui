@@ -11,7 +11,7 @@
       isLoading={true}
       loaderTxt="Kekw"
     />
-    <Btn txt="Submit" variant="alt" />
+    <Btn txt="Submit" variant="soft" />
     <Btn txt="Submit" variant="outline" />
     <Btn txt="Submit" variant="primary" />
 

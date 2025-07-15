@@ -16,7 +16,7 @@ function App() {
           loaderTxt="Kekw"
           className="size-sm"
         />
-        <Button txt="Submit" variant="alt" />
+        <Button txt="Submit" variant="soft" />
         <Button txt="Submit" variant="outline" />
         <Button txt="Submit" variant="primary" />
       </div>

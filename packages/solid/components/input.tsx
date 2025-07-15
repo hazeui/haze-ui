@@ -7,35 +7,28 @@ type Props = {
   disabled?: boolean;
   class?: string;
   parentCss?: string;
-  [x: string]: any;
 } & ComponentProps<"input">;
 
-const Input = ({
-  class: myclass,
-  variant = "outline",
-  iconL,
-  iconR,
-  parentCss = "",
-  disabled,
-  ...x
-}: Props) => {
-  const variants = { outline: "outline-(1 solid border)", solid: "bg-input" };
+const Input = (x: Props) => {
+  const variants = {
+    outline: "outline-(1 solid border)",
+    solid: "bg-input",
+  };
 
   const css = `bg-bg rounded flex items-center gap1 p1
-            px3 duration-150 focus-within:ring-(2 primary)
-            ${disabled ? "brightness-95" : ""} ${variants[variant]} ${parentCss}`;
+    px3 duration-150 focus-within:ring-(2 primary)
+    ${x.disabled ? "brightness-95" : ""} ${variants[x.variant ?? "outline"]} ${x.parentCss ?? ""}`;
 
   const inputCss = `p2 border-0 outline-0 w-full
-                    ${variant == "solid" ? "bg-input" : "bg-bg"} ${myclass}`;
+    ${x.variant === "solid" ? "bg-input" : "bg-bg"} ${x.class ?? ""}`;
 
   return (
     <div class={css}>
+      {x.iconL && typeof x.iconL === "string" ? <div class={x.iconL} /> : x.iconL}
 
-      {iconL && typeof iconL == "string" ? <div class={iconL} /> : iconL}
+      <input {...x} class={inputCss} disabled={x.disabled} />
 
-      <input {...x} disabled={disabled} class={inputCss} />
-
-      {iconR && typeof iconR == "string" ? <div class={iconR} /> : iconR}
+      {x.iconR && typeof x.iconR === "string" ? <div class={x.iconR} /> : x.iconR}
     </div>
   );
 };

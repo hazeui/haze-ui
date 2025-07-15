@@ -6,7 +6,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   iconR?: string;
   disabled?: boolean;
   className?: string;
-  variant?: "primary" | "outline" | "alt";
+  variant?: "primary" | "outline" | "soft" | "ghost";
   [x: string]: any;
 }
 
@@ -25,8 +25,9 @@ const Btn = ({
 
   const variants: any = {
     primary: "btn-primary",
-    alt: "btn-alt",
+    soft: "btn-soft",
     outline: "btn-outline",
+    ghost: "btn-ghost",
   };
 
   const css = `${variants[variant]} ${isDisabled ? "muted" : ""} ${className}`;
