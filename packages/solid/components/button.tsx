@@ -1,20 +1,25 @@
-import { ComponentProps } from "solid-js";
+import { ComponentProps, splitProps } from "solid-js";
 
 type BtnProps = {
   txt?: string;
   iconL?: string;
-  isLoading?: boolean;
+  loading?: boolean;
   loaderTxt?: string;
   iconR?: string;
-  disabled?: boolean;
   class?: string;
   variant?: "primary" | "outline" | "soft" | "ghost";
-  iconOnly?: boolean;
-  [x: string]: any;
 } & ComponentProps<"button">;
 
 const Btn = (x: BtnProps) => {
-  const isDisabled = x.isLoading || x.disabled;
+  const [_, others] = splitProps(x, [
+    "class",
+    "variant",
+    "txt",
+    "loading",
+    "loaderTxt",
+    "iconL",
+    "iconR",
+  ]);
 
   const variants: Record<string, string> = {
     primary: "btn-primary",
@@ -23,14 +28,14 @@ const Btn = (x: BtnProps) => {
     ghost: "btn-ghost",
   };
 
-  const css = `${variants[x.variant ?? "primary"]} ${isDisabled ? "muted" : ""} ${x.class ?? ""}`;
+  const css = `${variants[x.variant ?? "primary"]} ${x.loading || x.disabled ? "muted" : ""} ${x.class ?? ""}`;
 
   return (
-    <button class={css} disabled={isDisabled} {...x}>
+    <button class={css} disabled={x.loading || x.disabled} {...others}>
       {x.iconL && <div class={x.iconL} />}
-      {x.isLoading && <div class="i-eos-icons:loading text-sm" />}
-      {x.txt && !x.isLoading && x.txt}
-      {x.isLoading && x.loaderTxt && x.loaderTxt}
+      {x.loading && <div class="i-eos-icons:loading text-sm" />}
+      {x.txt && !x.loading && x.txt}
+      {x.loading && x.loaderTxt && x.loaderTxt}
       {x.iconR && <div class={x.iconR} />}
     </button>
   );

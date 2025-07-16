@@ -1,4 +1,4 @@
-import { createEffect, onCleanup, onMount, type JSX, Show } from "solid-js";
+import { createEffect, type JSX, Show } from "solid-js";
 import { Portal } from "solid-js/web";
 
 interface Props {

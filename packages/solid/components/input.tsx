@@ -1,4 +1,4 @@
-import { ComponentProps, JSX } from "solid-js";
+import { ComponentProps, JSX, splitProps } from "solid-js";
 
 type Props = {
   variant?: "outline" | "solid";
@@ -10,6 +10,14 @@ type Props = {
 } & ComponentProps<"input">;
 
 const Input = (x: Props) => {
+   const [_, restProps] = splitProps(x, [
+    "class",
+    "variant",
+    "iconL",
+    "iconR",
+    "parentCss"
+  ]);
+
   const variants = {
     outline: "outline-(1 solid border)",
     solid: "bg-input",
@@ -26,7 +34,7 @@ const Input = (x: Props) => {
     <div class={css}>
       {x.iconL && typeof x.iconL === "string" ? <div class={x.iconL} /> : x.iconL}
 
-      <input {...x} class={inputCss} disabled={x.disabled} />
+      <input {...restProps} class={inputCss} disabled={x.disabled} />
 
       {x.iconR && typeof x.iconR === "string" ? <div class={x.iconR} /> : x.iconR}
     </div>
