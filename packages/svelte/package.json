@@ -10,19 +10,25 @@
   },
   "exports": {
     "./button": {
-      "import": "./dist/button.jsx"
+      "import": "./dist/button.svelte"
     },
     "./input": {
-      "import": "./dist/input.jsx"
+      "import": "./dist/input.svelte"
+    },
+    "./dialog": {
+      "import": "./dist/dialog.svelte"
+    },
+    "./toast": {
+      "import": "./dist/toast/utils.svelte.ts"
     },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
     }
   },
- 	"peerDependencies": {
-		"svelte": "^5.0.0",
-		"unocss": "^66.3.3"
-	},
+  "peerDependencies": {
+    "svelte": "^5.0.0",
+    "unocss": "^66.3.3"
+  },
   "devDependencies": {
     "typescript": "~5.8.3"
   }

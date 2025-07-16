@@ -1,6 +1,6 @@
 import { useEffect, useSyncExternalStore } from "react";
 import { createRoot } from "react-dom/client";
-import Btn from "haze-ui/button";
+import Btn from "./button";
 
 type posType =
   | "topleft"
@@ -34,7 +34,9 @@ let listeners: Array<() => void> = [];
 const emitChange = () => listeners.forEach((x) => x());
 
 const store = {
-  add: (obj: ToastProps, pos: posType) => {
+  add: (obj: ToastProps) => {
+    const pos = obj.pos;
+    if (!pos) return;
     let tmp = [...data[pos], { ...obj, id: crypto.randomUUID() }];
     data = { ...data, [pos]: tmp };
     emitChange();
@@ -112,7 +114,7 @@ const Toast = ({
   );
 };
 
-const positionCss = {
+const positionCss:any = {
   topright: "top-3 right-3",
   topleft: "top-3 left-3",
   botleft: "bottom-3 left-3",
@@ -139,5 +141,5 @@ export const createToast = (x: any) => {
     createRoot(div).render(<ToastManager pos={x.pos} />);
   }
 
-  store.add(x, x.pos);
+  store.add(x);
 };

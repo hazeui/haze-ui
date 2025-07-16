@@ -12,6 +12,12 @@
     "./input": {
       "import": "./dist/input.jsx"
     },
+    "./toast": {
+      "import": "./dist/toast.jsx"
+    },
+    "./dialog": {
+      "import": "./dist/dialog.jsx"
+    },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
     }

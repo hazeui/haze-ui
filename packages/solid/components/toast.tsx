@@ -1,4 +1,4 @@
-import Btn from "haze-ui/button";
+import Btn from "./button";
 import { render } from "solid-js/web";
 import { createSignal, For, createEffect } from "solid-js";
 
@@ -30,36 +30,25 @@ const [data, setData] = createSignal<StoreProps>({
   botright: [],
 });
 
-let listeners: Array<() => void> = [];
-const emitChange = () => listeners.forEach((x) => x());
+const addToast = (obj: ToastProps) => {
+  const pos = obj.pos;
+  if (!pos) return;
+  let tmp = [...data()[pos], { ...obj, id: crypto.randomUUID() }];
+  setData({ ...data(), [pos]: tmp });
+};
 
-const store = {
-  add: (obj: ToastProps, pos: posType) => {
-    let tmp = [...data()[pos], { ...obj, id: crypto.randomUUID() }];
-    setData({ ...data(), [pos]: tmp });
-  },
+const removeToast = (id: string, pos: posType ) => {
+  let tmp = data()[pos].filter((t) => t.id !== id);
+  setData({ ...data(), [pos]: tmp });
 
-  remove: (id: string, pos: posType) => {
-    let tmp = data()[pos].filter((t) => t.id !== id);
-    setData({ ...data(), [pos]: tmp });
-
-    if (data()[pos].length == 0) {
-      document.getElementById("toasts-" + pos)?.remove();
-    }
-    emitChange();
-  },
-  subscribe: (listener: () => void) => {
-    listeners = [...listeners, listener];
-    return () => {
-      listeners = listeners.filter((l) => l !== listener);
-    };
-  },
-  getSnapshot: () => data,
+  if (data()[pos].length == 0) {
+    document.getElementById("toasts-" + pos)?.remove();
+  }
 };
 
 const Toast = (x: ToastProps) => {
   createEffect(() => {
-    setTimeout(() => store.remove(x.id, x.pos), x.duration);
+    setTimeout(() => removeToast(x.id, x.pos), x.duration);
   });
 
   const css = {
@@ -77,7 +66,7 @@ const Toast = (x: ToastProps) => {
     },
   };
 
-  const closeToast = () => store.remove(x.id, x.pos);
+  const closeToast = () => removeToast(x.id, x.pos);
 
   return (
     <div
@@ -135,5 +124,5 @@ export const createToast = (x: any) => {
     render(() => <ToastManager pos={x.pos} />, div);
   }
 
-  store.add(x, x.pos);
+  addToast(x);
 };
