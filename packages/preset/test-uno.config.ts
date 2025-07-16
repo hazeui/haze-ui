@@ -1,10 +1,11 @@
-import { defineConfig, presetWind3, presetIcons } from "unocss";
+import { defineConfig, presetWind3, presetIcons, presetWind4 } from "unocss";
 import hazeuiPreset from "./index";
 
 export default defineConfig({
   presets: [
     presetIcons(),
-    presetWind3(),
+    presetWind3({preflight: 'on-demand'}),
+    // presetWind4(),
     hazeuiPreset(),
   ],
 

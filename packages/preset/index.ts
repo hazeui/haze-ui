@@ -20,7 +20,7 @@ export default definePreset((options): Preset<object> => {
       },
 
       borderRadius: {
-        DEFAULT: "0.5rem", // now `rounded` uses your custom radius
+        DEFAULT: "0.4rem", // now `rounded` uses your custom radius
       },
     },
 

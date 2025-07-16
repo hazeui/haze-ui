@@ -3,28 +3,22 @@ import { render } from "solid-js/web";
 import "virtual:uno.css";
 import "../shared.css";
 import Button from "haze-ui/button";
-import Input from "haze-ui/input";
+
+const createToast = () => {
+  let div = document.getElementById("toasts");
+  if (!div) {
+    div = document.createElement("div");
+    div.id = "toasts";
+    div.className = "absolute bg-red grid gap3 top-3 right-3";
+    document.body.appendChild(div);
+  }
+  render(() => <Button variant="soft" txt="works" />, div);
+};
 
 function App() {
   return (
     <>
-      <Button
-        txt="Submit"
-        isLoading={true}
-        loaderTxt="Kekw"
-      />
-      <Button txt="Submit" variant="soft" />
-      <Button txt="Submit" variant="outline" />
-      <Button txt="Submit" />
-
-      
-      <Input
-        iconL="i-line-md:email-filled"
-        placeholder="Enter email here"
-      />
-
-      <br />
-      <input type="text" placeholder="enter email" className="input-solid" />
+      <Button txt="Submit" onClick={createToast} />
     </>
   );
 }
