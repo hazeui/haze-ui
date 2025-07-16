@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { createRoot } from "react-dom/client";
-import { proxy, useSnapshot } from "valtio";
 import Btn from "haze-ui/button";
 
-type pos =
+type posType =
   | "topleft"
   | "topmid"
   | "topright"
@@ -16,22 +15,48 @@ interface ToastProps {
   txt: string;
   title: string;
   type?: "success" | "warning" | "error";
-  pos?: pos;
+  pos?: posType;
   duration?: number;
 }
 
-type StoreProps = {
-  [key in pos]: ToastProps[];
-};
+type StoreProps = { [key in posType]: ToastProps[] };
 
-export const store = proxy<StoreProps>({
+let data: StoreProps = {
   topleft: [],
   topmid: [],
   topright: [],
   botleft: [],
   botmid: [],
   botright: [],
-});
+};
+
+let listeners: Array<() => void> = [];
+
+const emitChange = () => listeners.forEach((x) => x());
+
+export const store = {
+  add: (obj: ToastProps, pos: posType) => {
+    let tmp = [...data[pos], { ...obj, id: crypto.randomUUID() }];
+    data = { ...data, [pos]: tmp };
+    emitChange();
+  },
+
+  remove: (id: string, pos: posType) => {
+    let tmp = data[pos].filter((t) => t.id !== id);
+    data = { ...data, [pos]: tmp };
+    if (data[pos].length == 0) {
+      document.getElementById("toasts-" + pos)?.remove();
+    }
+    emitChange();
+  },
+  subscribe: (listener: () => void) => {
+    listeners = [...listeners, listener];
+    return () => {
+      listeners = listeners.filter((l) => l !== listener);
+    };
+  },
+  getSnapshot: () => data,
+};
 
 export const Toast = ({
   id,
@@ -42,13 +67,7 @@ export const Toast = ({
   pos = "topmid",
 }: ToastProps) => {
   useEffect(() => {
-    setTimeout(() => {
-      store[pos] = store[pos].filter((t) => t.id !== id);
-
-      if (store[pos].length == 0) {
-        document.getElementById("toasts-" + pos)?.remove();
-      }
-    }, duration);
+    setTimeout(() => store.remove(id, pos), duration);
   }, []);
 
   const bgs = {
@@ -77,16 +96,9 @@ const positionCss = {
   botmid: "bottom-3 left-1/2 -translate-x-1/2",
 };
 
-export const ToastManager = ({ pos }: { pos: pos }) => {
-  const list = useSnapshot(store)[pos];
-
-  return (
-    <>
-      {list.map((t) => (
-        <Toast {...t} key={t.id} />
-      ))}
-    </>
-  );
+export const ToastManager = ({ pos }: { pos: posType }) => {
+  const list = useSyncExternalStore(store.subscribe, store.getSnapshot)[pos];
+  return list.map((t) => <Toast {...t} key={t.id} />);
 };
 
 export const createToast = (x: any) => {
@@ -102,5 +114,5 @@ export const createToast = (x: any) => {
     createRoot(div).render(<ToastManager pos={x.pos} />);
   }
 
-  store[x.pos].push({ ...x, id: crypto.randomUUID() });
+  store.add(x, x.pos);
 };
