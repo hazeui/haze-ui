@@ -19,7 +19,10 @@
       "import": "./dist/dialog.jsx"
     },
     "./userpic": {
-      "import": "./dist/dialog.jsx"
+      "import": "./dist/userpic.jsx"
+    },
+    "./switch": {
+      "import": "./dist/switch.jsx"
     },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
