@@ -47,6 +47,8 @@ export default definePreset((options): Preset<object> => {
 
         "input-solid": "input bg-input ring-0",
       },
+
+      [/^wh-(\d+)$/, ([, size]) => `w-${size} h-${size}`],
     ],
   };
 });

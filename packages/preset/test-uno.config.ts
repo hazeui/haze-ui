@@ -4,8 +4,7 @@ import hazeuiPreset from "./index";
 export default defineConfig({
   presets: [
     presetIcons(),
-    presetWind3({preflight: 'on-demand'}),
-    // presetWind4(),
+    presetWind3(),
     hazeuiPreset(),
   ],
 
