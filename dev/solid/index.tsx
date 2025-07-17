@@ -18,6 +18,11 @@ const createToast = () => {
 function App() {
   return (
     <>
+      <div className="bg-red "> 
+
+        <div> bruh</div>
+
+      </div>
       <Button txt="Submit" onClick={createToast} />
     </>
   );

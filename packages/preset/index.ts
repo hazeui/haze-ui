@@ -1,4 +1,7 @@
+// @unocss-include
 import { definePreset, Preset, transformerVariantGroup } from "unocss";
+
+import { shortcuts } from "./utils";
 
 export default definePreset((options): Preset<object> => {
   return {
@@ -46,9 +49,31 @@ export default definePreset((options): Preset<object> => {
           "duration-150 p3 rounded border-0 outline-0 ring-(1 border) focus:(ring-2 ring-primary)",
 
         "input-solid": "input bg-input ring-0",
+        centerfull: "flex items-center justify-center",
+
+        badge:
+          "inline-flex items-center justify-center gap1 px-2 py-0.5 text-sm rounded",
+        bordered: "border-(1 solid border)",
+
+        ...shortcuts,
       },
 
       [/^wh-(\d+)$/, ([, size]) => `w-${size} h-${size}`],
+
+      [
+        /^badge-(\w+)(?:-(\w+))?$/,
+        ([, bg, text]) => `badge bg-${bg} text-${text ?? "white"}`,
+      ],
+
+      [
+        // /^radio(?:-(\d+))?(?:-(\w+))?$/,
+    /^radio(?:-(\d+))?$/,
+        ([, size = 4]) => {
+          const bordersize = Math.floor(size * 1.5);
+          return `appearance-none wh-${size} rounded-full border-(1 solid slate)
+                  checked:(border-${bordersize} border-primary) transition-border`;
+        },
+      ],
     ],
   };
 });

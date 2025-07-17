@@ -15,7 +15,10 @@
     "./toast": {
       "import": "./dist/toast.jsx"
     },
-     "./dialog": {
+    "./dialog": {
+      "import": "./dist/dialog.jsx"
+    },
+    "./userpic": {
       "import": "./dist/dialog.jsx"
     },
     "./unocss-preset": {
