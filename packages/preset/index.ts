@@ -41,7 +41,8 @@ export default definePreset((options): Preset<object> => {
 
         "btn-primary": "btn bg-primary text-white hover:brightness-90",
         "btn-soft": "btn bg-slate-2 text-fg hover:brightness-90",
-        "btn-ghost": "btn bg-transparent text-fg hover:bg-input disabled:text-slate",
+        "btn-ghost":
+          "btn bg-transparent text-fg hover:bg-input disabled:text-slate",
         "btn-outline":
           "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
 
@@ -56,6 +57,7 @@ export default definePreset((options): Preset<object> => {
         bordered: "border-(1 solid border)",
 
         skeleton: "p3 w-full h-10 rounded bg-border animate-pulse",
+        wrapper:'group relative inline-block',
 
         ...shortcuts,
       },
@@ -77,6 +79,24 @@ export default definePreset((options): Preset<object> => {
       ],
 
       [
+        /^dropdown(?:-(\w+)(?:-(\w+))?)?$/,
+        ([, pos, center]) => {
+          const tmp = {
+            top: "bottom-full mb3",
+            bottom: "top-full mt3",
+          };
+
+          const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
+
+          pos = tmp[pos] || tmp.bottom;
+
+          return `invisible absolute mt-2 w-48 rounded border bg-white border-(1 solid gray2)
+                  opacity-0 shadow-md transition-400 
+                  group-focus-within:(opacity-100 visible) !focus-within:opacity-0 grid px1 py2 ${pos} ${mid}`;
+        },
+      ],
+
+      [
         /^tooltip(?:-(\w+)(?:-(\w+))?)?$/,
         ([, pos, center]) => {
           const tmp = {
@@ -84,8 +104,7 @@ export default definePreset((options): Preset<object> => {
             bottom: "top-full mt3",
           };
 
-          const mid =
-            center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
+          const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
           pos = tmp[pos] || tmp.bottom;
 
