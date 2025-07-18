@@ -4,7 +4,6 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   loaderTxt?: string;
   iconR?: string;
-  disabled?: boolean;
   className?: string;
   variant?: "primary" | "outline" | "soft" | "ghost";
   [x: string]: any;
@@ -16,13 +15,10 @@ const Btn = ({
   txt,
   isLoading,
   loaderTxt,
-  disabled,
   className = "",
   variant = "primary",
   ...x
 }: Props) => {
-  const isDisabled = isLoading || disabled;
-
   const variants: any = {
     primary: "btn-primary",
     soft: "btn-soft",
@@ -30,10 +26,10 @@ const Btn = ({
     ghost: "btn-ghost",
   };
 
-  const css = `${variants[variant]} ${isDisabled ? "muted" : ""} ${className}`;
+  const css = `${variants[variant]} ${className}`;
 
   return (
-    <button className={css} disabled={isDisabled} {...x}>
+    <button className={css} {...x}>
       {iconL && <div className={iconL} />}
       {isLoading && <div className="i-eos-icons:loading text-sm" />}
       {txt && !isLoading && txt}

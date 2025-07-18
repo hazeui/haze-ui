@@ -28,10 +28,10 @@ const Btn = (x: BtnProps) => {
     ghost: "btn-ghost",
   };
 
-  const css = `${variants[x.variant ?? "primary"]} ${x.loading || x.disabled ? "muted" : ""} ${x.class ?? ""}`;
+  const css = `${variants[x.variant ?? "primary"]} ${x.class ?? ""}`;
 
   return (
-    <button class={css} disabled={x.loading || x.disabled} {...others}>
+    <button class={css} {...others}>
       {x.iconL && <div class={x.iconL} />}
       {x.loading && <div class="i-eos-icons:loading text-sm" />}
       {x.txt && !x.loading && x.txt}

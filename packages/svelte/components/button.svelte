@@ -7,7 +7,6 @@
     isLoading?: boolean;
     loaderTxt?: string;
     iconR?: string;
-    disabled?: boolean;
     class?: string;
     variant?: "primary" | "outline" | "soft" | "ghost";
     [x: string]: any;
@@ -19,14 +18,11 @@
     iconR,
     isLoading,
     loaderTxt,
-    disabled,
     class: myclass,
     variant = "primary",
     ...x
   }: Props = $props();
 
-  const isDisabled = isLoading || disabled;
-  
   const variants: any = {
     primary: "btn-primary",
     soft: "btn-soft",
@@ -34,10 +30,10 @@
     outline: "btn-outline",
   };
 
-  const css = `${variants[variant]} ${isDisabled ? "muted" : ""} ${myclass}`;
+  const css = `${variants[variant]} ? "muted" : ""} ${myclass}`;
 </script>
 
-<button class={css} disabled={isLoading || disabled} {...x}>
+<button class={css} {...x}>
   {#if iconL}
     <div class={iconL}></div>
   {/if}

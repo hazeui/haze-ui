@@ -30,7 +30,7 @@ export default definePreset((options): Preset<object> => {
     shortcuts: [
       {
         btn: `rounded inline-flex items-center justify-center border-0
-              gap2 transition-colors duration-200 size-md`,
+              gap2 transition-colors duration-200 size-md disabled:(brightness-90) disabled:hover-cursor-not-allowed`,
 
         muted: "brightness-90 hover:cursor-not-allowed",
 
@@ -41,7 +41,7 @@ export default definePreset((options): Preset<object> => {
 
         "btn-primary": "btn bg-primary text-white hover:brightness-90",
         "btn-soft": "btn bg-slate-2 text-fg hover:brightness-90",
-        "btn-ghost": "btn bg-transparent text-fg hover:bg-input",
+        "btn-ghost": "btn bg-transparent text-fg hover:bg-input disabled:text-slate",
         "btn-outline":
           "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
 
