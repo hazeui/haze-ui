@@ -55,6 +55,8 @@ export default definePreset((options): Preset<object> => {
           "inline-flex items-center justify-center gap1 px-2 py-0.5 text-sm rounded",
         bordered: "border-(1 solid border)",
 
+        skeleton: "p3 w-full h-10 rounded bg-border animate-pulse",
+
         ...shortcuts,
       },
 
@@ -66,12 +68,29 @@ export default definePreset((options): Preset<object> => {
       ],
 
       [
-        // /^radio(?:-(\d+))?(?:-(\w+))?$/,
-    /^radio(?:-(\d+))?$/,
+        /^radio(?:-(\d+))?$/,
         ([, size = 4]) => {
           const bordersize = Math.floor(size * 1.5);
           return `appearance-none wh-${size} rounded-full border-(1 solid slate)
                   checked:(border-${bordersize} border-primary) transition-border`;
+        },
+      ],
+
+      [
+        /^tooltip(?:-(\w+)(?:-(\w+))?)?$/,
+        ([, pos, center]) => {
+          const tmp = {
+            top: "bottom-full mb3",
+            bottom: "top-full mt3",
+          };
+
+          const mid =
+            center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
+
+          pos = tmp[pos] || tmp.bottom;
+
+          return `absolute ${pos} bg-fg p3 rounded text-bg shadow ${mid} 
+                  opacity-0 min-w-xs transition-400 group-hover:(opacity-100) pointer-events-none`;
         },
       ],
     ],
