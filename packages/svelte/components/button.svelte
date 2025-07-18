@@ -30,7 +30,7 @@
     outline: "btn-outline",
   };
 
-  const css = `${variants[variant]} ? "muted" : ""} ${myclass}`;
+  const css = `${variants[variant]} ${myclass}`;
 </script>
 
 <button class={css} {...x}>
