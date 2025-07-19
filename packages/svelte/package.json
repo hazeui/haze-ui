@@ -21,6 +21,9 @@
     "./toast": {
       "import": "./dist/toast/utils.svelte.ts"
     },
+    "./dropdown": {
+      "import": "./dist/dropdown/index.ts"
+    },
     "./unocss-preset": {
       "import": "./dist/preset/index.js"
     }
