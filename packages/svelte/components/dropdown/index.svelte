@@ -9,13 +9,13 @@
   const toggleDropdown = () => open = !open;
   const closeDropdown = () => open = false;
 
-  const nn: PassedProps = {
+  const context: PassedProps = {
     open: () => open,
     toggleDropdown,
     closeDropdown,
   };
 
-  setContext("dropdown", nn);
+  setContext("dropdown", context);
 </script>
 
 <div
