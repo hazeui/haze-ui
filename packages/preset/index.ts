@@ -16,7 +16,7 @@ export default definePreset((options): Preset<object> => {
       colors: {
         fg: "#000000",
         bg: "#ffffff",
-        primary: "#7C86FF",
+        primary: "#364153",
         border: "#cfdce9",
         input: "#e6edf4",
         ring: "#a9b0ff",
@@ -29,27 +29,8 @@ export default definePreset((options): Preset<object> => {
 
     shortcuts: [
       {
-        btn: `rounded inline-flex items-center justify-center border-0
-              gap2 transition-colors duration-200 size-md disabled:(brightness-90) disabled:hover-cursor-not-allowed`,
-
         muted: "brightness-90 hover:cursor-not-allowed",
 
-        "size-sm": "text-sm px3 py1.5",
-        "size-md": "text-base px4 py2", // default
-        "size-lg": "text-lg px5 py2.5",
-        "size-xl": "text-xl px6 py3",
-
-        "btn-primary": "btn bg-primary text-white hover:brightness-90",
-        "btn-soft": "btn bg-slate-2 text-fg hover:brightness-90",
-        "btn-ghost":
-          "btn bg-transparent text-fg hover:bg-input disabled:text-slate",
-        "btn-outline":
-          "btn bg-bg text-fg border-(2 solid border) hover:border-primary",
-
-        input:
-          "duration-150 p3 rounded border-0 outline-0 ring-(1 border) focus:(ring-2 ring-primary)",
-
-        "input-solid": "input bg-input ring-0",
         centerfull: "flex items-center justify-center",
 
         badge:
@@ -57,10 +38,67 @@ export default definePreset((options): Preset<object> => {
         bordered: "border-(1 solid border)",
 
         skeleton: "p3 w-full h-10 rounded bg-border animate-pulse",
-        wrapper:'group relative inline-block',
+        wrapper: "relative inline-block",
 
         ...shortcuts,
       },
+
+      [
+        /^input(?:-(solid|outline))?(?:-(sm|md|lg|xl))?$/,
+        ([, variant = "solid", size = "md"]) => {
+          const [textSize, pad] = {
+            sm: ["text-sm", 1.5],
+            md: ["text-base", 2],
+            lg: ["text-lg", 2.5],
+            xl: ["text-xl", 3],
+          }[size];
+
+          const p = `py-${pad} px-${pad * 1.5}`;
+
+          const base = `transition-all rounded
+                         outline-0  focus:(ring-2 ring-primary)
+    `;
+
+          const variants = {
+            solid: "bg-input ring-0",
+            outline:
+              "bg-bg border-(1 solid border) shadow-sm",
+          };
+
+          return `input ${base} ${variants[variant]} ${textSize} ${p}`;
+        },
+      ],
+
+      [
+        /^btn(?:-(\w+))?(?:-(eq)?(xs|sm|md|lg|xl))?$/,
+        ([, variant = "soft", eqFlag, size = "md"]) => {
+          const sizes = {
+            xs: ["text-xs", 1],
+            sm: ["text-sm", 1.5],
+            md: ["text-base", 2],
+            lg: ["text-lg", 2.5],
+            xl: ["text-xl", 3],
+          };
+
+          const [txtsize, pad] = sizes[size];
+          const p = eqFlag ? `p${pad}` : `py-${pad} px-${pad * 2}`;
+          const base = `rounded inline-flex items-center justify-center
+                        gap2 transition-all border-0 focus:outline-0
+                        disabled:(brightness-90 hover:cursor-not-allowed)`;
+
+          const variants = {
+            primary:
+              "bg-primary text-white focus:brightness-90 hover:brightness-90",
+            soft: "bg-slate-2 text-fg hover:brightness-90 focus:brightness-90",
+            ghost:
+              "bg-transparent text-fg hover:bg-input disabled:text-slate focus:bg-input",
+            outline:
+              "bg-bg text-fg border-(2 solid border) hover:border-primary focus:border-primary",
+          };
+
+          return `${base} ${variants[variant]} ${txtsize} ${p}`;
+        },
+      ],
 
       [/^wh-(\d+)$/, ([, size]) => `w-${size} h-${size}`],
 
@@ -92,7 +130,24 @@ export default definePreset((options): Preset<object> => {
 
           return `invisible absolute mt-2 w-48 rounded border bg-white border-(1 solid gray2)
                   opacity-0 shadow-md transition-400 
-                  group-focus-within:(opacity-100 visible) !focus-within:opacity-0 grid px1 py2 ${pos} ${mid}`;
+                  group-focus-within:(opacity-100 visible) grid px1 py2 ${pos} ${mid}`;
+        },
+      ],
+
+      [
+        /^popover(?:-(\w+)(?:-(\w+))?)?$/,
+        ([, pos, center]) => {
+          const tmp = {
+            top: "bottom-full mb3",
+            bottom: "top-full mt3",
+          };
+
+          const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
+
+          pos = tmp[pos] || tmp.bottom;
+
+          return `absolute mt-2 w-fit rounded border bg-white border-(1 solid gray2)
+                  shadow-md grid p2 animate-(fade-in duration-300) ${pos} ${mid}`;
         },
       ],
 
