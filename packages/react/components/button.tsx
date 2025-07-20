@@ -1,4 +1,4 @@
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   txt?: string;
   iconL?: string;
   isLoading?: boolean;

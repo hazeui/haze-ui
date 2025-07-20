@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { HTMLButtonAttributes } from "svelte/elements";
 
-  interface Props extends HTMLButtonAttributes {
+  export interface Props extends HTMLButtonAttributes {
     txt?: string;
     iconL?: string;
     isLoading?: boolean;

@@ -93,7 +93,7 @@ export default definePreset((options): Preset<object> => {
             ghost:
               "bg-transparent text-fg hover:bg-input disabled:text-slate focus:bg-input",
             outline:
-              "bg-bg text-fg border-(2 solid border) hover:border-primary focus:border-primary",
+              "bg-bg text-fg border-(2 solid slate2) hover:bg-input",
           };
 
           return `${base} ${variants[variant]} ${txtsize} ${p}`;

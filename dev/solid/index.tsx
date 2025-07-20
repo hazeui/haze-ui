@@ -3,28 +3,31 @@ import { render } from "solid-js/web";
 import "virtual:uno.css";
 import "../shared.css";
 import Button from "haze-ui/button";
-
-const createToast = () => {
-  let div = document.getElementById("toasts");
-  if (!div) {
-    div = document.createElement("div");
-    div.id = "toasts";
-    div.className = "absolute bg-red grid gap3 top-3 right-3";
-    document.body.appendChild(div);
-  }
-  render(() => <Button variant="soft" txt="works" />, div);
-};
+import Select from "haze-ui/select";
 
 function App() {
+  const fruitOptions = [
+    { val: "apple", name: "Apple" },
+    { val: "banana", name: "Banana" },
+    { val: "mango", name: "Mango" },
+    { val: "peach", name: "Peach" },
+  ];
+
+  const handleSelectChange = (value: string) => {
+    console.log("Selected:", value);
+  };
+
   return (
-    <>
-      <div className="bg-red "> 
-
-        <div> bruh</div>
-
+    <main className="gid gap4 items-center p5">
+      <div className="m-30">
+        <Select
+          options={fruitOptions}
+          onChange={handleSelectChange}
+          activeOptionCss="!bg-gray-200"
+          dropdownCss="bg-bg"
+        />
       </div>
-      <Button txt="Submit" onClick={createToast} />
-    </>
+    </main>
   );
 }
 
