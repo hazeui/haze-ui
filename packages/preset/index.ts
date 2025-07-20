@@ -1,7 +1,6 @@
 // @unocss-include
 import { definePreset, Preset, transformerVariantGroup } from "unocss";
-
-import { shortcuts } from "./utils";
+import { checkIconUrl } from "./utils";
 
 export default definePreset((options): Preset<object> => {
   return {
@@ -39,8 +38,6 @@ export default definePreset((options): Preset<object> => {
 
         skeleton: "p3 w-full h-10 rounded bg-border animate-pulse",
         wrapper: "relative inline-block",
-
-        ...shortcuts,
       },
 
       [
@@ -56,13 +53,11 @@ export default definePreset((options): Preset<object> => {
           const p = `py-${pad} px-${pad * 1.5}`;
 
           const base = `transition-all rounded
-                         outline-0  focus:(ring-2 ring-primary)
-    `;
+                         outline-0  focus:(ring-2 ring-primary)`;
 
           const variants = {
             solid: "bg-input ring-0",
-            outline:
-              "bg-bg border-(1 solid border) shadow-sm",
+            outline: "bg-bg border-(1 solid border) shadow-sm",
           };
 
           return `input ${base} ${variants[variant]} ${textSize} ${p}`;
@@ -92,8 +87,7 @@ export default definePreset((options): Preset<object> => {
             soft: "bg-slate-2 text-fg hover:brightness-90 focus:brightness-90",
             ghost:
               "bg-transparent text-fg hover:bg-input disabled:text-slate focus:bg-input",
-            outline:
-              "bg-bg text-fg border-(2 solid slate2) hover:bg-input",
+            outline: "bg-bg text-fg border-(2 solid slate2) hover:bg-input",
           };
 
           return `${base} ${variants[variant]} ${txtsize} ${p}`;
@@ -113,6 +107,21 @@ export default definePreset((options): Preset<object> => {
           const bordersize = Math.floor(size * 1.5);
           return `appearance-none wh-${size} rounded-full border-(1 solid slate)
                   checked:(border-${bordersize} border-primary) transition-border`;
+        },
+      ],
+
+      [
+        /^checkbox(?:-([\w]+))?(?:-([\d]+))?$/,
+        ([, color = "primary", size = 4]) => {
+          if (size && Number(color)) {
+            size = color;
+            color = "primary";
+          }
+
+          return `
+               appearance-none wh-${size} rounded-sm border-(1.5 solid border)
+               bg-no-repeat bg-center bg-[length:100%_100%]
+               transition-all checked:(${checkIconUrl()} bg-${color} border-${color})`;
         },
       ],
 
