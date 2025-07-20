@@ -12,6 +12,8 @@ type CtxProps = {
   closeDropdown: () => void;
 };
 
+import { clickOutside } from "./domutils";
+
 const context = createContext<CtxProps>();
 
 export const DropdownTrigger = (props: any) => {
@@ -106,15 +108,11 @@ export const Dropdown = (props: any) => {
   const toggleDropdown = () => setOpen((o) => !o);
   const closeDropdown = () => setOpen(false);
 
-  const ctxValue: CtxProps = {
-    open,
-    toggleDropdown,
-    closeDropdown,
-  };
+  const ctxValue: CtxProps = { open, toggleDropdown, closeDropdown };
 
   return (
     <context.Provider value={ctxValue}>
-      <div class="relative inline-block" ref={ref}>
+      <div class="relative inline-block" ref={ref} use:clickOutside={closeDropdown}>
         {props.children}
       </div>
     </context.Provider>

@@ -1,6 +1,7 @@
 import { createSignal, For } from "solid-js";
 import Btn from "./button";
 import type { Props as BtnProps } from "./button";
+import { clickOutside } from "./domutils";
 
 type Option = {
   val: string;
@@ -30,6 +31,8 @@ export default function CustomSelect(props:Props) {
       return next;
     });
   };
+
+  const close = () => setIsOpened(false)
 
   const setSelectedThenCloseDropdown = (index:number) => {
     if (index !== selectedIndex()) {
@@ -63,7 +66,7 @@ export default function CustomSelect(props:Props) {
   };
 
   return (
-    <div class="relative" ref={ref}>
+    <div class="relative w-full" ref={ref} use:clickOutside={close}>
       <Btn
         aria-haspopup="listbox"
         aria-expanded={isOpened()}

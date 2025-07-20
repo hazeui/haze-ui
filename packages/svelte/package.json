@@ -29,8 +29,10 @@
     }
   },
   "peerDependencies": {
-    "svelte": "^5.0.0",
     "unocss": "^66.3.3"
+  },
+  "dependencies": {
+    "svelte": "^5.0.0"
   },
   "devDependencies": {
     "typescript": "~5.8.3"
