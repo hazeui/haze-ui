@@ -24,18 +24,13 @@
     const focusableElements = getFocusableElements();
     if (focusableElements.length === 0) return;
 
-    if (e.key == "ArrowDown") {
+    if (e.key == "ArrowDown" && focusedIndex < focusableElements.length) {
       e.preventDefault();
-      focusedIndex = focusedIndex < focusableElements.length - 1
-        ? focusedIndex + 1
-        : 0;
+      focusedIndex = focusedIndex + 1;
       focusableElements[focusedIndex]?.focus();
     } //
-    else if (e.key == "ArrowUp") {
-      e.preventDefault();
-      focusedIndex = focusedIndex > 0
-        ? focusedIndex - 1
-        : focusableElements.length - 1;
+    else if (e.key == "ArrowUp" && focusedIndex > 0) {
+      focusedIndex = focusedIndex - 1;
       focusableElements[focusedIndex]?.focus();
     }
   };

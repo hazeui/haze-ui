@@ -51,21 +51,18 @@ export default ({
   };
 
   const handleListKeyDown = (e: React.KeyboardEvent) => {
+    e.preventDefault();
     switch (e.key) {
       case "Enter":
-        e.preventDefault();
         setSelectedThenCloseDropdown(hlIndex);
         break;
       case "Escape":
-        e.preventDefault();
         setIsOpened(false);
         break;
       case "ArrowUp":
-        e.preventDefault();
-        setHlIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
+        setHlIndex((prev) => (prev > 0 ? prev - 1 : 0));
         break;
       case "ArrowDown":
-        e.preventDefault();
         setHlIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
         break;
       default:

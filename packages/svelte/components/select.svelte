@@ -47,21 +47,19 @@
   };
 
   const handleListKeyDown = (e: KeyboardEvent) => {
+    e.preventDefault();
+
     switch (e.key) {
       case "Enter":
-        e.preventDefault();
         setSelectedThenCloseDropdown(hlIndex);
         break;
       case "Escape":
-        e.preventDefault();
         isOpened = false;
         break;
       case "ArrowUp":
-        e.preventDefault();
-        hlIndex = hlIndex > 0 ? hlIndex - 1 : options.length - 1;
+        hlIndex = hlIndex > 0 ? hlIndex - 1 : 0;
         break;
       case "ArrowDown":
-        e.preventDefault();
         hlIndex = hlIndex < options.length - 1 ? hlIndex + 1 : 0;
         break;
       default:

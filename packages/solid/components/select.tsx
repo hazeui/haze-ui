@@ -18,7 +18,7 @@ type Props = {
   activeOptionCss?: string;
 };
 
-export default function CustomSelect(props:Props) {
+export default function CustomSelect(props: Props) {
   let ref;
   const [isOpened, setIsOpened] = createSignal(false);
   const [selectedIndex, setSelectedIndex] = createSignal(0);
@@ -32,9 +32,9 @@ export default function CustomSelect(props:Props) {
     });
   };
 
-  const close = () => setIsOpened(false)
+  const close = () => setIsOpened(false);
 
-  const setSelectedThenCloseDropdown = (index:number) => {
+  const setSelectedThenCloseDropdown = (index: number) => {
     if (index !== selectedIndex()) {
       setSelectedIndex(index);
       props.onChange?.(props.options[index].val);
@@ -42,22 +42,19 @@ export default function CustomSelect(props:Props) {
     setIsOpened(false);
   };
 
-  const handleListKeyDown = (e:KeyboardEvent) => {
+  const handleListKeyDown = (e: KeyboardEvent) => {
+    e.preventDefault();
     switch (e.key) {
       case "Enter":
-        e.preventDefault();
         setSelectedThenCloseDropdown(hlIndex());
         break;
       case "Escape":
-        e.preventDefault();
         setIsOpened(false);
         break;
       case "ArrowUp":
-        e.preventDefault();
-        setHlIndex((prev) => (prev > 0 ? prev - 1 : props.options.length - 1));
+        setHlIndex((prev) => (prev > 0 ? prev - 1 : 0));
         break;
       case "ArrowDown":
-        e.preventDefault();
         setHlIndex((prev) => (prev < props.options.length - 1 ? prev + 1 : 0));
         break;
       default:

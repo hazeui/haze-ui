@@ -59,16 +59,15 @@ export const DropdownContent = (props: {
     const focusables = getFocusableElements();
     if (focusables.length === 0) return;
 
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const next =
-        focusedIndex() < focusables.length - 1 ? focusedIndex() + 1 : 0;
+    e.preventDefault();
+
+    if (e.key === "ArrowDown" && focusedIndex() < focusables.length - 1) {
+      const next = focusedIndex() + 1;
       setFocusedIndex(next);
       focusables[next]?.focus();
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const prev =
-        focusedIndex() > 0 ? focusedIndex() - 1 : focusables.length - 1;
+    } //
+    else if (e.key === "ArrowUp" && focusedIndex() > 0) {
+      const prev = focusedIndex() - 1;
       setFocusedIndex(prev);
       focusables[prev]?.focus();
     }
@@ -112,7 +111,11 @@ export const Dropdown = (props: any) => {
 
   return (
     <context.Provider value={ctxValue}>
-      <div class="relative inline-block" ref={ref} use:clickOutside={closeDropdown}>
+      <div
+        class="relative inline-block"
+        ref={ref}
+        use:clickOutside={closeDropdown}
+      >
         {props.children}
       </div>
     </context.Provider>
