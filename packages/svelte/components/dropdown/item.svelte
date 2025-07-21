@@ -13,7 +13,7 @@
 
 <button
   onclick={closeDropdown}
-  class={`btn-ghost-eqmd justify-start whitespace-nowrap ${css}`}
+  class={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${css}`}
   role="menuitem"
   {...rest}
 >

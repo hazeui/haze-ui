@@ -29,7 +29,7 @@ export const DropdownItem = (props: any) => {
   const ctx = useContext(context) as CtxProps;
   return (
     <button
-      class={`btn-ghost-eqmd justify-start whitespace-nowrap ${props.class || props.className || ""}`}
+      class={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${props.class || props.className || ""}`}
       onClick={ctx.closeDropdown}
       role="menuitem"
       {...props}

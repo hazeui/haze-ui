@@ -25,7 +25,7 @@ export const DropdownItem = ({ children, className, ...rest }: any) => {
 
   return (
     <button
-      className={`btn-ghost-eqmd justify-start whitespace-nowrap ${className}`}
+      className={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${className}`}
       onClick={closeDropdown}
       role="menuitem"
       {...rest}
