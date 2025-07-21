@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
 import { createContext, useEffect, KeyboardEvent } from "react";
 
+type Variant = "box" | "line" | "outline" | "classic" | "subtle" | "plain";
+
 type CtxProps = {
+  variant: Variant;
   active: string;
   tabLabels: string[];
   setActive: (x: any) => void;
@@ -10,8 +13,25 @@ type CtxProps = {
 
 const context = createContext<CtxProps | null>(null);
 
-export const TabsList = ({ children }: any) => {
-  const { active, tabLabels, setActive } = useContext(context) as CtxProps;
+const variantClasses: Record<Variant, { list: string; tab: string }> = {
+  box: { list: "tabs", tab: "tab" },
+  line: { list: "tabs-line", tab: "tab-line" },
+  outline: { list: "tabs-outline", tab: "tab-outline" },
+  classic: { list: "tabs-classic", tab: "tab-classic" },
+  subtle: { list: "tabs-subtle", tab: "tab-subtle" },
+  plain: { list: "tabs-plain", tab: "tab-plain" },
+};
+
+interface Props {
+  value: string;
+  children: any;
+  className?: string;
+}
+
+const TabsList = ({ children, className = "" }: Props) => {
+  const { variant, active, tabLabels, setActive } = useContext(
+    context,
+  ) as CtxProps;
 
   let activeIndex = tabLabels.indexOf(active);
 
@@ -33,7 +53,7 @@ export const TabsList = ({ children }: any) => {
   return (
     <div
       role="tablist"
-      className="rounded bg-slate-100 flex p-2"
+      className={variantClasses[variant].list + " " + className}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
@@ -42,13 +62,13 @@ export const TabsList = ({ children }: any) => {
   );
 };
 
-interface Props {
-  value: string;
-  children: any;
-}
+type TabProps = { iconL?: string } & Props;
 
-export const Tab = ({ value, children }: Props) => {
-  const { active, setActive, setTabLabels } = useContext(context) as CtxProps;
+const Tab = ({ iconL, value, children, className = "" }: TabProps) => {
+  const { variant, active, setActive, setTabLabels } = useContext(
+    context,
+  ) as CtxProps;
+
   const setActiveTab = () => setActive(value);
 
   useEffect(() => {
@@ -60,14 +80,15 @@ export const Tab = ({ value, children }: Props) => {
       role="tab"
       onClick={setActiveTab}
       aria-selected={active == value}
-      className={`btn-ghost ${active == value ? "btn-soft" : ""}`}
+      className={variantClasses[variant].tab + " " + className}
     >
+      {iconL && <span className={iconL}></span>}
       {children}
     </button>
   );
 };
 
-export const TabsContent = ({ value, children }: Props) => {
+const TabsContent = ({ value, children }: Props) => {
   const { active } = useContext(context) as CtxProps;
 
   return active == value ? (
@@ -77,17 +98,27 @@ export const TabsContent = ({ value, children }: Props) => {
   ) : null;
 };
 
-export const Tabs = ({
+const Tabs = ({
+  variant = "box",
   children,
   defaultValue,
 }: {
+  variant?: Variant;
   children: any;
   defaultValue: string;
 }) => {
   const [active, setActive] = useState(defaultValue);
   const [tabLabels, setTabLabels] = useState([]);
 
-  const ctxValue: CtxProps = { active, setActive, tabLabels, setTabLabels };
+  const ctxValue: CtxProps = {
+    variant,
+    active,
+    setActive,
+    tabLabels,
+    setTabLabels,
+  };
 
   return <context.Provider value={ctxValue}>{children}</context.Provider>;
 };
+
+export { Tabs, TabsList, Tab, TabsContent };

@@ -99,7 +99,7 @@ export default ({
               aria-selected={selectedIndex === i}
               tabIndex={-1}
               onClick={() => setSelectedThenCloseDropdown(i)}
-              className={`justify-start btn-ghost-eqmd transition-none ${inactiveOptionCss} 
+              className={`justify-start btn-ghost-eqmd ${inactiveOptionCss} 
                         ${hlIndex === i ? `bg-slate1 ${activeOptionCss}` : ""}`}
             >
               {option.iconL && <span className={option.iconL}></span>}

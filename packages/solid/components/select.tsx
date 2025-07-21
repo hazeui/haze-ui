@@ -90,7 +90,7 @@ export default function CustomSelect(props: Props) {
                 aria-selected={selectedIndex() === i()}
                 tabIndex={-1}
                 onClick={() => setSelectedThenCloseDropdown(i())}
-                class={`justify-start btn-ghost-eqmd transition-none ${props.inactiveOptionCss || ""} 
+                class={`justify-start btn-ghost-eqmd ${props.inactiveOptionCss || ""} 
                           ${hlIndex() === i() ? `bg-slate1 ${props.activeOptionCss || ""}` : ""}`}
               >
                 {option.iconL && <span class={option.iconL}></span>}

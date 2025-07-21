@@ -13,12 +13,13 @@ export default definePreset((options): Preset<object> => {
 
     theme: {
       colors: {
-        fg: "#000000",
+        fg: "#1D293D",
         bg: "#ffffff",
         primary: "#364153",
         border: "#cfdce9",
         input: "#e6edf4",
         ring: "#a9b0ff",
+        inactivefg: "#557091",
       },
 
       borderRadius: {
@@ -78,15 +79,14 @@ export default definePreset((options): Preset<object> => {
           const [txtsize, pad] = sizes[size];
           const p = eqFlag ? `p${pad}` : `py-${pad} px-${pad * 2}`;
           const base = `rounded inline-flex items-center justify-center
-                        gap2 transition-all border-0 focus:outline-0
+                        gap2 border-0 focus:outline-0
                         disabled:(brightness-90 hover:cursor-not-allowed)`;
 
           const variants = {
             primary:
               "bg-primary text-white focus:brightness-90 hover:brightness-90",
             soft: "bg-slate-2 text-fg hover:brightness-90 focus:brightness-90",
-            ghost:
-              "bg-transparent text-fg hover:bg-input disabled:text-slate",
+            ghost: "bg-transparent text-fg hover:bg-input disabled:text-slate",
             outline: "bg-bg text-fg border-(2 solid slate2) hover:bg-input",
           };
 
@@ -174,6 +174,51 @@ export default definePreset((options): Preset<object> => {
 
           return `absolute ${pos} bg-fg p3 rounded text-bg shadow ${mid} 
                   opacity-0 min-w-xs transition-400 group-hover:(opacity-100) pointer-events-none`;
+        },
+      ],
+
+      [
+        /^tabs(?:-(\w+)(?:-(\w+))?)?$/,
+        ([, variant = "box", color]) => {
+          if (!color) {
+            if (["box", "classic", "subtle"].includes(variant)) {
+              color = "input";
+            } else color = "border";
+          }
+
+          const variants = {
+            box: `rounded bg-${color} flex p2`,
+            line: `border-(b solid ${color}) flex`,
+            outline: `border-(b-2 solid ${color}) flex`,
+            classic: `bg-${color} flex p2 pb0`,
+            subtle: `flex`,
+            plain: "flex",
+          };
+
+          return variants[variant];
+        },
+      ],
+
+      [
+        // /^tab(?:-(\w+)(?:-(\w+))?)?$/,
+        /^tab(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+        ([, variant = "box", color = "fg", bg = "bg", border = "border"]) => {
+          const on = "aria-selected-(";
+
+          const variants = {
+            box: `btn-ghost text-inactivefg ${on}bg-${bg} shadow text-${color})`,
+            subtle: `btn-ghost text-inactivefg ${on}bg-input text-fg)`,
+            plain: `btn-ghost text-inactivefg ${on}text-fg)`,
+            line: `btn-ghost rounded-0  -mb-px
+                        ${on}text-${color}  border-(b-2 solid ${color}))`,
+            outline: `btn-ghost rounded-0 rounded-t -mb-2px
+                        ${on}text-${color} bg-${bg} border-(2 solid ${border}))`,
+
+            classic: `btn-ghost rounded-b-0 
+                        ${on}text-${color} bg-${bg} )`,
+          };
+
+          return variants[variant];
         },
       ],
     ],
