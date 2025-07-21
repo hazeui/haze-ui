@@ -11,16 +11,9 @@ export default ({
   ...restProps
 }: Props) => {
   return (
-    <label
-      className={`inline-flex items-center cursor-pointer relative w-10 h-6 ${className}`}
-    >
-      <input type="checkbox" className="peer sr-only" {...restProps} />
-      <div
-        className={`w-full h-full bg-border rounded-full peer-checked:(bg-primary) ${wrappercss}`}
-      ></div>
-      <div
-        className={`absolute left-1 wh-4 bg-white rounded-full shadow transition-all peer-checked:(translate-x-4) ${knobcss}`}
-      ></div>
+    <label className={`switch-outline-md ${className}`}>
+      <input type="checkbox" className="peer" {...restProps} />
+      <span className={`swdot-outline-md ${knobcss}`}></span>
     </label>
   );
 };
