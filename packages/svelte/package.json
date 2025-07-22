@@ -1,41 +1,37 @@
 {
   "name": "@haze-ui/svelte",
-  "version": "0.0.1",
-  "type": "module",
+  "version": "0.0.2",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+    "build": "svelte-package -i components"
   },
-  "main": "./dist",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
-    "./button": {
-      "import": "./dist/button.svelte"
-    },
-    "./input": {
-      "import": "./dist/input.svelte"
-    },
-    "./dialog": {
-      "import": "./dist/dialog.svelte"
-    },
-    "./toast": {
-      "import": "./dist/toast/utils.svelte.ts"
-    },
-    "./dropdown": {
-      "import": "./dist/dropdown/index.ts"
-    },
-    "./unocss-preset": {
-      "import": "./dist/preset/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
     }
   },
   "peerDependencies": {
-    "unocss": "^66.3.3"
-  },
-  "dependencies": {
     "svelte": "^5.0.0"
   },
   "devDependencies": {
-    "typescript": "~5.8.3"
+    "svelte": "^5.0.0",
+    "@sveltejs/package": "^2.0.0"
+  },
+  "keywords": [
+    "svelte"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
