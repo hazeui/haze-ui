@@ -1,10 +1,9 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "../shared.css";
+import "../../shared/style.css";
 import "virtual:uno.css";
 // import "@unocss/reset/tailwind.css";
 import Switch from "haze-ui/switch";
-import Button from "haze-ui/button";
 
 function App() {
   return (

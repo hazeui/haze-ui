@@ -1,7 +1,7 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
 import "virtual:uno.css";
-import "../shared.css";
+import "../../shared/style.css";
 import Button from "haze-ui/button";
 
 function App() {
