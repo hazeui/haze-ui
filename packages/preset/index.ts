@@ -1,8 +1,8 @@
 // @unocss-include
-import { definePreset, Preset, transformerVariantGroup } from "unocss";
+import { definePreset, transformerVariantGroup } from "unocss";
 import { shortcuts } from "./shortcuts";
 
-export default definePreset((options): Preset<object> => {
+export default definePreset(() => {
   return {
     name: "haze-ui",
     variants: [
@@ -27,6 +27,7 @@ export default definePreset((options): Preset<object> => {
       },
     },
 
+    // @ts-ignore
     shortcuts: shortcuts,
   };
 });

@@ -10,16 +10,18 @@ export const checkIconUrl = () => {
   return `bg-[url("${encodeSVG(checkIcon)}")]`;
 };
 
+const config = {
+  sm: ["text-sm", 1.5],
+  md: ["text-base", 2],
+  lg: ["text-lg", 2.5],
+  xl: ["text-xl", 3],
+};
+
 export default [
   [
     /^input(?:-(solid|outline))?(?:-(sm|md|lg|xl))?$/,
     ([, variant = "solid", size = "md"]) => {
-      const [textSize, pad] = {
-        sm: ["text-sm", 1.5],
-        md: ["text-base", 2],
-        lg: ["text-lg", 2.5],
-        xl: ["text-xl", 3],
-      }[size];
+      const [textSize, pad] = config[size];
 
       const p = `py-${pad} px-${pad * 1.5}`;
 
@@ -46,7 +48,7 @@ export default [
 
   [
     /^checkbox(?:-([\w]+))?(?:-([\d]+))?$/,
-    ([, color = "primary", size = 4]) => {
+    ([, color = "primary", size = "4"]) => {
       if (size && Number(color)) {
         size = color;
         color = "primary";

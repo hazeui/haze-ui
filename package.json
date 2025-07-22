@@ -5,5 +5,9 @@
     "packages/*",
     "dev/*",
     "website/*"
-  ]
+  ],
+  "devDependencies": {
+    "@iconify/json": "^2.2.359",
+    "typescript": "~5.8.3"
+  }
 }

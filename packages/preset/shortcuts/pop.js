@@ -1,12 +1,12 @@
+const tmp = {
+  top: "bottom-full mb3",
+  bottom: "top-full mt3",
+};
+
 export default [
   [
     /^dropdown(?:-(\w+)(?:-(\w+))?)?$/,
     ([, pos, center]) => {
-      const tmp = {
-        top: "bottom-full mb3",
-        bottom: "top-full mt3",
-      };
-
       const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
       pos = tmp[pos] || tmp.bottom;
@@ -20,11 +20,6 @@ export default [
   [
     /^popover(?:-(\w+)(?:-(\w+))?)?$/,
     ([, pos, center]) => {
-      const tmp = {
-        top: "bottom-full mb3",
-        bottom: "top-full mt3",
-      };
-
       const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
       pos = tmp[pos] || tmp.bottom;
@@ -37,11 +32,6 @@ export default [
   [
     /^tooltip(?:-(\w+)(?:-(\w+))?)?$/,
     ([, pos, center]) => {
-      const tmp = {
-        top: "bottom-full mb3",
-        bottom: "top-full mt3",
-      };
-
       const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
       pos = tmp[pos] || tmp.bottom;
