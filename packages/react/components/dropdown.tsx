@@ -1,5 +1,5 @@
-import { useState, useContext, createContext } from "react";
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { useState, useContext, createContext } from "react";
+import { ReactNode, useEffect, useRef, ButtonHTMLAttributes } from "react";
 import { useOnClickOutside } from "./domutils";
 
 type CtxProps = {
@@ -10,7 +10,10 @@ type CtxProps = {
 
 const context = createContext<CtxProps | null>(null);
 
-export const DropdownTrigger = ({ children, ...rest }: any) => {
+export const DropdownTrigger = ({
+  children,
+  ...rest
+}: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { toggleDropdown } = useContext(context) as CtxProps;
 
   return (
@@ -90,7 +93,7 @@ export const DropdownContent = ({
   );
 };
 
-export const Dropdown = ({ children }: any) => {
+export const Dropdown = ({ children }: { children: ReactNode }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);

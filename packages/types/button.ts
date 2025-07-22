@@ -1,7 +1,7 @@
 export interface BtnProps {
   txt?: string;
   iconL?: string;
-  isLoading?: boolean;
+  loading?: boolean;
   loaderTxt?: string;
   iconR?: string;
   class?: string;

@@ -1,14 +1,8 @@
 import { ComponentProps, splitProps } from "solid-js";
 
-export type Props = {
-  txt?: string;
-  iconL?: string;
-  loading?: boolean;
-  loaderTxt?: string;
-  iconR?: string;
-  class?: string;
-  variant?: "primary" | "outline" | "soft" | "ghost";
-} & ComponentProps<"button">;
+import { BtnProps } from "types/button";
+
+type Props = BtnProps & ComponentProps<"button">;
 
 const Btn = (x: Props) => {
   const [_, others] = splitProps(x, [

@@ -5,50 +5,47 @@
   "license": "ISC",
   "author": "",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./button": {
-      "import": "./dist/button.jsx"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     },
-    "./input": {
-      "import": "./dist/input.jsx"
+    "./tabs": {
+      "types": "./dist/tabs.d.ts",
+      "import": "./dist/tabs.mjs"
     },
-    "./toast": {
-      "import": "./dist/toast.jsx"
-    },
-    "./dialog": {
-      "import": "./dist/dialog.jsx"
-    },
-    "./userpic": {
-      "import": "./dist/userpic.jsx"
-    },
-    "./switch": {
-      "import": "./dist/switch.jsx"
-    },
-    "./unocss-preset": {
-      "import": "./dist/preset/index.js"
+    "./dropdown": {
+      "types": "./dist/dropdown.d.ts",
+      "import": "./dist/dropdown.mjs"
     }
   },
-  "main": "./dist",
   "files": [
     "dist"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bash ./build.sh"
+    "build": "tsup",
+    "dev": "tsup --watch"
   },
   "peerDependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "unocss": "^66.2.3"
+    "@types/react-dom": "^19.1.6"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "tsup": "^8.5.0",
     "typescript": "~5.8.3"
   }
 }

@@ -3,7 +3,10 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./components"
+    "rootDir": "./components",
+    "paths": {
+      "types/*": ["./types/*"]
+    }
   },
   "include": ["components"]
 }

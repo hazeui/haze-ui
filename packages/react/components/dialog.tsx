@@ -1,12 +1,9 @@
 import { useRef, useEffect, SyntheticEvent, KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-  className?: string;
-}
+import { DialogProps } from "types/dialog";
+
+type Props = DialogProps & React.HTMLAttributes<HTMLDialogElement>;
 
 export default ({ open, onClose, children, className = "" }: Props) => {
   if (!open) return null;

@@ -128,7 +128,7 @@ const ToastManager = ({ pos }: { pos: posType }) => {
   return list.map((t) => <Toast {...t} key={t.id} />);
 };
 
-export const createToast = (x: any) => {
+export const toast = (x: any) => {
   x.pos = x.pos || "topmid";
   const id = "toast-" + x.pos;
   let div = document.getElementById(id);

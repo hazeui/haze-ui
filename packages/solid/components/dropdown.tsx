@@ -45,7 +45,7 @@ export const DropdownContent = (props: {
   children?: JSX.Element;
 }) => {
   const ctx = useContext(context) as CtxProps;
-  let popoverRef: HTMLDivElement;
+  let popoverRef: HTMLDivElement | undefined;
   const [focusedIndex, setFocusedIndex] = createSignal(-1);
 
   const getFocusableElements = (): HTMLElement[] => {

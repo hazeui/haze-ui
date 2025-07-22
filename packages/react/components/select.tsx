@@ -1,22 +1,8 @@
 import { useState, useRef } from "react";
 import Btn from "./button";
-import type { Props as BtnProps } from "./button";
 import { useOnClickOutside } from "./domutils";
 
-type Option = {
-  val: string;
-  name: string;
-  iconL?: string;
-};
-
-type CustomSelectProps = {
-  options: Option[];
-  onChange?: (val: string) => void;
-  triggerProps?: BtnProps;
-  dropdownCss?: string;
-  inactiveOptionCss?: string;
-  activeOptionCss?: string;
-};
+import { SelectProps } from "types/select";
 
 export default ({
   options,
@@ -25,7 +11,7 @@ export default ({
   dropdownCss,
   inactiveOptionCss,
   activeOptionCss,
-}: CustomSelectProps) => {
+}: SelectProps) => {
   const ref = useRef(null);
 
   const [isOpened, setIsOpened] = useState(false);

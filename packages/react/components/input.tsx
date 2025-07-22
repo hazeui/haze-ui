@@ -1,14 +1,7 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
+import { InputProps } from "types/input";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: "outline" | "solid";
-  iconL?: string | React.ReactNode;
-  iconR?: string | React.ReactNode;
-  disabled?: boolean;
-  className?: string;
-  parentCss?: string;
-  [x: string]: any;
-}
+type Props = InputProps & InputHTMLAttributes<HTMLInputElement>;
 
 const Input = ({
   className,

@@ -1,19 +1,12 @@
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  txt?: string;
-  iconL?: string;
-  isLoading?: boolean;
-  loaderTxt?: string;
-  iconR?: string;
-  className?: string;
-  variant?: "primary" | "outline" | "soft" | "ghost";
-  [x: string]: any;
-}
+import { BtnProps } from "types/button";
+
+type Props = BtnProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Btn = ({
   iconL,
   iconR,
   txt,
-  isLoading,
+  loading,
   loaderTxt,
   className = "",
   variant = "primary",
@@ -31,9 +24,9 @@ const Btn = ({
   return (
     <button className={css} {...x}>
       {iconL && <div className={iconL} />}
-      {isLoading && <div className="i-eos-icons:loading text-sm" />}
-      {txt && !isLoading && txt}
-      {isLoading && loaderTxt && loaderTxt}
+      {loading && <div className="i-eos-icons:loading text-sm" />}
+      {txt && !loading && txt}
+      {loading && loaderTxt && loaderTxt}
       {iconR && <div className={iconR} />}
     </button>
   );

@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { HTMLButtonAttributes } from "svelte/elements";
 
+  import { BtnProps } from "types/button";
+
   export interface Props extends HTMLButtonAttributes {
     txt?: string;
     iconL?: string;

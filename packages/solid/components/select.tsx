@@ -1,24 +1,9 @@
 import { createSignal, For } from "solid-js";
 import Btn from "./button";
-import type { Props as BtnProps } from "./button";
 import { clickOutside } from "./domutils";
+import { SelectProps } from "types/select";
 
-type Option = {
-  val: string;
-  name: string;
-  iconL?: string;
-};
-
-type Props = {
-  options: Option[];
-  onChange?: (val: string) => void;
-  triggerProps?: BtnProps;
-  dropdownCss?: string;
-  inactiveOptionCss?: string;
-  activeOptionCss?: string;
-};
-
-export default function CustomSelect(props: Props) {
+export default function CustomSelect(props: SelectProps) {
   let ref;
   const [isOpened, setIsOpened] = createSignal(false);
   const [selectedIndex, setSelectedIndex] = createSignal(0);

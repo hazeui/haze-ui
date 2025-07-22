@@ -21,6 +21,8 @@ interface ToastProps {
 
 type StoreProps = { [key in posType]: ToastProps[] };
 
+const defaulPos = "topmid";
+
 const [data, setData] = createSignal<StoreProps>({
   topleft: [],
   topmid: [],
@@ -37,7 +39,7 @@ const addToast = (obj: ToastProps) => {
   setData({ ...data(), [pos]: tmp });
 };
 
-const removeToast = (id: string, pos: posType ) => {
+const removeToast = (id: string, pos: posType = defaulPos) => {
   let tmp = data()[pos].filter((t) => t.id !== id);
   setData({ ...data(), [pos]: tmp });
 
@@ -112,7 +114,7 @@ const ToastManager = (props: { pos: posType }) => {
 };
 
 export const createToast = (x: any) => {
-  x.pos = x.pos || "topmid";
+  x.pos = x.pos || defaulPos;
   const id = "toast-" + x.pos;
   let div = document.getElementById(id);
 

@@ -1,12 +1,9 @@
-import { createEffect, type JSX, Show } from "solid-js";
+import { createEffect, ComponentProps, Show } from "solid-js";
 import { Portal } from "solid-js/web";
 
-interface Props {
-  open: boolean;
-  onClose: () => void;
-  children: JSX.Element;
-  class?: string;
-}
+import { DialogProps } from "types/dialog";
+
+type Props = DialogProps & ComponentProps<"dialog">;
 
 const Dialog = (props: Props) => {
   let ref: HTMLDialogElement | undefined;

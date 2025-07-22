@@ -1,21 +1,15 @@
-import { ComponentProps, JSX, splitProps } from "solid-js";
+import { ComponentProps, splitProps } from "solid-js";
+import { InputProps } from "types/input";
 
-type Props = {
-  variant?: "outline" | "solid";
-  iconL?: string | JSX.Element;
-  iconR?: string | JSX.Element;
-  disabled?: boolean;
-  class?: string;
-  parentCss?: string;
-} & ComponentProps<"input">;
+type Props = InputProps & ComponentProps<"input">;
 
 const Input = (x: Props) => {
-   const [_, restProps] = splitProps(x, [
+  const [_, restProps] = splitProps(x, [
     "class",
     "variant",
     "iconL",
     "iconR",
-    "parentCss"
+    "parentCss",
   ]);
 
   const variants = {
@@ -32,11 +26,19 @@ const Input = (x: Props) => {
 
   return (
     <div class={css}>
-      {x.iconL && typeof x.iconL === "string" ? <div class={x.iconL} /> : x.iconL}
+      {x.iconL && typeof x.iconL === "string" ? (
+        <div class={x.iconL} />
+      ) : (
+        x.iconL
+      )}
 
       <input {...restProps} class={inputCss} disabled={x.disabled} />
 
-      {x.iconR && typeof x.iconR === "string" ? <div class={x.iconR} /> : x.iconR}
+      {x.iconR && typeof x.iconR === "string" ? (
+        <div class={x.iconR} />
+      ) : (
+        x.iconR
+      )}
     </div>
   );
 };
