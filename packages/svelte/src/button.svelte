@@ -3,22 +3,13 @@
 
   import { BtnProps } from "types/button";
 
-  export interface Props extends HTMLButtonAttributes {
-    txt?: string;
-    iconL?: string;
-    isLoading?: boolean;
-    loaderTxt?: string;
-    iconR?: string;
-    class?: string;
-    variant?: "primary" | "outline" | "soft" | "ghost";
-    [x: string]: any;
-  }
+  type Props = BtnProps & HTMLButtonAttributes;
 
   let {
     txt,
     iconL,
     iconR,
-    isLoading,
+    loading,
     loaderTxt,
     class: myclass,
     variant = "primary",
@@ -40,15 +31,15 @@
     <div class={iconL}></div>
   {/if}
 
-  {#if isLoading}
+  {#if loading}
     <div class="i-eos-icons:loading"></div>
   {/if}
 
-  {#if txt && !isLoading}
+  {#if txt && !loading}
     {txt}
   {/if}
 
-  {#if isLoading && loaderTxt}
+  {#if loading && loaderTxt}
     {loaderTxt}
   {/if}
 
