@@ -1,19 +1,12 @@
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
-  knobcss?: string;
-  wrappercss?: string;
-}
+import { SwitchProps } from "types/switch";
 
-export default ({
-  className = "",
-  wrappercss = "",
-  knobcss = "",
-  ...restProps
-}: Props) => {
+type Props = SwitchProps & React.InputHTMLAttributes<HTMLInputElement>;
+
+export default ({ className, knobcss = "", ...restProps }: Props) => {
   return (
-    <label className={`switch-outline-md ${className}`}>
+    <label className={className || "switch"}>
       <input type="checkbox" className="peer" {...restProps} />
-      <span className={`swdot-outline-md ${knobcss}`}></span>
+      <span className={knobcss || "swdot"}></span>
     </label>
   );
 };
