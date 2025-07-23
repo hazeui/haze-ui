@@ -5,8 +5,8 @@ import { Glob } from "bun";
 const glob = new Glob("*");
 const files = [];
 
-for (const file of glob.scanSync("./components/")) {
-  const filepath = "./components/" + file;
+for (const file of glob.scanSync("./src/")) {
+  const filepath = "./src/" + file;
   files.push(filepath);
 }
 

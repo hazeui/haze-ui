@@ -15,7 +15,7 @@ export default defineConfig({
     alias: [
       {
         find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../../packages/svelte/components/$1"),
+        replacement: resolvePath("../../packages/svelte/src/$1"),
       },
     ],
   },

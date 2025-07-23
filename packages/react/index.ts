@@ -1,6 +1,6 @@
-export { default as Btn } from "./components/button";
-export { default as Dialog } from "./components/dialog";
-export { default as Input } from "./components/input";
-export { default as Select } from "./components/select";
-export { default as Switch } from "./components/switch";
-export { default as Userpic } from "./components/userpic";
+export { default as Btn } from "./src/button";
+export { default as Dialog } from "./src/dialog";
+export { default as Input } from "./src/input";
+export { default as Select } from "./src/select";
+export { default as Switch } from "./src/switch";
+export { default as Userpic } from "./src/userpic";

@@ -25,7 +25,7 @@
     "paths": {
       "shared/*": ["../shared/*"],
       "types/*": ["../../packages/types/*"],
-      "haze-ui/*": ["../../packages/react/components/*"]
+      "haze-ui/*": ["../../packages/react/src/*"]
     }
   },
   "include": ["src"]

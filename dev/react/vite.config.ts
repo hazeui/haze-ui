@@ -16,7 +16,7 @@ export default defineConfig({
     alias: [
       {
         find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../../packages/react/components/$1"),
+        replacement: resolvePath("../../packages/react/src/$1"),
       },
     ],
   },

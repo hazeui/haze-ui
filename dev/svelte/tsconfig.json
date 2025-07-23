@@ -6,7 +6,7 @@
     "checkJs": true,
     "isolatedModules": true,
     "paths": {
-      "haze-ui/*": ["../../packages/react/components/*"]
+      "haze-ui/*": ["../../packages/react/src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
