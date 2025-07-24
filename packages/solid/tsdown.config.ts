@@ -7,11 +7,7 @@ export default defineConfig({
   },
   format: ["esm"],
   dts: true,
-  splitting: false,
   minify: true,
   clean: true,
   external: ["solid-js", "unocss"],
-  esbuildOptions: (options) => {
-    options.jsx = "preserve";
-  },
 });

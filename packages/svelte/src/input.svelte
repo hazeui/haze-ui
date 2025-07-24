@@ -30,7 +30,7 @@
                         focus-within:ring-(2 primary) ${disabled ? "brightness-95" : ""}
                        ${variants[variant]} ${parentCss}`;
 
-  const inputClass = `p2 border-0 outline-0 w-full
+  const inputClass = `p1 border-0 outline-0 w-full
                      ${variant === "solid" ? "bg-input" : "bg-bg"} ${myclass}`;
 
 </script>

@@ -33,7 +33,7 @@ export default [
         outline: "bg-bg border-(1 solid border) shadow-sm",
       };
 
-      return `input ${base} ${variants[variant]} ${textSize} ${p}`;
+      return `${base} ${variants[variant]} ${textSize} ${p}`;
     },
   ],
 

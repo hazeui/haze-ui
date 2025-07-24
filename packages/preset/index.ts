@@ -16,6 +16,7 @@ export default definePreset(() => {
         fg: "#1D293D",
         bg: "#ffffff",
         primary: "#364153",
+        secondary: "#e6edf4",
         border: "#cfdce9",
         input: "#e6edf4",
         ring: "#a9b0ff",

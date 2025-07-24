@@ -5,8 +5,10 @@
   // import Input from "haze-ui/input.svelte";
 
   import { Switch } from "../../../packages/svelte/src/index";
+  import Test from "./test.svelte";
 </script>
 
 <main class="m-10">
   <Switch />
+  <Test />
 </main>
