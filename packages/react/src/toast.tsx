@@ -1,6 +1,6 @@
+// @unocss-include
 import { useEffect, useSyncExternalStore } from "react";
 import { createRoot } from "react-dom/client";
-import Btn from "./button";
 import type { posType, ToastFnProps, ToastObj } from "types/toast";
 
 type StoreProps = { [key in posType]: ToastObj[] };
@@ -75,7 +75,7 @@ const Toast = ({
 
   return (
     <div
-      className={`bg-white min-w-md animate-(fade-in-up duration-300)
+      className={`relative bg-white min-w-md animate-(fade-in-up duration-300)
                   shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
     >
       {type && (
@@ -89,12 +89,13 @@ const Toast = ({
         <p className="!m0 text-zinc6">{txt}</p>
       </div>
 
-      <Btn
-        iconL="i-pajamas:close"
-        variant="ghost"
-        className="size-sm p1 absolute right-3"
+      <button
+        className="btn-ghost-eqsm absolute right-2 top-2"
+        aria-label="close"
         onClick={closeToast}
-      />
+      >
+        <span className="i-pajamas:close" />
+      </button>
     </div>
   );
 };

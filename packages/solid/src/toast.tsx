@@ -31,10 +31,12 @@ const removeToast = (id: string, pos: posType = "topmid") => {
 };
 
 const ToastCard = (x: ToastObj) => {
+  x.duration = x.duration || 3000;
+
   createEffect(() => {
     setTimeout(() => {
-      if (x.id) (removeToast(x.id, x.pos), x.duration);
-    });
+      if (x.id) removeToast(x.id, x.pos);
+    }, x.duration);
   });
 
   const css = {
@@ -58,7 +60,7 @@ const ToastCard = (x: ToastObj) => {
 
   return (
     <div
-      class={`bg-white min-w-md animate-(fade-in-up duration-300)
+      class={`relative bg-white min-w-md animate-(fade-in-up duration-300)
                   shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
     >
       {x.type && (
@@ -72,12 +74,13 @@ const ToastCard = (x: ToastObj) => {
         <p class="!m0 text-zinc6">{x.txt}</p>
       </div>
 
-      <Btn
-        iconL="i-pajamas:close"
-        variant="ghost"
-        class="size-sm p1 absolute right-3"
+      <button
+        class="btn-ghost-eqsm absolute right-2 top-2"
+        aria-label="close"
         onClick={closeToast}
-      />
+      >
+        <span class="i-pajamas:close" />
+      </button>
     </div>
   );
 };
@@ -111,5 +114,5 @@ export const toast = ({ pos = "topmid", ...x }: ToastFnProps) => {
     render(() => <ToastManager pos={pos} />, div);
   }
 
-  addToast(x);
+  addToast({ ...x, pos });
 };

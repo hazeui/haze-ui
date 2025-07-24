@@ -1,8 +1,6 @@
 <script lang="ts">
   import { removeToast } from "./utils.svelte";
   import { onMount } from "svelte";
-  import Btn from "../button.svelte";
-
   let { id, title, txt, type, duration = 3000, pos } = $props();
 
   const css: any = {
@@ -28,7 +26,7 @@
 </script>
 
 <div
-  class={`bg-white min-w-md animate-(fade-in-up duration-300)
+  class={`relative bg-white min-w-md animate-(fade-in-up duration-300)
                   shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
 >
   {#if type}
@@ -42,10 +40,11 @@
     <p class="!m0 text-zinc6">{txt}</p>
   </div>
 
-  <Btn
-    iconL="i-pajamas:close"
-    variant="ghost"
-    class="size-sm p1 absolute right-3"
+  <button
+    aria-label="close"
+    class="btn-ghost-eqsm absolute right-2 top-2"
     onclick={closeToast}
-  />
+  >
+    <span class="i-pajamas:close"></span>
+  </button>
 </div>
