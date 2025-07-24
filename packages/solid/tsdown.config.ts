@@ -1,19 +1,16 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
   entry: {
     index: "index.ts",
-    tabs: "components/tabs.tsx",
-    dropdown: "components/dropdown.tsx",
-    toast: "components/toast.tsx",
-    // etc for each component
+    preset: "../../packages/preset/index.ts",
   },
   format: ["esm"],
   dts: true,
   splitting: false,
   minify: true,
   clean: true,
-  external: ["react", "react-dom"],
+  external: ["solid-js", "unocss"],
   esbuildOptions: (options) => {
     options.jsx = "preserve";
   },

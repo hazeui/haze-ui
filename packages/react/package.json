@@ -14,8 +14,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js"
+    },
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.js"
     }
   },
   "files": [
@@ -23,8 +26,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "down": "tsdown",
-    "up": "tsup",
+    "build": "tsdown",
     "dev": "tsdown --watch"
   },
   "peerDependencies": {

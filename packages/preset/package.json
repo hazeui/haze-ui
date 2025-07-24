@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "build": "tsup"
+    "build": "tsdown"
   },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
@@ -16,9 +16,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
-    "unocss": "^66.3.3",
-    "tsup": "^8.5.0"
+    "unocss": "^66.3.3"
   }
 }

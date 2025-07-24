@@ -11,7 +11,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.js"
+    },
+    "./preset": {
+      "types": "./dist/preset.d.ts",
+      "import": "./dist/preset.js"
     }
   },
   "sideEffects": [
@@ -21,8 +25,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "build": "tsdown",
+    "dev": "tsdown --watch"
   },
   "peerDependencies": {
     "solid-js": "^1.9.7"
@@ -32,7 +36,6 @@
   },
   "devDependencies": {
     "solid-js": "^1.9.7",
-    "tsup": "^8.5.0",
     "typescript": "~5.8.3"
   }
 }

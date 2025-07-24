@@ -2,7 +2,7 @@
   "name": "@haze-ui/svelte",
   "version": "0.0.2",
   "scripts": {
-    "build": "svelte-package -i src && tsc ../types/*.ts --outDir dist/types --declaration --module esnext --skipLibCheck && rm ../types/*d.ts"
+    "build": "sh build.sh"
   },
   "files": [
     "dist",
