@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { createContext, useEffect, KeyboardEvent } from "react";
+import { createContext, useEffect, type KeyboardEvent } from "react";
 
 type Variant = "box" | "line" | "outline" | "classic" | "subtle" | "plain";
 

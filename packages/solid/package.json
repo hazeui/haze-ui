@@ -11,20 +11,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./tabs": {
-      "types": "./dist/tabs.d.ts",
-      "import": "./dist/tabs.mjs",
-      "require": "./dist/tabs.js"
-    },
-    "./dropdown": {
-      "types": "./dist/dropdown.d.ts",
-      "import": "./dist/dropdown.mjs",
-      "require": "./dist/dropdown.js"
+      "import": "./dist/index.mjs"
     }
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist"
   ],

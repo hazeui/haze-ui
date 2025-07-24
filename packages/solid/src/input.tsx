@@ -1,5 +1,5 @@
-import { ComponentProps, splitProps } from "solid-js";
-import { InputProps } from "types/input";
+import { type ComponentProps, splitProps } from "solid-js";
+import { type InputProps } from "types/input";
 
 type Props = InputProps & ComponentProps<"input">;
 

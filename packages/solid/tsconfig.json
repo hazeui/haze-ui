@@ -13,5 +13,5 @@
       "types/*": ["../types/*"]
     }
   },
-  "include": ["components", "global.d.ts"]
+  "include": ["src", "global.d.ts"]
 }

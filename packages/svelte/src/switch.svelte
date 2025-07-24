@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SwitchProps } from "types/switch";
+  import type { SwitchProps } from "types/switch";
   import type { HTMLInputAttributes } from "svelte/elements";
   type Props = SwitchProps & HTMLInputAttributes;
 

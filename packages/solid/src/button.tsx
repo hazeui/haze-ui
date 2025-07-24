@@ -1,6 +1,5 @@
-import { ComponentProps, splitProps } from "solid-js";
-
-import { BtnProps } from "types/button";
+import { type ComponentProps, splitProps } from "solid-js";
+import { type BtnProps } from "types/button";
 
 type Props = BtnProps & ComponentProps<"button">;
 

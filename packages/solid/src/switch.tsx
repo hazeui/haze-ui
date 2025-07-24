@@ -1,5 +1,5 @@
-import { ComponentProps, splitProps } from "solid-js";
-import { SwitchProps } from "types/switch";
+import { type ComponentProps, splitProps } from "solid-js";
+import { type SwitchProps } from "types/switch";
 
 type Props = SwitchProps & ComponentProps<"input">;
 

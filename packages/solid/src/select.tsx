@@ -1,7 +1,7 @@
 import { createSignal, For } from "solid-js";
 import Btn from "./button";
 import { clickOutside } from "./domutils";
-import { SelectProps } from "types/select";
+import { type SelectProps } from "types/select";
 
 export default function CustomSelect(props: SelectProps) {
   let ref;

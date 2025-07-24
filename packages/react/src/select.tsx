@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import Btn from "./button";
 import { useOnClickOutside } from "./domutils";
 
-import { SelectProps } from "types/select";
+import { type SelectProps } from "types/select";
 
 export default ({
   options,

@@ -1,25 +1,9 @@
 import { useEffect, useSyncExternalStore } from "react";
 import { createRoot } from "react-dom/client";
 import Btn from "./button";
+import type { posType, ToastFnProps, ToastObj } from "types/toast";
 
-type posType =
-  | "topleft"
-  | "topmid"
-  | "topright"
-  | "botleft"
-  | "botmid"
-  | "botright";
-
-interface ToastProps {
-  id: string;
-  txt: string;
-  title: string;
-  type?: "success" | "warning" | "error";
-  pos?: posType;
-  duration?: number;
-}
-
-type StoreProps = { [key in posType]: ToastProps[] };
+type StoreProps = { [key in posType]: ToastObj[] };
 
 let data: StoreProps = {
   topleft: [],
@@ -34,7 +18,7 @@ let listeners: Array<() => void> = [];
 const emitChange = () => listeners.forEach((x) => x());
 
 const store = {
-  add: (obj: ToastProps) => {
+  add: (obj: ToastObj) => {
     const pos = obj.pos;
     if (!pos) return;
     let tmp = [...data[pos], { ...obj, id: crypto.randomUUID() }];
@@ -42,7 +26,8 @@ const store = {
     emitChange();
   },
 
-  remove: (id: string, pos: posType) => {
+  remove: (id: string | undefined, pos: posType) => {
+    if (!id) return;
     let tmp = data[pos].filter((t) => t.id !== id);
     data = { ...data, [pos]: tmp };
     if (data[pos].length == 0) {
@@ -66,7 +51,7 @@ const Toast = ({
   type,
   duration = 3000,
   pos = "topmid",
-}: ToastProps) => {
+}: ToastObj) => {
   useEffect(() => {
     setTimeout(() => store.remove(id, pos), duration);
   }, []);
@@ -114,7 +99,7 @@ const Toast = ({
   );
 };
 
-const positionCss:any = {
+const positionCss: any = {
   topright: "top-3 right-3",
   topleft: "top-3 left-3",
   botleft: "bottom-3 left-3",
@@ -128,7 +113,7 @@ const ToastManager = ({ pos }: { pos: posType }) => {
   return list.map((t) => <Toast {...t} key={t.id} />);
 };
 
-export const toast = (x: any) => {
+export const toast = (x: ToastFnProps) => {
   x.pos = x.pos || "topmid";
   const id = "toast-" + x.pos;
   let div = document.getElementById(id);

@@ -1,4 +1,4 @@
-import { SwitchProps } from "types/switch";
+import { type SwitchProps } from "types/switch";
 
 type Props = SwitchProps & React.InputHTMLAttributes<HTMLInputElement>;
 

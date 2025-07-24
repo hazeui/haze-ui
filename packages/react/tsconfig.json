@@ -12,5 +12,5 @@
       "types/*": ["../types/*"]
     }
   },
-  "include": ["components"]
+  "include": ["src"]
 }

@@ -1,27 +1,9 @@
 import Btn from "./button";
 import { render } from "solid-js/web";
 import { createSignal, For, createEffect } from "solid-js";
+import type { posType, ToastFnProps, ToastObj } from "types/toast";
 
-type posType =
-  | "topleft"
-  | "topmid"
-  | "topright"
-  | "botleft"
-  | "botmid"
-  | "botright";
-
-interface ToastProps {
-  id: string;
-  txt: string;
-  title: string;
-  type?: "success" | "warning" | "error";
-  pos?: posType;
-  duration?: number;
-}
-
-type StoreProps = { [key in posType]: ToastProps[] };
-
-const defaulPos = "topmid";
+type StoreProps = { [key in posType]: ToastObj[] };
 
 const [data, setData] = createSignal<StoreProps>({
   topleft: [],
@@ -32,14 +14,14 @@ const [data, setData] = createSignal<StoreProps>({
   botright: [],
 });
 
-const addToast = (obj: ToastProps) => {
+const addToast = (obj: ToastObj) => {
   const pos = obj.pos;
   if (!pos) return;
   let tmp = [...data()[pos], { ...obj, id: crypto.randomUUID() }];
   setData({ ...data(), [pos]: tmp });
 };
 
-const removeToast = (id: string, pos: posType = defaulPos) => {
+const removeToast = (id: string, pos: posType = "topmid") => {
   let tmp = data()[pos].filter((t) => t.id !== id);
   setData({ ...data(), [pos]: tmp });
 
@@ -48,9 +30,11 @@ const removeToast = (id: string, pos: posType = defaulPos) => {
   }
 };
 
-const Toast = (x: ToastProps) => {
+const ToastCard = (x: ToastObj) => {
   createEffect(() => {
-    setTimeout(() => removeToast(x.id, x.pos), x.duration);
+    setTimeout(() => {
+      if (x.id) (removeToast(x.id, x.pos), x.duration);
+    });
   });
 
   const css = {
@@ -68,7 +52,9 @@ const Toast = (x: ToastProps) => {
     },
   };
 
-  const closeToast = () => removeToast(x.id, x.pos);
+  const closeToast = () => {
+    if (x.id) (removeToast(x.id, x.pos), x.duration);
+  };
 
   return (
     <div
@@ -108,22 +94,21 @@ const positionCss: any = {
 const ToastManager = (props: { pos: posType }) => {
   return (
     <>
-      <For each={data()[props.pos]}>{(t) => <Toast {...t} />}</For>
+      <For each={data()[props.pos]}>{(t) => <ToastCard {...t} />}</For>
     </>
   );
 };
 
-export const createToast = (x: any) => {
-  x.pos = x.pos || defaulPos;
-  const id = "toast-" + x.pos;
+export const toast = ({ pos = "topmid", ...x }: ToastFnProps) => {
+  const id = "toast-" + pos;
   let div = document.getElementById(id);
 
   if (!div) {
     div = document.createElement("div");
     div.id = id;
-    div.className = "absolute " + positionCss[x.pos];
+    div.className = "absolute " + positionCss[pos];
     document.body.appendChild(div);
-    render(() => <ToastManager pos={x.pos} />, div);
+    render(() => <ToastManager pos={pos} />, div);
   }
 
   addToast(x);

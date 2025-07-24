@@ -4,9 +4,10 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "paths": {
-      "haze-ui/*": ["../../packages/react/src/*"]
+      "types/*": ["../../packages/types/*"],
+      "haze-ui/*": ["../../packages/solid/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "global.d.ts"],
   "files": []
 }

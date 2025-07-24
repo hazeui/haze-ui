@@ -3,7 +3,7 @@ import {
   createContext,
   useContext,
   createEffect,
-  JSX,
+  type JSX,
 } from "solid-js";
 
 type CtxProps = {

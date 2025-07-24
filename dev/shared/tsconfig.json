@@ -16,17 +16,11 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    /*   "noUnusedLocals": true,
+    "noUnusedParameters": true, */
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    "paths": {
-      "shared/*": ["../shared/*"],
-      "types/*": ["../../packages/types/*"],
-      "haze-ui/*": ["../../packages/react/src/*"]
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": ["src"]
 }

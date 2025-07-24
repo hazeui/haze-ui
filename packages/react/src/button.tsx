@@ -1,4 +1,4 @@
-import { BtnProps } from "types/button";
+import { type BtnProps } from "types/button";
 
 type Props = BtnProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
 

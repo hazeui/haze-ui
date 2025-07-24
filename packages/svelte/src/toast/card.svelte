@@ -46,6 +46,6 @@
     iconL="i-pajamas:close"
     variant="ghost"
     class="size-sm p1 absolute right-3"
-    onClick={closeToast}
+    onclick={closeToast}
   />
 </div>

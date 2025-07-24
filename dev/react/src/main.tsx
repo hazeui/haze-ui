@@ -1,14 +1,19 @@
-import React, { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+// @ts-ignore
 import "../../shared/style.css";
+// @ts-ignore
 import "virtual:uno.css";
 // import "@unocss/reset/tailwind.css";
-import Switch from "haze-ui/switch";
+import { Btn } from "../../../packages/react/index";
+// import Btn from "../../../packages/react/src/button";
+// import Input from "../../../packages/react/src/input";
+// import Switch from "../../../packages/react/src/switch";
 
 function App() {
   return (
     <main className="gid gap4 items-center p5">
-      <Switch className="switch-flat-lg" knobcss="swdot-flat-lg" />
+      <Btn txt="hi" />
     </main>
   );
 }

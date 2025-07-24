@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { HTMLButtonAttributes } from "svelte/elements";
-
-  import { BtnProps } from "types/button";
+  import type { BtnProps } from "types/button";
 
   type Props = BtnProps & HTMLButtonAttributes;
 

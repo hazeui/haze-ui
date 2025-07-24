@@ -1,6 +1,5 @@
-import { type UserpicProps } from "types/userpic";
-
-type Props = UserpicProps & { className?: string };
+import { mergeProps } from "solid-js";
+import { type UserpicProps as Props } from "types/userpic";
 
 const colors = [
   "bg-blue",
@@ -28,16 +27,15 @@ const formatName = (str: string) => {
   return firstname.substring(0, 2).toUpperCase();
 };
 
-export default ({ src, alt, className = "wh-8", name = "joe" }: Props) => {
-  const bg = getColorByLetter(name[0]);
+export default (x: Props) => {
+  const m = mergeProps({ class: "wh-8", name: "joe" }, x);
+  const bg = getColorByLetter(m.name[0]);
 
-  return src ? (
-    <img src={src} alt={alt} className={`rounded-full ${className}`} />
+  return x.src ? (
+    <img src={x.src} alt={x.alt} class={`rounded-full ${m.class}`} />
   ) : (
-    <div
-      className={`rounded-full text-(xs white) centerfull ${bg} ${className}`}
-    >
-      {formatName(name)}
+    <div class={`rounded-full text-(xs white) centerfull ${bg} ${m.class}`}>
+      {formatName(m.name)}
     </div>
   );
 };

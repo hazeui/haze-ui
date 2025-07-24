@@ -1,13 +1,17 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
+
+// @ts-ignore
 import "virtual:uno.css";
+// @ts-ignore
 import "../../shared/style.css";
-import Button from "haze-ui/button";
+
+import { Userpic} from "../../../packages/solid/index";
 
 function App() {
-
   return (
-    <main className="gid gap4 items-center p5">
+    <main class="gid gap4 items-center p5">
+      <Userpic name="joe" />
     </main>
   );
 }

@@ -1,7 +1,7 @@
-import { useRef, useEffect, SyntheticEvent, KeyboardEvent } from "react";
+import { useRef, useEffect } from "react";
+import { type DialogProps } from "types/dialog";
+import { type SyntheticEvent, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
-
-import { DialogProps } from "types/dialog";
 
 type Props = DialogProps & React.HTMLAttributes<HTMLDialogElement>;
 

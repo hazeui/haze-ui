@@ -1,7 +1,7 @@
-import { createEffect, ComponentProps, Show } from "solid-js";
+import { createEffect, type ComponentProps, Show } from "solid-js";
 import { Portal } from "solid-js/web";
 
-import { DialogProps } from "types/dialog";
+import { type DialogProps } from "types/dialog";
 
 type Props = DialogProps & ComponentProps<"dialog">;
 

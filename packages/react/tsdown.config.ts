@@ -1,8 +1,10 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ['src/**/*.{ts,tsx}'], // <-- this grabs all .ts and .tsx files recursively
-  // entry: ['index.ts'], // <-- this grabs all .ts and .tsx files recursively
+  entry: {
+    index: "index.ts",
+    // etc for each component
+  },
   format: ["esm"],
   dts: true,
   splitting: false,

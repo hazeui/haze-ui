@@ -1,5 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
-import { ReactNode, useEffect, useRef, ButtonHTMLAttributes } from "react";
+import { useEffect, useRef } from "react";
+import { type ReactNode, type ButtonHTMLAttributes } from "react";
 import { useOnClickOutside } from "./domutils";
 
 type CtxProps = {

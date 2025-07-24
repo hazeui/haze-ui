@@ -1,25 +1,9 @@
 // @unocss-include
 import { mount } from "svelte";
 import Manager from "./manager.svelte";
+import type { posType, ToastObj, ToastFnProps } from "types/toast";
 
-type posType =
-  | "topleft"
-  | "topmid"
-  | "topright"
-  | "botleft"
-  | "botmid"
-  | "botright";
-
-interface ToastProps {
-  id: string;
-  txt: string;
-  title: string;
-  type?: "success" | "warning" | "error";
-  pos?: posType;
-  duration?: number;
-}
-
-type StoreProps = { [key in posType]: ToastProps[] };
+type StoreProps = { [key in posType]: ToastObj[] };
 
 export let data: StoreProps = $state({
   topleft: [],
@@ -30,7 +14,7 @@ export let data: StoreProps = $state({
   botright: [],
 });
 
-export const addToast = (obj: ToastProps) => {
+export const addToast = (obj: ToastObj) => {
   if (obj.pos) data[obj.pos].push({ ...obj, id: crypto.randomUUID() });
 };
 
@@ -52,7 +36,7 @@ const positionCss: any = {
   botmid: "bottom-3 left-1/2 -translate-x-1/2",
 };
 
-export const createToast = (x: any) => {
+export const toast = (x: ToastFnProps) => {
   x.pos = x.pos || "topmid";
   const id = "toast-" + x.pos;
   let div = document.getElementById(id);

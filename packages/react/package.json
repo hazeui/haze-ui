@@ -8,19 +8,14 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
-    },
-    "./tabs": {
-      "types": "./dist/tabs.d.ts",
-      "import": "./dist/tabs.mjs"
-    },
-    "./dropdown": {
-      "types": "./dist/dropdown.d.ts",
-      "import": "./dist/dropdown.mjs"
     }
   },
   "files": [
@@ -28,8 +23,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "down": "tsdown",
+    "up": "tsup",
+    "dev": "tsdown --watch"
   },
   "peerDependencies": {
     "react": "^19.1.0",
@@ -41,11 +37,11 @@
     "access": "public"
   },
   "devDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "tsup": "^8.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsdown": "^0.13.0",
     "typescript": "~5.8.3"
   }
 }
