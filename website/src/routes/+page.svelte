@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from "haze-ui";
+  import { Button } from "../../../packages/svelte/src/index";
 </script>
 
 HIIIIIII

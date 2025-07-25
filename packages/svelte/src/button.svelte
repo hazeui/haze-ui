@@ -1,3 +1,3 @@
 <button>
-  my button
+  a button
 </button>
