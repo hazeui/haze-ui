@@ -1,7 +1,7 @@
 :root {
   --fg: #1d293d;
   --bg: #ffffff;
-  --primary: #364153;
+  --primary: #3a86ff;
   --border: #cfdce9;
   --input: #e6edf4;
   --secondary: #e6edf4;
@@ -15,7 +15,7 @@
 html[data-theme="dark"] {
   --fg: #e0e0e0;
   --bg: #121212;
-  --primary: #bb86fc;
+  --primary: #3a86ff;
   --secondary: #202020;
   --border: #2d2d2d;
   --input: #202020;
@@ -33,17 +33,21 @@ body {
 }
 
 h1 {
-  @apply text-4xl font-bold tracking-tight;
+  @apply text-3xl font-bold tracking-tight;
 }
 
 h2 {
-  @apply text-3xl font-semibold tracking-tight;
+  @apply text-2xl font-semibold tracking-tight;
 }
 
 h3 {
-  @apply text-2xl font-medium tracking-tight;
+  @apply text-xl font-medium tracking-tight;
 }
 
 h4 {
   @apply text-lg font-medium tracking-tight;
+}
+
+.link {
+  @apply text-primary underline;
 }

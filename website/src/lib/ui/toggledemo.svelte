@@ -15,7 +15,7 @@
 </script>
 
 <Tabs>
-  <TabsList class="tabs w-fit p1 children:(!p2 !px4)">
+  <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
     <Tab value="preview"><i class="i-mage:preview-fill"></i> Preview</Tab>
     <Tab value="code"><i class="i-majesticons:code"></i> Code</Tab>
   </TabsList>
