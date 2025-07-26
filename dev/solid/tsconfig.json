@@ -5,7 +5,7 @@
     "jsxImportSource": "solid-js",
     "paths": {
       "types/*": ["../../packages/types/*"],
-      "haze-ui/*": ["../../packages/solid/src/*"]
+      "@haze-ui/solid": ["../../packages/solid/index.ts"]
     }
   },
   "include": ["src", "global.d.ts"],

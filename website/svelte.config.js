@@ -7,9 +7,11 @@ const config = {
   preprocess: [vitePreprocess(), mdsvex({ extensions: [".mdx"] })],
   kit: {
     adapter: adapter(),
-    alias:{
-      "haze-ui/*" :"../packages/svelte/src/*"
-    }
+    alias: {
+      "@haze-ui/svelte": "../packages/svelte/src/index",
+      "content/*": "./content/*",
+      "codemos/*": "./codemos/*",
+    },
   },
   extensions: [".svelte", ".mdx"],
 };

@@ -15,8 +15,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../../packages/react/src/$1"),
+        find: "@haze-ui/react",
+        replacement: resolvePath( "../../packages/react/index.ts"),
       },
     ],
   },

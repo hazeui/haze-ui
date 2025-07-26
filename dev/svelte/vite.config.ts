@@ -11,11 +11,18 @@ const resolvePath = (dir) => path.resolve(__dirname, dir);
 export default defineConfig({
   plugins: [svelte(), UnoCSS(UnocssConfig)],
 
+  
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
+
   resolve: {
     alias: [
       {
-        find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../../packages/svelte/src/$1"),
+        find: "@haze-ui/svelte",
+        replacement: resolvePath("../../packages/svelte/src/index.ts"),
       },
     ],
   },

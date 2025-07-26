@@ -13,8 +13,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: /^haze-ui\/(.*)$/,
-        replacement: resolvePath("../../packages/solid/src/$1"),
+        find: "@haze-ui/solid",
+        replacement: resolvePath("../../packages/solid/index.ts"),
       },
     ],
   },

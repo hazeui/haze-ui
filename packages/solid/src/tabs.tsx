@@ -2,39 +2,41 @@ import { createSignal, createContext } from "solid-js";
 import { useContext, onMount, Show } from "solid-js";
 
 type CtxProps = {
-  active: () => string;
+  value: () => string;
   tabLabels: () => string[];
-  setActive: (x: any) => void;
+  setValue: (x: any) => void;
   setTabLabels: (x: any) => void;
 };
 
 const context = createContext<CtxProps | null>(null);
 
-export const TabsList = (props: any) => {
-  const { active, tabLabels, setActive } = useContext(context) as CtxProps;
-  const activeIndex = () => tabLabels().indexOf(active());
+export const TabsList = (x: any) => {
+  const { value, tabLabels, setValue } = useContext(context) as CtxProps;
+  const activeIndex = () => tabLabels().indexOf(value());
 
   const handleKeyDown = (e: KeyboardEvent) => {
     e.preventDefault();
     const currentIndex = activeIndex();
     if (e.key === "ArrowLeft" && currentIndex !== 0) {
-      setActive(tabLabels()[currentIndex - 1]);
+      setValue(tabLabels()[currentIndex - 1]);
     } else if (
       e.key === "ArrowRight" &&
       currentIndex !== tabLabels().length - 1
     ) {
-      setActive(tabLabels()[currentIndex + 1]);
+      setValue(tabLabels()[currentIndex + 1]);
     }
   };
+
+  onMount(() => {});
 
   return (
     <div
       role="tablist"
-      class="rounded bg-slate-100 flex p-2"
+      class={x?.class?.includes("tabs-") ? x.class : `tabs ${x.class}`}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {props.children}
+      {x.children}
     </div>
   );
 };
@@ -45,19 +47,21 @@ interface Props {
 }
 
 export const Tab = (x: Props) => {
-  const { active, setActive, setTabLabels } = useContext(context) as CtxProps;
-  const setActiveTab = () => setActive(x.value);
+  const { value, setValue, setTabLabels } = useContext(context) as CtxProps;
+  const setActiveTab = () => setValue(x.value);
 
   onMount(() => {
-    setTabLabels((prev: any) => [...new Set([...prev, x.value])]);
+    setTabLabels((prev: any) => {
+      if (!value()) setValue(x.value);
+      return [...prev, x.value];
+    });
   });
 
   return (
     <button
       role="tab"
       onClick={setActiveTab}
-      aria-selected={active() === x.value}
-      class={`btn-ghost ${active() === x.value ? "btn-soft" : ""}`}
+      aria-selected={value() === x.value}
     >
       {x.children}
     </button>
@@ -65,15 +69,11 @@ export const Tab = (x: Props) => {
 };
 
 export const TabsContent = (x: Props) => {
-  const { active, setActive, tabLabels } = useContext(context) as CtxProps;
-
-  onMount(() => {
-    if (!active()) setActive(tabLabels()[0]);
-  });
+  const { value } = useContext(context) as CtxProps;
 
   return (
-    <Show when={active() === x.value}>
-      <div role="tabpanel" aria-labelledby={`tab-${active()}`}>
+    <Show when={value() === x.value}>
+      <div role="tabpanel" aria-labelledby={`tab-${value()}`}>
         {x.children}
       </div>
     </Show>
@@ -81,10 +81,15 @@ export const TabsContent = (x: Props) => {
 };
 
 export const Tabs = (x: { children: any; defaultValue: string }) => {
-  const [active, setActive] = createSignal(x.defaultValue);
+  const [va, setVal] = createSignal(x.defaultValue);
   const [tabLabels, setTabLabels] = createSignal([]);
 
-  const ctxValue: CtxProps = { active, setActive, tabLabels, setTabLabels };
+  const ctxValue: CtxProps = {
+    value: x.value ?? va,
+    setValue: x.setValue ?? setVal,
+    tabLabels,
+    setTabLabels,
+  };
 
   return <context.Provider value={ctxValue}>{x.children}</context.Provider>;
 };

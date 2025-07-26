@@ -14,7 +14,6 @@
   role="tab"
   onclick={setActiveTab}
   aria-selected={active() == value}
-  class={`btn-ghost ${active() == value ? "btn-soft" : ""}`}
 >
   {@render children()}
 </button>

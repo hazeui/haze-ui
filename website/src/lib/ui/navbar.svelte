@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { Btn } from "haze-ui/index";
+  import { Btn } from "@haze-ui/svelte";
 
   let theme = $state("dark");
 
   const toggleTheme = () => {
-    theme = theme == "dark" ? "light" : "dark"
+    theme = theme == "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
   };
 </script>
 
-<nav class="p5 gap10 border-(b solid border) flex gap5 items-center">
+<nav class="p5 border-(b solid border) flex gap5 items-center">
   <a class="flex gap2 items-center" href="/">
     <div class="i-mdi:radio-button-indeterminate"></div>
     <b>Haze UI</b>
   </a>
 
-  <a href="/docs">Docs</a>
-  <a href="/docs">Blocks</a>
+  <a href="/docs/overview">Docs</a>
+  <a href="/docs/button">Blocks</a>
   <a href="/components" class="mr-auto">Components</a>
 
   <Btn

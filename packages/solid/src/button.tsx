@@ -6,7 +6,6 @@ type Props = BtnProps & ComponentProps<"button">;
 const Btn = (x: Props) => {
   const [_, others] = splitProps(x, [
     "class",
-    "variant",
     "txt",
     "loading",
     "loaderTxt",
@@ -14,14 +13,7 @@ const Btn = (x: Props) => {
     "iconR",
   ]);
 
-  const variants: Record<string, string> = {
-    primary: "btn-primary",
-    soft: "btn-soft",
-    outline: "btn-outline",
-    ghost: "btn-ghost",
-  };
-
-  const css = `${variants[x.variant ?? "primary"]} ${x.class ?? ""}`;
+  const css = `${x.class?.includes("btn-") ? "" : "btn-soft"} ${x.class || ""}`;
 
   return (
     <button class={css} {...others}>

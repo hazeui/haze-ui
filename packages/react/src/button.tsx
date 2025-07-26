@@ -9,17 +9,9 @@ const Btn = ({
   loading,
   loaderTxt,
   className = "",
-  variant = "primary",
   ...x
 }: Props) => {
-  const variants: any = {
-    primary: "btn-primary",
-    soft: "btn-soft",
-    outline: "btn-outline",
-    ghost: "btn-ghost",
-  };
-
-  const css = `${variants[variant]} ${className}`;
+  const css = `${className?.includes("btn-") ? "" : "btn-soft"} ${className}`;
 
   return (
     <button className={css} {...x}>

@@ -1,18 +1,36 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
+import { createSignal, createEffect, onMount } from "solid-js";
 
 // @ts-ignore
 import "virtual:uno.css";
 // @ts-ignore
 import "../../shared/style.css";
 
-import { Userpic, Input} from "../../../packages/solid/index";
+// import { Userpic, Btn} from "../../../packages/solid/index";
+import { Btn, Tabs, Tab, TabsContent, TabsList } from "@haze-ui/solid";
 
 function App() {
+  const [val, setVal] = createSignal();
+
   return (
     <main class="gid gap4 items-center p5">
-      <input class='input-outline' />
-      <Userpic name="joe" />
+      <input class="input-outline" />
+      <Btn txt="hello" class="btn-blue" />
+      <br />
+      <br />
+
+      <Tabs setValue={setVal} value={val}>
+        <TabsList class="tabs-outline">
+          <Tab value="preview">Preview</Tab>
+          <Tab value="code">Code</Tab>
+        </TabsList>
+
+        <div class="p4 rounded brd mt9">
+          {val() == "preview" && <div>some preview here</div>}
+          {val() == "code" && <div>some code here</div>}
+        </div>
+      </Tabs>
     </main>
   );
 }

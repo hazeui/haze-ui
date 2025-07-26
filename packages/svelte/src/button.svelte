@@ -11,18 +11,10 @@
     loading,
     loaderTxt,
     class: myclass,
-    variant = "primary",
     ...x
   }: Props = $props();
 
-  const variants: any = {
-    primary: "btn-primary",
-    soft: "btn-soft",
-    ghost: "btn-ghost",
-    outline: "btn-outline",
-  };
-
-  const css = `${variants[variant]} ${myclass}`;
+  const css = `${myclass?.includes("btn-") ? "" : "btn-soft"} ${myclass}`;
 </script>
 
 <button class={css} {...x}>

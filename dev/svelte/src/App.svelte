@@ -4,11 +4,26 @@
   // import Btn from "haze-ui/button.svelte";
   // import Input from "haze-ui/input.svelte";
 
-  import { Switch } from "../../../packages/svelte/src/index";
-  import Test from "./test.svelte";
+  import { Btn, Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 </script>
 
 <main class="m-10">
-  <Switch />
-  <Test />
+  <Tabs>
+    <TabsList class="tabs-outline tabon-(border-fg) ">
+      <Tab value="preview">Preview</Tab>
+      <Tab value="code">Code</Tab>
+    </TabsList>
+
+    <TabsContent value="preview">
+      <div class="p4 rounded brd mt9">
+        some preview here
+      </div>
+    </TabsContent>
+
+    <TabsContent value="code">
+      <div class="p4 rounded brd mt9">
+        some code here
+      </div>
+    </TabsContent>
+  </Tabs>
 </main>

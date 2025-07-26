@@ -4,6 +4,4 @@ export interface BtnProps {
   loading?: boolean;
   loaderTxt?: string;
   iconR?: string;
-  class?: string;
-  variant?: "primary" | "outline" | "soft" | "ghost";
 }

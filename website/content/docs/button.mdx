@@ -1,0 +1,27 @@
+<script lang="ts">
+  import type { Component } from "svelte";
+
+  const modules = import.meta.glob("codemos/btn/*.svelte", {
+    eager: true,
+    import: "default",
+  });
+
+  const codes = import.meta.glob("codemos/btn/*.svelte", {
+    eager: true,
+    query: "raw",
+    import: "default",
+  });
+
+  const Variants = modules["/codemos/btn/variant.svelte"];
+  const VariantsCode = codes["/codemos/btn/variant.svelte"];
+</script>
+
+# Button
+
+<Variants />
+
+
+<!-- <div> -->
+<!--   {@const Component = modules["/codemos/btn/variant.svelte"]} -->
+<!--   <Component>Test</Component> -->
+<!-- </div> -->

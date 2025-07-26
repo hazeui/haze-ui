@@ -17,14 +17,14 @@ export default [
                         disabled:(brightness-90 hover:cursor-not-allowed)`;
 
       const variants = {
-        primary:
-          "bg-primary text-white hover:brightness-90",
+        primary: `bg-${variant} text-bg hover:brightness-90`,
         soft: "bg-secondary text-fg hover:brightness-90",
         ghost: "bg-transparent text-fg hover:bg-input disabled:text-slate",
-        outline: "bg-bg text-fg border-(2 solid slate2) hover:bg-input",
+        outline: "bg-bg text-fg border-(2 solid border) hover:bg-input",
       };
 
-      return `${base} ${variants[variant]} ${txtsize} ${p}`;
+      const css = variants[variant] || variants.primary;
+      return `${base} ${css} ${txtsize} ${p}`;
     },
   ],
 ];

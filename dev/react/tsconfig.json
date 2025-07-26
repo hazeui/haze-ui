@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "haze-ui/*": ["../../packages/react/src/*"],
+      "@haze-ui/react": ["../../packages/react/index.ts"],
       "types/*": ["../../packages/types/*"]
     }
   },

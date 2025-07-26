@@ -2,7 +2,7 @@
   import { getContext } from "svelte";
   import type { CtxProps } from "./index.svelte";
 
-  let { children } = $props();
+  let { children, class: css } = $props();
 
   const { active, tabLabels, setActive } = getContext("tabs") as CtxProps;
 
@@ -25,7 +25,7 @@
 
 <div
   role="tablist"
-  class="rounded bg-slate-100 flex p-2"
+  class={css?.includes("tabs-") ? css : `tabs ${css}`}
   onkeydown={handleKeyDown}
   tabindex="0"
 >

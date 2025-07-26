@@ -7,6 +7,9 @@
   --secondary: #e6edf4;
   --ring: #a9b0ff;
   --inactivefg: #557091;
+  --success: #22c55e; /* green-500 */
+  --warning: #bb9502; /* yellow-400 */
+  --danger: #ed3535; /* red-500 */
 }
 
 html[data-theme="dark"] {
@@ -18,9 +21,29 @@ html[data-theme="dark"] {
   --input: #202020;
   --ring: #03dac6;
   --inactivefg: #9e9e9e;
+
+  --success: #22c55e; /* same green-500 works well in dark */
+  --warning: #fcdd37; /* yellow-300 for better contrast on dark */
+  --danger: #f87171; /* red-400 for slightly softer danger on dark */
 }
 
 body {
   @apply bg-bg text-fg;
   font-family: "Inter", sans-serif;
+}
+
+h1 {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+h2 {
+  @apply text-3xl font-semibold tracking-tight;
+}
+
+h3 {
+  @apply text-2xl font-medium tracking-tight;
+}
+
+h4 {
+  @apply text-lg font-medium tracking-tight;
 }
