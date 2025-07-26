@@ -8,5 +8,14 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+
+    fs: {
+      allow: [
+        // search up for workspace root
+        searchForWorkspaceRoot(process.cwd()),
+        // your custom rules
+        "./content/",
+      ],
+    },
   },
 });

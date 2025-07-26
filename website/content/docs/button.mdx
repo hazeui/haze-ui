@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ToggleDemo from "$lib/ui/toggledemo.svelte";
   import type { Component } from "svelte";
 
   const modules = import.meta.glob("codemos/btn/*.svelte", {
@@ -6,20 +7,28 @@
     import: "default",
   });
 
-  const codes = import.meta.glob("codemos/btn/*.svelte", {
+  const codes = import.meta.glob("codemos/btn/*.{svelte,jsx}", {
     eager: true,
     query: "raw",
     import: "default",
   });
 
-  const Variants = modules["/codemos/btn/variant.svelte"];
-  const VariantsCode = codes["/codemos/btn/variant.svelte"];
+  // const Variants = ;
 </script>
 
-# Button
+# Button 
 
-<Variants />
+Clickable Elemen
 
+## Variants
+
+ Add the btn-variant class to set the variant, example: btn-soft
+
+<ToggleDemo
+  preview={modules["/codemos/btn/variant.svelte"]}
+  sve={codes["/codemos/btn/variant.svelte"]}
+  react={codes["/codemos/btn/variant.jsx"]}
+/>
 
 <!-- <div> -->
 <!--   {@const Component = modules["/codemos/btn/variant.svelte"]} -->

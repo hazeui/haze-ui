@@ -1,23 +1,26 @@
 <script lang="ts" module>
+
   export interface CtxProps {
-    active: () => string;
+    value: () => string;
     tabLabels: () => string[];
-    setActive: (x: string) => void;
+    setValue: (x: string) => void;
     addTabLabel: (x: string[]) => void;
   }
 </script>
 
 <script lang="ts">
   import { setContext } from "svelte";
-  let { children, defaultValue } = $props();
+  let { children, defaultValue, value, setValue } = $props() as TabsProps;
 
   let active = $state(defaultValue);
   let tabLabels: string[] = $state([]);
 
+  const setActive = (x: boolean) => active = x;
+
   setContext("tabs", {
-    active: () => active,
+    value: () => value ?? active,
+    setValue: setValue ?? setActive,
     tabLabels: () => tabLabels,
-    setActive: (x: boolean) => active = x,
     addTabLabel: (x: string) => tabLabels.push(x),
   });
 </script>

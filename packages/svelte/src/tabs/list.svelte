@@ -4,23 +4,29 @@
 
   let { children, class: css } = $props();
 
-  const { active, tabLabels, setActive } = getContext("tabs") as CtxProps;
+  const { value, tabLabels, setValue } = getContext(
+    "tabs",
+  ) as CtxProps;
 
-  let activeIndex = $derived(tabLabels().indexOf(active()));
+  let activeIndex = $derived(tabLabels().indexOf(value()));
 
   const handleKeyDown = (e: KeyboardEvent) => {
     e.preventDefault();
 
     if (e.key == "ArrowLeft" && activeIndex != 0) {
-      setActive(tabLabels()[activeIndex - 1]);
+      setValue(tabLabels()[activeIndex - 1]);
     } //
 
     else if (
       e.key == "ArrowRight" && activeIndex != tabLabels().length - 1
     ) {
-      setActive(tabLabels()[activeIndex + 1]);
+      setValue(tabLabels()[activeIndex + 1]);
     }
   };
+
+  $effect(() => {
+    if (!value()) setValue(tabLabels()[0]);
+  });
 </script>
 
 <div

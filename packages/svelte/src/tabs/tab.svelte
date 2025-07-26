@@ -4,8 +4,11 @@
 
   let { children, value } = $props();
 
-  const { active, setActive, addTabLabel } = getContext("tabs") as CtxProps;
-  const setActiveTab = () => setActive(value);
+  const { value: active, setValue, addTabLabel } = getContext(
+    "tabs",
+  ) as CtxProps;
+
+  const setActiveTab = () => setValue(value);
 
   onMount(() => addTabLabel(value));
 </script>
