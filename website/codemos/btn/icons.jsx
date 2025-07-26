@@ -4,7 +4,7 @@ export default () => {
   return (
     <div class="flex-(~ gap3 wrap) items-center brd p5 rounded">
       <Btn
-        class="bg-emerald5 text-white ripple-primary"
+        class="btn-emerald5 text-white"
         iconL="i-line-md:email-filled"
         txt="Email"
       />

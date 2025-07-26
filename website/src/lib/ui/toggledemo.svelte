@@ -2,16 +2,25 @@
   import type { Component } from "svelte";
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 
-  let { preview, react, sve, solid } = $props();
+  const opts = $props();
+  let { preview, react, sve, solid, html } = opts;
 
-  if (!solid) {
+  if (!solid && react) {
     solid = react.replaceAll("react", "solid");
   }
 
-  react = react.replaceAll("class=", "className=");
+  if (react) {
+    react = react.replaceAll("class=", "className=");
+  }
 
   let active = $state();
   const setActive = (x: string) => active = x;
+
+  const codeTabs = [
+    { name: "svelte", propv: "sve", icon: "i-devicon:svelte" },
+    { name: "react", icon: "i-devicon:react" },
+    { name: "solid", icon: "i-devicon:solidjs" },
+  ];
 </script>
 
 <Tabs>
@@ -27,23 +36,23 @@
 
   <TabsContent value="code">
     <Tabs value={active} setValue={setActive}>
-      <TabsList class="tabs-line-primary brd rounded-t">
-        <Tab value="svelte">
-          <i class="i-vscode-icons:file-type-svelte"></i>
-          Svelte</Tab>
-        <Tab value="react">
-          <i class="i-devicon:react"></i>
-
-          React</Tab>
-        <Tab value="solid">
-          <i class="i-devicon:solidjs"></i>
-          Solid</Tab>
+      <TabsList class="tabs-line-primary brd rounded-t [&>button]:capitalize">
+        {#if html}
+          <Tab value="html">
+            <i class="i-devicon:html5"></i>
+            file.html
+          </Tab>
+        {:else}
+          <Tab value="svelte"><i class="i-devicon:svelte"></i>Svelte</Tab>
+          <Tab value="react"><i class="i-devicon:react"></i>React</Tab>
+          <Tab value="solid"><i class="i-devicon:solidjs"></i>Solid</Tab>
+        {/if}
       </TabsList>
 
       <pre
-        class="p5 rounded brd rounded-t-0"
+        class="p5 rounded brd rounded-t-0 max-h-400px overflow-auto"
       >
- {#if active=='react'}{react}{:else if active=='solid'}{solid}{:else if active=='svelte'}{sve}{/if}</pre>
+ {#if active=='react'}{react}{:else if active=='solid'}{solid}{:else if active=='html'}{html}{:else if active=='svelte'}{sve}{/if}</pre>
     </Tabs>
   </TabsContent>
 </Tabs>
