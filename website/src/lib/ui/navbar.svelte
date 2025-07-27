@@ -16,9 +16,9 @@
     <b>Haze UI</b>
   </a>
 
-  <a href="/docs/overview">Docs</a>
+  <a href="/">Docs</a>
   <a href="/docs/button">Blocks</a>
-  <a href="/components" class="mr-auto">Components</a>
+  <a href="/" class="mr-auto">Components</a>
 
   <Btn
     placeholder="Search Docs"

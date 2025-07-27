@@ -18,20 +18,8 @@ function App() {
       <br />
       <br />
 
-      <div className="grid gap3 [&>div]:(grid grid-cols-[.3fr_1fr] items-center)">
-        <div>
-          <input type="checkbox" className="switch-knob" />
-          <span>hii</span>
-        </div>
-        <div>
-          <input type="checkbox" className="switch-knob" />
-          <span>hii</span>
-        </div>
-        <div>
-          <input type="checkbox" className="switch-knob" />
-          <span>hii</span>
-        </div>
-      </div>
+          <input type="checkbox" className="switch-line" />
+          <input type="checkbox" className="switch" />
       <br />
       <br />
 
