@@ -1,4 +1,4 @@
-const round1 = (num) => Math.round(num * 10) / 10;
+const round1 = (num: number) => Math.round(num * 10) / 10;
 
 const sizes: any = {
   xs: 3,
@@ -23,25 +23,24 @@ export default [
 
       const variants: any = {
         flat: {
-          bg: `bg-border ring-(2 border) checked:(bg-${color} ring-${color})`,
+          bg: `bg-border checked:bg-${color}`,
           dot: "bg-bg shadow",
         },
         line: {
-          bg: `bg-bg ring-(2 border) checked:ring-${color}`,
+          bg: `bg-bg outline-(2 solid border) checked:outline-${color}`,
           dot: `bg-border checked:bg-${color}`,
         },
         knob: {
           bg: `bg-border ring-(2 border)`,
-          dot: `bg-bg ring-(7 fg) checked:ring-${color}`,
+          dot: `bg-bg ring-(6 fg) checked:ring-${color}`,
         },
       };
 
       return `appearance-none relative inline-block cursor-pointer rounded-full
-            w-${w} h-${h} ${variants[variant].bg}
+            w-${w} h-${h} ${variants[variant].bg} checked:after:translate-x-${sizeValue}
             after:(content-[''] absolute top-1/2 -translate-y-1/2 left-${pad}
                    w-${dotSize} h-${dotSize} rounded-full transition-transform
-                   ${variants[variant].dot})
-            checked:after:translate-x-${sizeValue}`;
+                   ${variants[variant].dot})`;
     },
   ],
 ];

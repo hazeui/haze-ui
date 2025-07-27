@@ -2,7 +2,7 @@
   <div
     class="[&>*:nth-child(even)]:ml3 gap-(x3 y7) grid-(~ cols-[auto_1fr]) items-center"
   >
-    <input type="checkbox" id="email" class="switch-line" />
+    <input type="checkbox" id="email" class="switch-line" defaultChecked />
     <label for="email">Email notifications</label>
 
     <input type="checkbox" id="sms" class="switch-line" />
@@ -12,7 +12,7 @@
       >Standard messaging rates may apply</span>
     </div>
 
-    <input type="checkbox" id="none" class="switch" defaultChecked />
+    <input type="checkbox" id="none" class="switch" />
     <label for="none">No notifications</label>
 
     <input type="checkbox" id="disagree" class="switch" />
