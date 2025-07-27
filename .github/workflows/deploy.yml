@@ -1,4 +1,5 @@
-name: Deploy website to GitHub Pages
+
+name: Deploy to hazeui.github.io
 
 on:
   push:
@@ -8,34 +9,26 @@ on:
 
 jobs:
   deploy:
-    name: Build and Deploy
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout repo
+      - name: Checkout source repo
         uses: actions/checkout@v4
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
 
-      - name: Install dependencies (monorepo root)
+      - name: Install dependencies
         run: bun install
 
       - name: Build website
         run: cd website && bun run build
 
-      - name: Copy site to temp dir
-        run: |
-          mkdir -p temp
-          cp -r website/build/* temp/
-          touch temp/.nojekyll
-
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to hazeui.github.io repo
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./temp
-          publish_branch: gh-pages
+          repository-name: hazeui/hazeui.github.io
+          branch: main
+          folder: website/build
+          token: ${{ secrets.HAZEUI_SITE_TOKEN }}
+          clean: true

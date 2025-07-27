@@ -4,7 +4,7 @@
   "workspaces": [
     "packages/*",
     "dev/*",
-    "website/*"
+    "website"
   ],
   "devDependencies": {
     "@iconify/json": "^2.2.359",
