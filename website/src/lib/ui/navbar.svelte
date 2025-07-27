@@ -6,6 +6,7 @@
   const toggleTheme = () => {
     theme = theme == "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
+    document.querySelector("html").className=theme
   };
 </script>
 

@@ -1,7 +1,5 @@
 export default [
   {
-    muted: "brightness-90 hover:cursor-not-allowed",
-
     centerfull: "flex items-center justify-center",
 
     badge:
@@ -10,6 +8,12 @@ export default [
     skeleton: "p3 w-full h-10 rounded bg-border animate-pulse",
     wrapper: "relative inline-block",
   },
+
+  [
+    /^muted(?:-(\d+))?$/,
+    ([, brightness = "90"]) =>
+      `brightness-${brightness} hover:cursor-not-allowed`,
+  ],
 
   [/^wh-(.+)$/, ([, size]) => `w-${size} h-${size}`],
 

@@ -1,4 +1,4 @@
-<div class="flex-(~ gap3 wrap) items-center brd p5 rounded">
+<div class="flex-(~ gap3 wrap) items-center brd p10 rounded">
   <button class="btn-primary">Primary</button>
   <button class="btn-soft">Soft</button>
   <button class="btn-outline">Outline</button>
@@ -24,7 +24,7 @@
     <i class="i-iconoir:user"></i>
   </button>
 
-  <hr class='w-full brd mt3 mb1'/>
+  <hr class="w-full brd mt3 mb1" />
 
   <button class="btn btn-soft-xs">Button</button>
   <button class="btn btn-soft-sm">Button</button>

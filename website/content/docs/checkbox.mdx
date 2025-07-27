@@ -1,0 +1,57 @@
+<script lang="ts">
+  import ToggleDemo from "$lib/ui/toggledemo.svelte";
+  
+  const modules = import.meta.glob("/codemos/checkbox/*.svelte", {
+    eager: true,
+    import: "default",
+  });
+
+  const codes = import.meta.glob("/codemos/checkbox/*.svelte", {
+    eager: true,
+    query: "raw",
+    import: "default",
+  });
+</script>
+
+# Checkbox
+
+To style the checkbox, add the "checkbox-color-size" class
+
+## Usage
+
+Add the checkbox class to the input element to apply size, color, and state-based styles.
+
+<ToggleDemo
+  preview={modules["/codemos/checkbox/default.svelte"]}
+  html={codes["/codemos/checkbox/default.svelte"]}
+/>
+
+
+## Form
+
+Use the `<label>` element as it is
+
+<ToggleDemo
+  preview={modules["/codemos/checkbox/form.svelte"]}
+  html={codes["/codemos/checkbox/form.svelte"]}
+/>
+
+
+## Styling
+
+The checkbox class is a dynamic unocss shortcut so you can extend it
+
+<ToggleDemo
+  preview={modules["/codemos/checkbox/colors.svelte"]}
+  html={codes["/codemos/checkbox/colors.svelte"]}
+/>
+
+
+- **Syntax**: `checkbox-[color]-[size]`
+- **Color**: color of the checkbox
+- **Size**: Predefined sizes are `sm`, `md`, `lg`, `xl`, or pass a numeric value (`checkbox-5`)
+- **Icon color**: use the `text-color` class
+
+> NOTE: If checkbox-lg is used, then the default color is `primary`
+
+

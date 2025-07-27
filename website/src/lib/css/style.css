@@ -5,8 +5,8 @@ html {
 :root {
   --fg: #1d293d;
   --bg: #ffffff;
-  --primary: #3a86ff;
-  --border: #cfdce9;
+  --primary: #364153;
+  --border: #c4d4e4;
   --input: #e6edf4;
   --secondary: #e6edf4;
   --ring: #a9b0ff;
@@ -19,9 +19,9 @@ html {
 html[data-theme="dark"] {
   --fg: #e0e0e0;
   --bg: #121212;
-  --primary: #3a86ff;
+  --primary: #5898ff;
   --secondary: #202020;
-  --border: #2d2d2d;
+  --border: #343434;
   --input: #202020;
   --ring: #03dac6;
   --inactivefg: #9e9e9e;
@@ -54,4 +54,14 @@ h4 {
 
 .link {
   @apply text-primary underline;
+}
+
+#docs li    {
+  @apply list-disc ml6
+}
+
+
+#docs blockquote {
+  @apply p3 bg-secondary w-fit rounded-r-lg;
+  @apply border-(0 l-5 solid border);
 }

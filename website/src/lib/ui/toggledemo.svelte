@@ -15,12 +15,6 @@
 
   let active = $state();
   const setActive = (x: string) => active = x;
-
-  const codeTabs = [
-    { name: "svelte", propv: "sve", icon: "i-devicon:svelte" },
-    { name: "react", icon: "i-devicon:react" },
-    { name: "solid", icon: "i-devicon:solidjs" },
-  ];
 </script>
 
 <Tabs>
@@ -51,8 +45,7 @@
 
       <pre
         class="p5 rounded brd rounded-t-0 max-h-400px overflow-auto"
-      >
- {#if active=='react'}{react}{:else if active=='solid'}{solid}{:else if active=='html'}{html}{:else if active=='svelte'}{sve}{/if}</pre>
+      ><code>{#if active=='react'}{react}{:else if active=='solid'}{solid}{:else if active=='html'}{html}{:else if active=='svelte'}{sve}{/if}</code></pre>
     </Tabs>
   </TabsContent>
 </Tabs>
