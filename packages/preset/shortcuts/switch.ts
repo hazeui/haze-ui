@@ -23,16 +23,16 @@ export default [
 
       const variants: any = {
         flat: {
-          bg: `bg-border ring-(2 solid border) checked:(bg-${color} ring-${color})`,
+          bg: `bg-border ring-(2 border) checked:(bg-${color} ring-${color})`,
           dot: "bg-bg shadow",
         },
         line: {
-          bg: `bg-bg ring-(2 solid border) checked:ring-${color}`,
+          bg: `bg-bg ring-(2 border) checked:ring-${color}`,
           dot: `bg-border checked:bg-${color}`,
         },
         knob: {
-          bg: `bg-border ring-(2 solid border)`,
-          dot: `bg-bg ring-(7 solid fg) checked:ring-${color}`,
+          bg: `bg-border ring-(2 border)`,
+          dot: `bg-bg ring-(7 fg) checked:ring-${color}`,
         },
       };
 
