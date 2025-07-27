@@ -24,6 +24,9 @@ jobs:
       - name: Build website
         run: cd website && bun run build
 
+      - name: Add .nojekyll file
+        run: touch website/build/.nojekyll
+
       - name: Deploy to hazeui.github.io repo
         uses: JamesIves/github-pages-deploy-action@v4
         with:
