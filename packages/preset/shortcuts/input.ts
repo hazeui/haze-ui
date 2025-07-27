@@ -24,13 +24,4 @@ export default [
       return `${base} ${inputVariants[variant]} ${textSize} ${p}`;
     },
   ],
-
-  [
-    /^radio(?:-(\d+))?$/,
-    ([, size = 4]) => {
-      const bordersize = Math.floor(size * 1.5);
-      return `appearance-none wh-${size} rounded-full border-(1 solid slate)
-                  checked:(border-${bordersize} border-primary) transition-border`;
-    },
-  ],
 ];

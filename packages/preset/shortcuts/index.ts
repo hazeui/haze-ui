@@ -5,6 +5,7 @@ import switch_ from "./switch";
 import tabs from "./tabs";
 import misc from "./misc";
 import checkbox from "./checkbox";
+import radio from "./radio";
 
 export const shortcuts = [
   btn,
@@ -14,4 +15,5 @@ export const shortcuts = [
   tabs,
   misc,
   checkbox,
+  radio,
 ].flat();
