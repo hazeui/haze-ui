@@ -15,47 +15,27 @@ function App() {
       <Btn txt="hi" className="btn-outline bg-red" />
 
       <br />
-
-      {val}
-
       <br />
       <br />
 
-      <input type="checkbox" className=" mr-2" id="working" />
-      <label htmlFor="working">Click me</label>
-
-      <br/>
-      <br/>
-
-      <input type="checkbox" className="checkbox mr-2" id="working" />
-      <label htmlFor="working">Click me</label>
-
-      <br />
-      <br />
-
-      <div className="flex items-center">
-        <input type="checkbox" className="checkbox-md" defaultChecked />
-        <input type="checkbox" className="checkbox-red-lg" checked />
-        <input type="checkbox" className="checkbox-3" checked />
-        <input type="checkbox" className="checkbox-4" checked />
-        <input type="checkbox" className="checkbox-5" checked />
-        <input type="checkbox" className="checkbox-blue-md" checked />
-        <input
-          type="checkbox"
-          className="checkbox-blue-5 checked:after:i-fluent-mdl2:skype-check"
-          checked
-        />
+      <div className="grid gap3 [&>div]:(grid grid-cols-[.3fr_1fr] items-center)">
+        <div>
+          <input type="checkbox" className="switch-knob" />
+          <span>hii</span>
+        </div>
+        <div>
+          <input type="checkbox" className="switch-knob" />
+          <span>hii</span>
+        </div>
+        <div>
+          <input type="checkbox" className="switch-knob" />
+          <span>hii</span>
+        </div>
       </div>
-
-      <input type="checkbox" class="checkbox-md-primary" id="working" />
-      <label for="working" class="cursor-pointer">
-        Click me
-      </label>
-
       <br />
       <br />
 
-      <Tabs>
+      <Tabs value={val} setValue={setVal}>
         <TabsList className="tabs">
           <Tab value="preview">Preview</Tab>
           <Tab value="code">Code</Tab>

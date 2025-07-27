@@ -2,4 +2,8 @@
   let { data } = $props();
 </script>
 
-<data.page />
+{#if data.page}
+  <data.page />
+{:else}
+  <div>Not Found</div>
+{/if}

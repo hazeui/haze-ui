@@ -5,11 +5,14 @@
   // import Input from "haze-ui/input.svelte";
 
   import { Btn, Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
+
+  let val = $state();
+  const setVal = (x: string) => (val = x);
 </script>
 
 <main class="m-10">
-  <Tabs>
-    <TabsList class="tabs-outline tabon-(border-fg) ">
+  <Tabs value={val} setValue={setVal} >
+    <TabsList class="tabs">
       <Tab value="preview">Preview</Tab>
       <Tab value="code">Code</Tab>
     </TabsList>

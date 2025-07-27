@@ -1,0 +1,52 @@
+<script lang="ts">
+  import ToggleDemo from "$lib/ui/toggledemo.svelte";
+  
+  const modules = import.meta.glob("/codemos/switch/*.svelte", {
+    eager: true,
+    import: "default",
+  });
+
+  const codes = import.meta.glob("/codemos/switch/*.svelte", {
+    eager: true,
+    query: "raw",
+    import: "default",
+  });
+</script>
+
+# Switch
+
+To style the switch, add the "switch-variant-size-color" class
+
+## Usage
+
+Add the switch class to the input element to apply size, variants, color.
+
+<ToggleDemo
+  preview={modules["/codemos/switch/default.svelte"]}
+  html={codes["/codemos/switch/default.svelte"]}
+/>
+
+
+## Form
+
+Use the `<label>` element as it is
+
+<ToggleDemo
+  preview={modules["/codemos/switch/form.svelte"]}
+  html={codes["/codemos/switch/form.svelte"]}
+/>
+
+
+## Styling
+
+The switch class is a dynamic unocss shortcut so you can extend it
+
+<ToggleDemo
+  preview={modules["/codemos/switch/colors.svelte"]}
+  html={codes["/codemos/switch/colors.svelte"]}
+/>
+
+
+- **Syntax**: `switch-[variant]-[color]-[size]`
+- **Color**: color of the switch
+- **Size**: Predefined sizes are `xs`, `sm`, `md`, `lg`, `xl` or pass a numeric value
