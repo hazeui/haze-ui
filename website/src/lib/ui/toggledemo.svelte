@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
+
   const opts = $props();
   let { demo } = opts;
 
@@ -10,43 +11,47 @@
     html: "",
   });
 
-  let active = $state<string | null>(null); // or "" if you prefer
+  let active = $state<string | null>(null);
 
-  const setActive = async (x: string) => {
+  const setActive = (x: string) => {
     active = x;
+
     if (x === "svelte" && !codeContent.svelte && demo.code.svelte) {
-      codeContent.svelte = await demo.code.svelte();
+      codeContent.svelte = demo.code.svelte;
     } //
 
     else if (x === "react" && !codeContent.react && demo.code.react) {
-      const reactCode = await demo.code.react();
+      const reactCode = demo.code.react;
       codeContent.react = reactCode.replaceAll("class=", "className=");
-      // gen solid version
+
       if (!codeContent.solid && !demo.code.solid) {
         codeContent.solid = reactCode.replaceAll("react", "solid");
       }
     } //
 
     else if (x === "solid" && !codeContent.solid && demo.code.solid) {
-      codeContent.solid = await demo.code.solid();
+      codeContent.solid = demo.code.solid;
     } //
 
     else if (x === "html" && !codeContent.html && demo.code.html) {
-      codeContent.html = await demo.code.html();
+      codeContent.html = demo.code.html;
     }
   };
 </script>
 
 <Tabs>
   <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
-    <Tab value="preview"><i class="i-mage:preview-fill"></i> Preview</Tab>
-    <Tab value="code"><i class="i-majesticons:code"></i> Code</Tab>
+    <Tab value="preview">
+      <i class="i-mage:preview-fill"></i> Preview
+    </Tab>
+    <Tab value="code">
+      <i class="i-majesticons:code"></i> Code
+    </Tab>
   </TabsList>
 
   <TabsContent value="preview">
-    {#await demo.preview() then Component}
-      <Component />
-    {/await}
+    {@const Component = demo.preview}
+    <Component />
   </TabsContent>
 
   <TabsContent value="code">
@@ -58,9 +63,9 @@
             file.html
           </Tab>
         {:else}
-          <Tab value="svelte"><i class="i-devicon:svelte"></i>Svelte</Tab>
-          <Tab value="react"><i class="i-devicon:react"></i>React</Tab>
-          <Tab value="solid"><i class="i-devicon:solidjs"></i>Solid</Tab>
+          <Tab value="svelte"><i class="i-devicon:svelte"></i> Svelte</Tab>
+          <Tab value="react"><i class="i-devicon:react"></i> React</Tab>
+          <Tab value="solid"><i class="i-devicon:solidjs"></i> Solid</Tab>
         {/if}
       </TabsList>
 

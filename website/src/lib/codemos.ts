@@ -1,8 +1,10 @@
 const allPreviews = import.meta.glob("/codemos/**/*.svelte", {
   import: "default",
+  eager: true
 });
 
 const allCodes = import.meta.glob("/codemos/**/*", {
+  eager: true,
   query: "raw",
   import: "default",
 });
