@@ -1,8 +1,8 @@
 export default [
   [
     /^btn(?:-(\w+))?(?:-(eq)?(xs|sm|md|lg|xl))?$/,
-    ([, variant = "soft", eqFlag, size = "md"]) => {
-      const sizes = {
+    ([, variant = "soft", eqFlag, size = "md"]: RegExpMatchArray) => {
+      const sizes: any = {
         xs: ["text-xs", 1],
         sm: ["text-sm", 1.5],
         md: ["text-base", 2],
@@ -13,7 +13,7 @@ export default [
       const [txtsize, pad] = sizes[size];
       const p = eqFlag ? `p${pad}` : `py-${pad} px-${pad * 2}`;
       const base = `rounded inline-flex items-center justify-center
-                        gap2 border-0 focus:outline-0
+                        gap2 border-0
                         disabled:(brightness-90 hover:cursor-not-allowed)`;
 
       const variants = {

@@ -39,7 +39,7 @@ export default [
              transition inline-flex justify-center items-center text-bg 
              checked:(border-${color})  
              checked:after:(bg-${color} wh-${innerSize} rounded-full) 
-             after:(content-[''])`;
+             after:(content-empty)`;
     },
   ],
 ];

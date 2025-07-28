@@ -22,7 +22,7 @@ export default [
                appearance-none wh-${size} ${rounded}  border-(1.5 solid border)
                transition inline-flex justify-center items-center text-bg 
                checked:(bg-${color} border-${color}) align-middle 
-               checked:after:(i-uil:check size-${size}) after:(content-[''])`;
+               checked:after:(i-uil:check size-${size}) after:(content-empty)`;
     },
   ],
 ];
