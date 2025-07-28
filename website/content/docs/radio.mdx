@@ -1,57 +1,25 @@
 <script lang="ts">
   import ToggleDemo from "$lib/ui/toggledemo.svelte";
-  
-  const modules = import.meta.glob("/codemos/radio/*.svelte", {
-    eager: true,
-    import: "default",
-  });
-
-  const codes = import.meta.glob("/codemos/radio/*.svelte", {
-    eager: true,
-    query: "raw",
-    import: "default",
-  });
+  import { getDemoHtml as demo } from "$lib/codemos";
 </script>
 
 # Radio
-
 To style the radio, add the "radio-color-size" class
 
 ## Usage
-
 Add the radio class to the input element to apply size, color, and state-based styles.
-
-<ToggleDemo
-  preview={modules["/codemos/radio/default.svelte"]}
-  html={codes["/codemos/radio/default.svelte"]}
-/>
-
+<ToggleDemo demo={demo("radio", "default")} />
 
 ## Form
-
 Use the `<label>` element as it is
-
-<ToggleDemo
-  preview={modules["/codemos/radio/form.svelte"]}
-  html={codes["/codemos/radio/form.svelte"]}
-/>
-
+<ToggleDemo demo={demo("radio", "form")} />
 
 ## Styling
-
 The radio class is a dynamic unocss shortcut so you can extend it
-
-<ToggleDemo
-  preview={modules["/codemos/radio/colors.svelte"]}
-  html={codes["/codemos/radio/colors.svelte"]}
-/>
-
+<ToggleDemo demo={demo("radio", "colors")} />
 
 - **Syntax**: `radio-[color]-[size]`
 - **Color**: color of the radio
 - **Size**: Predefined sizes are `sm`, `md`, `lg`, `xl`, or pass a numeric value (`radio-5`)
-- **Icon color**: use the `text-color` class
-
+- **Icon color**: use the `text-color` class  
 > NOTE: If radio-lg is used, then the default color is `primary`
-
-

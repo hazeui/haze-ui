@@ -1,73 +1,27 @@
 <script lang="ts">
   import ToggleDemo from "$lib/ui/toggledemo.svelte";
-  import type { Component } from "svelte";
-
-  const modules = import.meta.glob("codemos/btn/*.svelte", {
-    eager: true,
-    import: "default",
-  });
-
-  const codes = import.meta.glob("codemos/btn/*.{svelte,jsx}", {
-    eager: true,
-    query: "raw",
-    import: "default",
-  });
-
-  // const Variants = ;
+  import { getDemo, getDemoHtml } from "$lib/codemos";
 </script>
 
 # Button 
-
-Clickable Elemen
+Clickable Element
 
 ## Variants
-
- Add the btn-variant class to set the variant, example: btn-soft
-
-<ToggleDemo
-  preview={modules["/codemos/btn/variant.svelte"]}
-  sve={codes["/codemos/btn/variant.svelte"]}
-  react={codes["/codemos/btn/variant.jsx"]}
-/>
+Add the btn-variant class to set the variant, example: btn-soft  
+<ToggleDemo demo={getDemo("btn", "variant")} />
 
 ## Icons    
+Use the iconL and iconR prop, copy icon classes from <u>[iconify](https://icon-sets.iconify.design/)</u>  
+<ToggleDemo demo={getDemo("btn", "icons")} />
 
-Use the iconL and iconR prop, copy icon classes from <u> [iconify](https://icon-sets.iconify.design/)</u>
+## Sizes and class  
+Add the btn-variant-size class to change the size of the button. example: btn-primary-sm  
+<ToggleDemo demo={getDemo("btn", "size")} />
 
-<ToggleDemo
-  preview={modules["/codemos/btn/icons.svelte"]}
-  sve={codes["/codemos/btn/icons.svelte"]}
-  react={codes["/codemos/btn/icons.jsx"]}
-/>
-
-
-## Sizes and class
-
- Add the btn-variant-size class to change the size of the button. example:
-btn-primary-sm
-
-<ToggleDemo
-  preview={modules["/codemos/btn/size.svelte"]}
-  sve={codes["/codemos/btn/size.svelte"]}
-  react={codes["/codemos/btn/size.jsx"]}
-/>
-
-
-## Classes
-
- Add the btn-variant class to set the variant, example: btn-soft
-
-<ToggleDemo
-  preview={modules["/codemos/btn/class.svelte"]}
-  sve={codes["/codemos/btn/class.svelte"]}
-  react={codes["/codemos/btn/class.jsx"]}
-/>
+## Classes  
+Add the btn-variant class to set the variant, example: btn-soft  
+<ToggleDemo demo={getDemo("btn", "class")} />
 
 <h2 id='htm'> Html </h2> 
-
-You can use the btn classes in html as well
-
-<ToggleDemo
-  preview={modules["/codemos/btn/html.svelte"]}
-  html={codes["/codemos/btn/html.svelte"]}
- />
+You can use the btn classes in html as well  
+<ToggleDemo demo={getDemoHtml("btn", "html")} />

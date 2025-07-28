@@ -56,12 +56,19 @@ h4 {
   @apply text-primary underline;
 }
 
-#docs li    {
-  @apply list-disc ml6
+#docs li {
+  @apply list-disc ml6;
 }
 
-
 #docs blockquote {
-  @apply p3 bg-secondary w-fit rounded-r-lg;
+  @apply p3 bg-secondary w-fit rounded-r-lg ;
   @apply border-(0 l-5 solid border);
+}
+
+:focus {
+  outline: 0;
+}
+
+:focus-visible {
+  @apply ring-2 ring-primary;
 }

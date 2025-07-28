@@ -39,7 +39,6 @@
     }
 
     lists = getHeadings();
-    console.log(lists);
   });
 </script>
 
