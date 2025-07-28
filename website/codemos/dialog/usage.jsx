@@ -35,7 +35,7 @@ export default () => {
         />
 
         <div className="flex gap3 items-center ml-auto mt3">
-          <button className="btn-soft" onClick={() => setOpen(false)}>
+          <button className="btn-soft" onClick={closeDialog}>
             Cancel
           </button>
           <button className="btn-primary">Save</button>

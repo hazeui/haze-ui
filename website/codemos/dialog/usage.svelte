@@ -27,7 +27,7 @@
     />
 
     <div class="flex gap3 items-center ml-auto mt3">
-      <button class="btn-soft" onclick={close}>Cancel</button>
+      <button class="btn-soft" onclick={setClose}>Cancel</button>
       <button class="btn-primary">Save</button>
     </div>
   </Dialog>
