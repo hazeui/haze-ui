@@ -11,8 +11,6 @@
   let activeIndex = $derived(tabLabels().indexOf(value()));
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    e.preventDefault();
-
     if (e.key == "ArrowLeft" && activeIndex != 0) {
       setValue(tabLabels()[activeIndex - 1]);
     } //
