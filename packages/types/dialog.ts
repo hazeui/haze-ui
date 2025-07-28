@@ -1,5 +1,6 @@
 export interface DialogProps {
   open: boolean;
-  onClose: () => void;
+  close: () => void;
+  closeIcon?: boolean;
   children: any;
 }

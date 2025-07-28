@@ -1,38 +1,73 @@
 <script lang="ts">
   import { portal } from "./portal";
+  import type { HTMLAttributes } from "svelte/elements";
+  import type { DialogProps } from "types/dialog";
 
-  interface Props {
-    open: boolean;
-    onClose: () => void;
-    children: any;
-    class?: string;
-  }
+  type Props = DialogProps & HTMLAttributes<HTMLElement>;
 
-  let { open, onClose, class: myclass, children }: Props = $props();
-  let ref: HTMLDialogElement;
+  let { open, close, class: myclass, children, closeIcon = true }: Props =
+    $props();
 
-  $effect(() => {
-    ref?.[!open ? "close" : "showModal"]?.();
-  });
+  let ref: HTMLDialogElement = $state();
 
-  const handleEsc = (e: KeyboardEvent) => {
-    if (e.key === "Escape") onClose();
+  const handlekeydown = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      close();
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusableElements = ref.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+
+      if (focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   };
 
   const stopPropagation = (e: Event) => e.stopPropagation();
+
+  $effect(() => {
+    if (open) ref?.showModal();
+  });
 </script>
 
-<dialog
-  class="p0 rounded-xl shadow-lg border-0 backdrop:bg-black/60 animate-(fade-in duration-300)"
-  onclick={onClose}
-  onkeydown={handleEsc}
-  bind:this={ref}
-  use:portal
->
-  <div
-    class={`p-5 bg-white min-w-md ${myclass}`}
-    onclick={stopPropagation}
+{#if open}
+  <dialog
+    class="backdrop:bg-black/60"
+    use:portal
+    bind:this={ref}
+    onclick={close}
   >
-    {@render children?.()}
-  </div>
-</dialog>
+    <div
+      role="dialog"
+      tabindex="-1"
+      onkeydown={handlekeydown}
+      class={`dialog ${myclass}`}
+      onclick={stopPropagation}
+    >
+      {#if closeIcon}
+        <button
+          class="i-pajamas:close absolute right-4 top-4 focus:bg-red"
+          aria-label="close"
+          onclick={close}
+          tabindex="-1"
+        >
+        </button>
+      {/if}
+
+      {@render children()}
+    </div>
+  </dialog>
+{/if}
