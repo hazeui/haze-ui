@@ -14,40 +14,18 @@ const Dialog = (props: Props) => {
     if (props.open) ref?.showModal();
   });
 
-  const handlekeydown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      close();
-      return;
-    }
-
-    if (e.key === "Tab") {
-      const focusableElements = ref?.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-
-      if (!focusableElements || focusableElements?.length === 0) return;
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
-    }
-  };
-
   const stopPropagation = (e: Event) => e.stopPropagation();
 
   return (
     <Portal>
-      <dialog ref={ref} class="backdrop:bg-black/60" onclick={props.close}>
+      <dialog
+        ref={ref}
+        class="backdrop:bg-black/60"
+        onClick={props.close}
+        onClose={props.close}
+      >
         <div
           role="dialog"
-          onKeyDown={handlekeydown}
           class={`dialog ${props.class ?? ""}`}
           onClick={stopPropagation}
         >

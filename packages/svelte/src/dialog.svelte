@@ -10,32 +10,6 @@
 
   let ref: HTMLDialogElement = $state();
 
-  const handlekeydown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      close();
-      return;
-    }
-
-    if (e.key === "Tab") {
-      const focusableElements = ref.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-
-      if (focusableElements.length === 0) return;
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
-    }
-  };
-
   const stopPropagation = (e: Event) => e.stopPropagation();
 
   $effect(() => {
@@ -51,9 +25,7 @@
     onclick={close}
   >
     <div
-      role="dialog"
       tabindex="-1"
-      onkeydown={handlekeydown}
       class={`dialog ${myclass}`}
       onclick={stopPropagation}
     >

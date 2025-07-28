@@ -8,39 +8,11 @@ type Props = DialogProps & React.HTMLAttributes<HTMLElement>;
 export default ({ open, close, children, ...rest }: Props) => {
   if (!open) return null;
 
-  const ref = useRef<HTMLDialogElement>(null); // ✅ fixed
+  const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    if (open && ref.current) {
-      ref.current.showModal(); // ✅ use .current
-    }
+    if (open && ref.current) ref.current.showModal();
   }, [open]);
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      close();
-      return;
-    }
-
-    if (e.key === "Tab") {
-      const focusableElements = ref.current?.querySelectorAll<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-
-      if (!focusableElements || focusableElements.length === 0) return;
-
-      const firstElement = focusableElements[0];
-      const lastElement = focusableElements[focusableElements.length - 1];
-
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
-    }
-  };
 
   const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 
@@ -48,7 +20,6 @@ export default ({ open, close, children, ...rest }: Props) => {
     <dialog ref={ref} className="backdrop:bg-black/60" onClick={close}>
       <div
         role="dialog"
-        onKeyDown={handleKeyDown} // ✅ fixed camelCase
         className={`dialog ${rest.className || ""}`}
         onClick={stopPropagation}
       >
