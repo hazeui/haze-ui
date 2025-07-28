@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Component } from "svelte";
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 
   const opts = $props();
+  // svelte-ignore non_reactive_update
   let { preview, react, sve, solid, html } = opts;
 
   if (!solid && react) {
