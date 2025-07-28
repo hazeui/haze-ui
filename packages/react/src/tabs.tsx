@@ -43,7 +43,7 @@ const TabsList = ({ children, className = "" }: Props) => {
       role="tablist"
       className={className.includes("tabs-") ? className : `tabs ${className}`}
       onKeyDown={handleKeyDown}
-      tabIndex={0}
+      tabIndex={-1}
     >
       {children}
     </div>

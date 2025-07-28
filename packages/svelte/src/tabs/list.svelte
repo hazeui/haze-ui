@@ -33,7 +33,7 @@
   role="tablist"
   class={css?.includes("tabs-") ? css : `tabs ${css}`}
   onkeydown={handleKeyDown}
-  tabindex="0"
+  tabindex="-1"
 >
   {@render children()}
 </div>

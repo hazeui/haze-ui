@@ -34,7 +34,7 @@ export const TabsList = (x: any) => {
       role="tablist"
       class={x?.class?.includes("tabs-") ? x.class : `tabs ${x.class}`}
       onKeyDown={handleKeyDown}
-      tabIndex={0}
+      tabIndex={-1}
     >
       {x.children}
     </div>
