@@ -9,7 +9,7 @@
 
     <div>
       <label for="tnc2">I understand and read the privacy policy</label> <br />
-      <span class="text-(inactivefg sm)">By Agreeing you accept our
+      <span class="text-(mutedfg sm)">By Agreeing you accept our
         <a class="link" href="#/">Privacy Policy </a></span>
     </div>
 

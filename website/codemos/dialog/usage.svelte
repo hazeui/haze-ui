@@ -13,7 +13,7 @@
 
   <Dialog {open} close={setClose} class="grid gap4">
     <h3>Edit Account</h3>
-    <p class="text-inactivefg mb2">Make changes to your user profile here.</p>
+    <p class="text-mutedfg mb2">Make changes to your user profile here.</p>
 
     <label for="name">Name</label>
     <input class="input-outline" id="name" placeholder="Enter your name" />

@@ -15,7 +15,7 @@ export default () => {
       <Dialog open={open} close={closeDialog} className="grid gap4">
         <h3>Edit Account</h3>
 
-        <p className="text-inactivefg mb2">
+        <p className="text-mutedfg mb2">
           Make changes to your user profile here.
         </p>
 

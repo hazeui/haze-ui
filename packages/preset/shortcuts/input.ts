@@ -5,23 +5,97 @@ const inputConfig: any = {
   xl: ["text-xl", 3],
 };
 
+const round1 = (num: number) => Math.round(num * 10) / 10;
+
 const inputVariants: any = {
-  solid: "bg-input ring-0",
-  outline: "bg-bg border-(1 solid border) shadow-sm",
+  solid: "bg-input",
+  outline: "border-(1 solid border) shadow-sm",
 };
+
+const genFontsize = (pad: number) => +(pad * 8).toFixed(3); // in px
 
 export default [
   [
-    /^input(?:-(solid|outline))?(?:-(sm|md|lg|xl))?$/,
-    ([, variant = "solid", size = "md"]) => {
-      const [textSize, pad] = inputConfig[size];
+    /^input(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+    ([, arg1, arg2]: RegExpMatchArray) => {
+      let variant = "solid";
+      let size = "md";
+      let textSize: string, pad: number;
 
-      const p = `py-${pad} px-${pad * 1.5}`;
+      if (arg1) {
+        if (["solid", "outline"].includes(arg1)) {
+          variant = arg1;
+          if (arg2) size = arg2;
+        } else {
+          size = arg1;
+        }
+      }
 
-      const base = `transition-all rounded
-                         outline-0  focus:(ring-2 ring-primary)`;
+      // named size
+      if (inputConfig[size]) {
+        [textSize, pad] = inputConfig[size];
+      }
+      // numeric size
+      else if (!isNaN(Number(size))) {
+        pad = Number(size);
+        textSize = `text-[${genFontsize(pad)}px]`;
+      } else {
+        [textSize, pad] = inputConfig["md"];
+      }
+
+
+      const disabledbg = variant == "outline" ? "bg-mutedbg" : "";
+
+      const p = `py-${pad} px-${+(pad * 1.5).toFixed(3)}`;
+      const base = `transition rounded outline-0 focus:(ring-2 ring-primary) 
+                     placeholder:text-mutedfg disabled:(muted-95 ${disabledbg})`;
 
       return `${base} ${inputVariants[variant]} ${textSize} ${p}`;
+    },
+  ],
+
+  [
+    /^grinput(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+    ([, arg1, arg2]: RegExpMatchArray) => {
+      let variant = "solid";
+      let size = "md";
+      let textSize: string, pad: number;
+
+      if (arg1) {
+        if (["solid", "outline"].includes(arg1)) {
+          variant = arg1;
+          if (arg2) size = arg2;
+        } else {
+          size = arg1;
+        }
+      }
+
+      if (inputConfig[size]) {
+        [textSize, pad] = inputConfig[size];
+      }
+
+      // numeric size
+      else if (!isNaN(Number(size))) {
+        pad = Number(size);
+        const fontSize = Math.round(genFontsize(pad));
+        textSize = `text-[${fontSize}px] [&>*]:text-[${fontSize}px]`;
+      } else {
+        [textSize, pad] = inputConfig["md"];
+      }
+
+      const py = round1(pad * 0.5);
+      const px = round1(pad * 1.5);
+
+      const disabledbg = variant == "outline" ? "bg-mutedbg" : "";
+
+      return `
+            inline-flex items-center gap2 px${px} py${py} rounded
+            ${inputVariants[variant]} ${textSize} transition
+            focus-within:(ring-2 ring-primary) align-middle 
+            has-[input:disabled]:(muted-95 ${disabledbg})
+            [&>input]:(py1 px0 border-0 outline-0 bg-transparent text-inherit placeholder:text-mutedfg)
+            [&>input[disabled]]:(muted)
+    `;
     },
   ],
 ];

@@ -46,6 +46,6 @@
   <b>On this page</b>
 
   {#each lists as x}
-    <a href={"#" + x.id} class="text-inactivefg">{x.name}</a>
+    <a href={"#" + x.id} class="text-mutedfg">{x.name}</a>
   {/each}
 </aside>

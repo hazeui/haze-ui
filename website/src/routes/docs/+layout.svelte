@@ -7,7 +7,7 @@
 
 <div class="grid-(~ cols-[auto_1fr_auto])">
   <Sidebar />
-  <div class="flex-(~ col gap5) p8 [&_p]:text-inactivefg" id="docs">
+  <div class="flex-(~ col gap5) p8 [&_p]:text-mutedfg" id="docs">
     {@render children()}
   </div>
   <Onthispage />

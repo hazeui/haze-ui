@@ -20,7 +20,8 @@ export default definePreset(() => {
         border: "#cfdce9",
         input: "#e6edf4",
         ring: "#a9b0ff",
-        inactivefg: "#557091",
+        mutedfg: "#557091",
+        mutedbg: "#e6edf4",
       },
 
       borderRadius: {

@@ -10,7 +10,9 @@ html {
   --input: #e6edf4;
   --secondary: #e6edf4;
   --ring: #a9b0ff;
-  --inactivefg: #557091;
+  --mutedfg: #557091;
+  --mutedbg: #f5f7fa; /* light desaturated background */
+
   --success: #22c55e; /* green-500 */
   --warning: #bb9502; /* yellow-400 */
   --danger: #ed3535; /* red-500 */
@@ -24,12 +26,14 @@ html[data-theme="dark"] {
   --border: #343434;
   --input: #202020;
   --ring: #03dac6;
-  --inactivefg: #9e9e9e;
+  --mutedfg: #9e9e9e;
+  --mutedbg: #1c1c1c; /* slightly lighter than dark bg */
 
-  --success: #22c55e; /* same green-500 works well in dark */
-  --warning: #fcdd37; /* yellow-300 for better contrast on dark */
-  --danger: #f87171; /* red-400 for slightly softer danger on dark */
+  --success: #22c55e;
+  --warning: #fcdd37;
+  --danger: #f87171;
 }
+
 
 body {
   @apply bg-bg text-fg;
