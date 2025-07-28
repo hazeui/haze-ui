@@ -1,0 +1,33 @@
+<script lang="ts">
+ import ToggleDemo from "$lib/ui/toggledemo.svelte";
+ import { getDemo, getDemoHtml } from "$lib/codemos";
+
+</script>
+
+# Input 
+
+Flexible and styled input component with icon support, size variants, and focus management
+
+## Usage
+
+Use `grinput-<variant>-<size>` to style the group input
+
+<ToggleDemo demo={getDemo("input", "usage")} />
+
+## Sizes
+
+The 2nd class is optional
+
+<ToggleDemo demo={getDemo("input", "size")} />
+
+## Form
+
+The 2nd class is optional
+
+<ToggleDemo demo={getDemo("input", "form")} />
+
+## Html only
+
+If you dont want to add icons in your input then just use "input" class
+
+<ToggleDemo demo={getDemoHtml("input", "html")} />

@@ -16,7 +16,7 @@ const genFontsize = (pad: number) => +(pad * 8).toFixed(3); // in px
 
 export default [
   [
-    /^input(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+    /^input(?:-([\w.]+))?(?:-([\w.]+))?(?:-([\w.]+))?$/,
     ([, arg1, arg2]: RegExpMatchArray) => {
       let variant = "solid";
       let size = "md";
@@ -43,19 +43,20 @@ export default [
         [textSize, pad] = inputConfig["md"];
       }
 
-
       const disabledbg = variant == "outline" ? "bg-mutedbg" : "";
+      const bg = variant == "outline" ? "bg-transparent" : "";
 
       const p = `py-${pad} px-${+(pad * 1.5).toFixed(3)}`;
       const base = `transition rounded outline-0 focus:(ring-2 ring-primary) 
                      placeholder:text-mutedfg disabled:(muted-95 ${disabledbg})`;
 
-      return `${base} ${inputVariants[variant]} ${textSize} ${p}`;
+      return `${base} ${inputVariants[variant]} ${textSize} ${p} ${bg}`;
     },
   ],
 
   [
-    /^grinput(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+    // /^grinput(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
+    /^grinput(?:-([\w.]+))?(?:-([\w.]+))?(?:-([\w.]+))?$/,
     ([, arg1, arg2]: RegExpMatchArray) => {
       let variant = "solid";
       let size = "md";
@@ -93,7 +94,7 @@ export default [
             ${inputVariants[variant]} ${textSize} transition
             focus-within:(ring-2 ring-primary) align-middle 
             has-[input:disabled]:(muted-95 ${disabledbg})
-            [&>input]:(py1 px0 border-0 outline-0 bg-transparent text-inherit placeholder:text-mutedfg)
+            [&>input]:(py1 px0 border-0 outline-0 bg-transparent w-full text-inherit placeholder:text-mutedfg)
             [&>input[disabled]]:(muted)
     `;
     },
