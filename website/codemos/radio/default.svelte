@@ -11,5 +11,3 @@
   <input type="radio" id="option4" name="group" class="radiob" />
   <label for="option4">Fedora</label>
 </div>
-
-<br/>
