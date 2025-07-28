@@ -47,4 +47,11 @@ export default [
       return ` fixed inset-0 bg-black/${lvl} z-${z}`;
     },
   ],
+
+  [
+    /^reqstar(?:-(\w+))?(?:-(.+))?$/,
+    ([, arg1, arg2]: RegExpMatchArray) => {
+      return `after:(content-["*"] pl2 text-red)`;
+    },
+  ],
 ];
