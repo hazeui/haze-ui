@@ -12,19 +12,28 @@ type CtxProps = {
 const context = createContext<CtxProps | null>(null);
 
 export const DropdownTrigger = ({
+  className,
   children,
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { toggleDropdown } = useContext(context) as CtxProps;
 
   return (
-    <button className="btn-primary" onClick={toggleDropdown} {...rest}>
+    <button
+      className={className?.includes("btn") ? className : `btn ${className}`}
+      onClick={toggleDropdown}
+      {...rest}
+    >
       {children}
     </button>
   );
 };
 
-export const DropdownItem = ({ children, className, ...rest }: any) => {
+export const DropdownItem = ({
+  children,
+  className,
+  ...rest
+}: ButtonHTMLAttributes<HTMLButtonElement>) => {
   const { closeDropdown } = useContext(context) as CtxProps;
 
   return (

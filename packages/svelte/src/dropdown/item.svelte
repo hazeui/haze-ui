@@ -1,13 +1,9 @@
 <script lang="ts">
   import type { PassedProps } from "./types";
+  import type { HTMLButtonAttributes } from "svelte/elements";
   import { getContext } from "svelte";
-  
-  interface Props {
-    class?: string;
-    children?: any;
-  }
-  
-  let { children, class: css, ...rest }: Props = $props();
+
+  let { children, class: css, ...rest }: HTMLButtonAttributes = $props();
   const { closeDropdown } = getContext("dropdown") as PassedProps;
 </script>
 

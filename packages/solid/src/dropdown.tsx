@@ -6,6 +6,8 @@ import {
   type JSX,
 } from "solid-js";
 
+import { type ComponentProps } from "solid-js";
+
 type CtxProps = {
   open: () => boolean;
   toggleDropdown: () => void;
@@ -16,20 +18,24 @@ import { clickOutside } from "./domutils";
 
 const context = createContext<CtxProps>();
 
-export const DropdownTrigger = (props: any) => {
+export const DropdownTrigger = (props: ComponentProps<"button">) => {
   const ctx = useContext(context) as CtxProps;
   return (
-    <button class="btn-primary" onClick={ctx.toggleDropdown} {...props}>
+    <button
+      class={props.class?.includes("btn") ? props.class : `btn ${props.class}`}
+      onClick={ctx.toggleDropdown}
+      {...props}
+    >
       {props.children}
     </button>
   );
 };
 
-export const DropdownItem = (props: any) => {
+export const DropdownItem = (props: ComponentProps<"button">) => {
   const ctx = useContext(context) as CtxProps;
   return (
     <button
-      class={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${props.class || props.className || ""}`}
+      class={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${props.class}`}
       onClick={ctx.closeDropdown}
       role="menuitem"
       {...props}

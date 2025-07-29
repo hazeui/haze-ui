@@ -11,7 +11,7 @@ export default [
 
       pos = tmp[pos] || tmp.bottom;
 
-      return `invisible absolute mt-2 w-48 rounded border bg-white border-(1 solid gray2)
+      return `invisible absolute mt-2 w-48 rounded border bg-mutebg border-(1 solid gray2)
                   opacity-0 shadow-md transition-400 
                   group-focus-within:(opacity-100 visible) grid px1 py2 ${pos} ${mid}`;
     },
@@ -24,7 +24,7 @@ export default [
 
       pos = tmp[pos] || tmp.bottom;
 
-      return `absolute mt-2 w-fit rounded border bg-white border-(1 solid gray2)
+      return `absolute mt-2 min-w-full rounded border bg-bg brd
                   shadow-md grid p2 animate-(fade-in duration-300) ${pos} ${mid}`;
     },
   ],
