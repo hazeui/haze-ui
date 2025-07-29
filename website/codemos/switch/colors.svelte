@@ -14,10 +14,11 @@
 
   <hr class="w-full brd border-input my2" />
 
-  <input type="checkbox" class="switch-line-4" />
-  <input type="checkbox" class="switch-line-6-indigo" defaultChecked />
-  <input type="checkbox" class="switch-line-8-red" defaultChecked />
-  <input type="checkbox" class="switch-line-9-slate" defaultChecked />
+  <input type="checkbox" class="switch-flat-xs" />
+  <input type="checkbox" class="switch-line-sm" />
+  <input type="checkbox" class="switch-line-md-indigo" defaultChecked />
+  <input type="checkbox" class="switch-line-lg-red" defaultChecked />
+  <input type="checkbox" class="switch-line-xl-slate" defaultChecked />
 
   <hr class="w-full brd border-input my2" />
 

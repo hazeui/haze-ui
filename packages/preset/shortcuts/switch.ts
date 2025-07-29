@@ -12,8 +12,7 @@ export default [
   [
     /^switch(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?(?:-(\w+))?$/,
     ([, variant = "flat", size = "md", color = "primary"]) => {
-      const numval = Number(size);
-      const sizeValue = Number.isNaN(numval) ? sizes[size] : numval;
+      const sizeValue = sizes[size];
       const w = sizeValue * 2;
       const h = variant === "knob" ? 3 : sizeValue;
 

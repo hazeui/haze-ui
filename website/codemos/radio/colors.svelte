@@ -13,10 +13,10 @@
 
   <hr class="w-full brd border-input my2" />
 
-  <input type="radio" class="radio-4" name="group3" />
-  <input type="radio" class="radio-indigo-6" name="group3" defaultChecked />
-  <input type="radio" class="radio-red-8" name="group3" />
-  <input type="radio" class="radio-slate-9" name="group3" />
+  <input type="radio" class="radio-sm" name="group3" />
+  <input type="radio" class="radio-indigo-md" name="group3" defaultChecked />
+  <input type="radio" class="radio-red-lg" name="group3" />
+  <input type="radio" class="radio-slate-xl" name="group3" />
 
   <hr class="w-full brd border-input my2" />
 

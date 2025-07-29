@@ -9,12 +9,12 @@ export default [
   [
     /^checkbox(?:-([\w]+))?(?:-([\w]+))?$/,
     ([, color = "primary", size = "md"]) => {
-      if (size && (Number(color) || sizes[color])) {
+      if (size && sizes[color]) {
         size = color;
         color = "primary";
       }
 
-      size = sizes[size] || size;
+      size = sizes[size];
 
       const rounded = Number(size) < 7 ? "rounded-sm" : "rounded-md";
 
