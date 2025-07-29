@@ -20,19 +20,31 @@ function App() {
 
   return (
     <main className="gid gap4 items-center p5 m-auto">
-      <div className="flex gap3">
-        <span className="badge-solid">Badge</span>
+      <div className="flex gap3 items-center">
+        <span className="badge-sm bg-pink">Badge</span>
         <span className="badge-secondary">Secondary</span>
-        <span className="badge-outline">Outline</span>
-        <span className="badge-surface">Surface</span>
+        <span className="badge-outline-lg">Outline</span>
+        <span className="badge-surface-xl">Surface</span>
+      </div>
+      <br />
+
+      <div className="flex gap3 items-center">
+          <span className="badge dtxtbg-emerald-40-brd">
+          <i className="i-icon-park-outline:check-one"></i>
+          Badge
+        </span>
+        <span className="badge bg-pink">
+          <i className="i-line-md:star-filled"></i>
+          Badge
+        </span>
+        <span className="badge-secondary dtxtbg-pink-10-brd">Secondary</span>
+        <span className="badge-outline ltxtbg-pink-5-brd">Outline</span>
+        <span className="badge-surface ltxtbg-orange.3-20-brd">Surface</span>
       </div>
 
       <br />
-      <br />
 
-      <div className="p3 bg-[color-mix(in_srgb,theme(colors.secondary),black_5%)]">
-        Violet-ish background
-      </div>
+      <div className="">clean and cool</div>
     </main>
   );
 }

@@ -18,6 +18,7 @@
   ];
 
   let components = [
+    "badge",
     "button",
     "checkbox",
     "dialog",

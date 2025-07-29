@@ -49,8 +49,8 @@ const options = {
       sizes: {
         sm: ["text-xs", 0.5],
         md: ["text-sm", 1],
-        lg: ["text-lg", 2],
-        xl: ["text-xl", 3],
+        lg: ["text-sm", 1.2],
+        xl: ["text-md", 1.5],
       },
     },
   },
