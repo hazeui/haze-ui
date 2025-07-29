@@ -39,7 +39,7 @@
   };
 </script>
 
-<Tabs>
+<Tabs defaultValue="preview">
   <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
     <Tab value="preview">
       <i class="i-mage:preview-fill"></i> Preview
