@@ -6,8 +6,8 @@ import { type SelectProps } from "types/select";
 export default function CustomSelect(props: SelectProps) {
   let ref;
   const [isOpened, setIsOpened] = createSignal(false);
-  const [selectedIndex, setSelectedIndex] = createSignal(0);
-  const [hlIndex, setHlIndex] = createSignal(0);
+  const [selectedIndex, setSelectedIndex] = createSignal(-1);
+  const [hlIndex, setHlIndex] = createSignal(-1);
 
   const toggleOptions = () => {
     setIsOpened((prev) => {
@@ -22,7 +22,7 @@ export default function CustomSelect(props: SelectProps) {
   const setSelectedThenCloseDropdown = (index: number) => {
     if (index !== selectedIndex()) {
       setSelectedIndex(index);
-      props.onChange?.(props.options[index].val);
+      props.onChange?.(props.options[index].value);
     }
     setIsOpened(false);
   };
@@ -47,22 +47,26 @@ export default function CustomSelect(props: SelectProps) {
     }
   };
 
+  const activeCss = props.optionCss?.includes("data-")
+    ? props.optionCss
+    : `data-active:bg-mutedbg ${props.optionCss}`;
+
+  const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
+
   return (
-    <div class="relative w-full" ref={ref} use:clickOutside={close}>
+    <div class="relative inline-flex" ref={ref} use:clickOutside={close}>
       <Btn
         aria-haspopup="listbox"
         aria-expanded={isOpened()}
         onClick={toggleOptions}
         onKeyDown={handleListKeyDown}
-        iconR="ml-auto i-fa-solid:caret-down"
-        variant="outline"
-        class="w-full justify-start"
+        iconR="ml5 i-fa-solid:caret-down"
         txt={props.options[selectedIndex()]?.name || "Select"}
         {...props.triggerProps}
       />
       {isOpened() && (
         <ul
-          class={`popover z-10 w-full ${props.dropdownCss || ""}`}
+          class={`popover z-10 whitespace-nowrap ${props.dropdownCss || ""}`}
           role="listbox"
           aria-activedescendant={`option-${hlIndex()}`}
           tabIndex={-1}
@@ -75,8 +79,8 @@ export default function CustomSelect(props: SelectProps) {
                 aria-selected={selectedIndex() === i()}
                 tabIndex={-1}
                 onClick={() => setSelectedThenCloseDropdown(i())}
-                class={`justify-start btn-ghost-eqmd ${props.inactiveOptionCss || ""} 
-                          ${hlIndex() === i() ? `bg-slate1 ${props.activeOptionCss || ""}` : ""}`}
+                data-active={hlIndex() === i()}
+                class={optcss}
               >
                 {option.iconL && <span class={option.iconL}></span>}
                 {option.name}

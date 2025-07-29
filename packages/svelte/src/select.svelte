@@ -1,35 +1,21 @@
 <script lang="ts">
   import { clickOutside } from "./domutils";
   import Btn from "./button.svelte";
-  import type { Props as BtnProps } from "./button.svelte";
 
-  type Option = {
-    val: string;
-    name: string;
-    iconL?: string;
-  };
-
-  type CustomSelectProps = {
-    options: Option[];
-    onChange?: (val: string) => void;
-    triggerProps?: BtnProps;
-    dropdownCss?: string;
-    inactiveOptionCss?: string;
-    activeOptionCss?: string;
-  };
+  import type { SelectProps } from "types/select";
 
   let {
     options,
     onChange,
+    placeholder = "Select Option",
     triggerProps,
     dropdownCss,
-    inactiveOptionCss,
-    activeOptionCss,
-  }: CustomSelectProps = $props();
+    optionCss,
+  }: SelectProps = $props();
 
   let isOpened = $state(false);
-  let selectedIndex = $state(0);
-  let hlIndex = $state(0);
+  let selectedIndex = $state(-1);
+  let hlIndex = $state(-1);
 
   const toggleOptions = () => {
     isOpened = !isOpened;
@@ -41,7 +27,7 @@
   const setSelectedThenCloseDropdown = (index: number) => {
     if (index !== selectedIndex) {
       selectedIndex = index;
-      onChange?.(options[index].val);
+      onChange?.(options[index].value);
     }
     isOpened = false;
   };
@@ -66,10 +52,17 @@
         break;
     }
   };
+
+  const activeCss = optionCss?.includes("data-")
+    ? optionCss
+    : `data-active:bg-mutedbg ${optionCss}`;
+
+  const optcss =
+    `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
 </script>
 
 <div
-  class="relative"
+  class="relative inline-flex first:children:w-full"
   use:clickOutside={() => isOpened = false}
 >
   <Btn
@@ -78,19 +71,18 @@
     onclick={toggleOptions}
     onkeydown={handleListKeyDown}
     iconR="ml-auto i-fa-solid:caret-down"
-    variant="outline"
-    class="w-full justify-start"
-    txt={options[selectedIndex]?.name || "Select"}
+    txt={options[selectedIndex]?.name || placeholder}
     {...triggerProps}
   />
+
   {#if isOpened}
     <ul
-      class={`popover z-10 w-full ${dropdownCss || ""}`}
+      class={`popover z-10 whitespace-nowrap ${dropdownCss}`}
       role="listbox"
       aria-activedescendant={`option-${hlIndex}`}
       tabindex={-1}
     >
-      {#each options as option, i (option.val)}
+      {#each options as option, i (option.value)}
         <li
           id={`option-${i}`}
           role="option"
@@ -98,11 +90,8 @@
           tabindex={-1}
           onclick={() => setSelectedThenCloseDropdown(i)}
           onkeydown={() => null}
-          class={`justify-start btn-ghost-eqmd transition-none
-               ${inactiveOptionCss || ""} 
-                ${
-            hlIndex === i ? `bg-slate1 ${activeOptionCss || ""}` : ""
-          }`}
+          data-active={hlIndex === i}
+          class={optcss}
         >
           {#if option.iconL}
             <span class={option.iconL}></span>

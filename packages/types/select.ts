@@ -1,16 +1,15 @@
 import type { BtnProps } from "./button";
 
-type Option = {
-  val: string;
+export type Option = {
+  value: string;
   name: string;
   iconL?: string;
 };
 
 export interface SelectProps {
   options: Option[];
-  onChange?: (val: string) => void;
+  onChange?: (value: string) => void;
   triggerProps?: BtnProps;
   dropdownCss?: string;
-  inactiveOptionCss?: string;
-  activeOptionCss?: string;
+  optionCss?: string;
 }

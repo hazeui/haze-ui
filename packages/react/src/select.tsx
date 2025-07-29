@@ -9,14 +9,13 @@ export default ({
   onChange,
   triggerProps,
   dropdownCss,
-  inactiveOptionCss,
-  activeOptionCss,
+  optionCss,
 }: SelectProps) => {
   const ref = useRef(null);
 
   const [isOpened, setIsOpened] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [hlIndex, setHlIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [hlIndex, setHlIndex] = useState(-1);
 
   useOnClickOutside(ref, () => setIsOpened(false));
 
@@ -31,7 +30,7 @@ export default ({
   const setSelectedThenCloseDropdown = (index: number) => {
     if (index !== selectedIndex) {
       setSelectedIndex(index);
-      onChange?.(options[index].val);
+      onChange?.(options[index].value);
     }
     setIsOpened(false);
   };
@@ -56,37 +55,41 @@ export default ({
     }
   };
 
+  const activeCss = optionCss?.includes("data-")
+    ? optionCss
+    : `data-active:bg-mutedbg ${optionCss}`;
+
+  const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
+
   return (
-    <div className="relative" ref={ref}>
+    <div className="inline-flex relative" ref={ref}>
       <Btn
         aria-haspopup="listbox"
         aria-expanded={isOpened}
         onClick={toggleOptions}
         onKeyDown={handleListKeyDown}
-        iconR="ml-auto i-fa-solid:caret-down"
-        variant="outline"
-        className="w-full justify-start"
+        iconR="ml5 i-fa-solid:caret-down"
         txt={options[selectedIndex]?.name || "Select"}
         {...triggerProps}
       />
 
       {isOpened && (
         <ul
-          className={`popover z-10 w-full ${dropdownCss}`}
+          className={`popover z-10 whitespace-nowrap ${dropdownCss}`}
           role="listbox"
           aria-activedescendant={`option-${hlIndex}`}
           tabIndex={-1}
         >
           {options.map((option, i) => (
             <li
-              key={option.val}
+              key={option.value}
               id={`option-${i}`}
               role="option"
+              data-active={hlIndex === i}
               aria-selected={selectedIndex === i}
               tabIndex={-1}
               onClick={() => setSelectedThenCloseDropdown(i)}
-              className={`justify-start btn-ghost-eqmd ${inactiveOptionCss} 
-                        ${hlIndex === i ? `bg-slate1 ${activeOptionCss}` : ""}`}
+              className={optcss}
             >
               {option.iconL && <span className={option.iconL}></span>}
               {option.name}

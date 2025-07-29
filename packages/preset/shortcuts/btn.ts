@@ -6,6 +6,14 @@ const sizes: any = {
   xl: ["text-xl", 3],
 };
 
+const variants: any = {
+  primary: `text-bg hover:brightness-90`,
+  soft: "bg-secondary text-fg hover:brightness-90",
+  ghost: "bg-transparent text-fg hover:bg-input disabled:text-slate",
+  outline:
+    "bg-bg text-fg border-(2 solid border) hover:bg-input disabled:bg-mutedbg",
+};
+
 export default [
   [
     /^btn(?:-(\w+))?(?:-(eq)?(xs|sm|md|lg|xl))?$/,
@@ -14,16 +22,14 @@ export default [
       const p = eqFlag ? `p${pad}` : `py-${pad} px-${pad * 2}`;
       const base = `rounded inline-flex items-center justify-center
                         gap2 border-0
-                        disabled:(brightness-90 hover:cursor-not-allowed)`;
+                        disabled:muted-90`;
 
-      const variants = {
-        primary: `bg-${variant} text-bg hover:brightness-90`,
-        soft: "bg-secondary text-fg hover:brightness-90",
-        ghost: "bg-transparent text-fg hover:bg-input disabled:text-slate",
-        outline: "bg-bg text-fg border-(2 solid border) hover:bg-input",
-      };
+      let css = variants[variant] || variants.primary;
 
-      const css = variants[variant] || variants.primary;
+      if (variant == "primary") {
+        css += ` bg-${variant}`;
+      }
+
       return `${base} ${css} ${txtsize} ${p}`;
     },
   ],

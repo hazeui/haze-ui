@@ -61,7 +61,7 @@ h4 {
 }
 
 #docs li {
-  @apply list-disc ml6;
+  @apply list-disc;
 }
 
 #docs blockquote {

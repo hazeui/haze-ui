@@ -5,7 +5,15 @@ import "../../shared/style.css";
 // @ts-ignore
 import "virtual:uno.css";
 // import "@unocss/reset/tailwind.css";
-import { Btn, Tabs, Tab, TabsContent, TabsList } from "@haze-ui/react";
+import { Btn, Tabs, Tab, TabsContent, TabsList, Select } from "@haze-ui/react";
+
+const options = [
+  { value: "1", name: "Option 1" },
+  { value: "2", name: "Option 2" },
+  { value: "3", name: "Option 3" },
+  { value: "4", name: "Option 4" },
+  { value: "5", name: "Option 5 keyboad hehe" },
+];
 
 function App() {
   const [val, setVal] = useState();
@@ -18,8 +26,10 @@ function App() {
       <br />
       <br />
 
-          <input type="checkbox" className="switch-line" />
-          <input type="checkbox" className="switch" />
+      <Select options={options}/>
+
+      <input type="checkbox" className="switch-line" />
+      <input type="checkbox" className="switch" />
       <br />
       <br />
 
