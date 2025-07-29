@@ -5,41 +5,33 @@
 
   type Props = DialogProps & HTMLAttributes<HTMLElement>;
 
-  let { open, close, class: myclass, children, closeIcon = true }: Props =
-    $props();
+  let { class: css, closeIcon = true, ...rest }: Props = $props();
 
-  let ref: HTMLDialogElement = $state();
-
-  const stopPropagation = (e: Event) => e.stopPropagation();
-
-  $effect(() => {
-    if (open) ref?.showModal();
-  });
+  const onClick = (e: MouseEvent) => {
+    if (e.currentTarget == e.target) close();
+  };
 </script>
 
-{#if open}
+{#if rest.open}
   <dialog
     class="backdrop:bg-black/60"
     use:portal
-    bind:this={ref}
-    onclick={close}
+    onclick={onClick}
+    onclose={rest.close}
+    {@attach (node) => node.showModal()}
   >
-    <div
-      tabindex="-1"
-      class={`dialog ${myclass}`}
-      onclick={stopPropagation}
-    >
+    <div tabindex="-1" class={`dialog ${css}`}>
       {#if closeIcon}
         <button
           class="i-pajamas:close absolute right-4 top-4 focus:bg-red"
           aria-label="close"
-          onclick={close}
+          onclick={rest.close}
           tabindex="-1"
         >
         </button>
       {/if}
 
-      {@render children()}
+      {@render rest.children()}
     </div>
   </dialog>
 {/if}

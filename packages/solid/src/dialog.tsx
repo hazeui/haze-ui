@@ -14,28 +14,26 @@ const Dialog = (props: Props) => {
     if (props.open) ref?.showModal();
   });
 
-  const stopPropagation = (e: Event) => e.stopPropagation();
+  const onClick = (e: MouseEvent) => {
+    if (e.currentTarget == e.target) props.close();
+  };
 
   return (
     <Portal>
       <dialog
         ref={ref}
         class="backdrop:bg-black/60"
-        onClick={props.close}
+        onClick={onClick}
         onClose={props.close}
       >
-        <div
-          role="dialog"
-          class={`dialog ${props.class ?? ""}`}
-          onClick={stopPropagation}
-        >
+        <div class={`dialog ${props.class ?? ""}`}>
           {props.closeIcon && (
             <button
               class="i-pajamas:close absolute right-4 top-4 focus-visible:bg-red"
               aria-label="close"
               tabindex="-1"
               tabIndex={-1}
-              onClick={close}
+              onClick={props.close}
             ></button>
           )}
           {props.children}
