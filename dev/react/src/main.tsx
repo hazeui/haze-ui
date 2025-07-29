@@ -19,34 +19,20 @@ function App() {
   const [val, setVal] = useState();
 
   return (
-    <main className="gid gap4 items-center p5">
-      <Btn txt="hi" className="btn-outline bg-red" />
+    <main className="gid gap4 items-center p5 m-auto">
+      <div className="flex gap3">
+        <span className="badge-solid">Badge</span>
+        <span className="badge-secondary">Secondary</span>
+        <span className="badge-outline">Outline</span>
+        <span className="badge-surface">Surface</span>
+      </div>
 
       <br />
       <br />
-      <br />
 
-      <Select options={options}/>
-
-      <input type="checkbox" className="switch-line" />
-      <input type="checkbox" className="switch" />
-      <br />
-      <br />
-
-      <Tabs value={val} setValue={setVal}>
-        <TabsList className="tabs">
-          <Tab value="preview">Preview</Tab>
-          <Tab value="code">Code</Tab>
-        </TabsList>
-
-        <TabsContent value="preview">
-          <div className="p4 rounded brd mt9">some preview here</div>
-        </TabsContent>
-
-        <TabsContent value="code">
-          <div className="p4 rounded brd mt9">some code here</div>
-        </TabsContent>
-      </Tabs>
+      <div className="p3 bg-[color-mix(in_srgb,theme(colors.secondary),black_5%)]">
+        Violet-ish background
+      </div>
     </main>
   );
 }

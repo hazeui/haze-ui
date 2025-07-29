@@ -26,9 +26,9 @@
 
   <hr class="w-full brd mt3 mb1" />
 
-  <button class="btn btn-soft-xs">Button</button>
-  <button class="btn btn-soft-sm">Button</button>
-  <button class="btn btn-soft-md">Button</button>
-  <button class="btn btn-soft-lg">Button</button>
-  <button class="btn btn-soft-xl">Button</button>
+  <button class="btn-soft-xs">Button</button>
+  <button class="btn-soft-sm">Button</button>
+  <button class="btn-soft-md">Button</button>
+  <button class="btn-soft-lg">Button</button>
+  <button class="btn-soft-xl">Button</button>
 </div>

@@ -6,14 +6,18 @@ import tabs from "./tabs";
 import misc from "./misc";
 import checkbox from "./checkbox";
 import radio from "./radio";
+import badge from "./badge";
 
-export const shortcuts = [
-  btn,
-  input,
-  pop,
-  switch_,
-  tabs,
-  misc,
-  checkbox,
-  radio,
-].flat();
+export const shortcuts = (opts:any) => {
+  return [
+    btn(opts.btn),
+    input(opts.input),
+    pop(opts.popover),
+    switch_(opts.switch),
+    tabs(),
+    misc(),
+    checkbox(opts.checkbox),
+    radio(opts.radio),
+    badge(opts.badge),
+  ].flat();
+};

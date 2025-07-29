@@ -1,8 +1,13 @@
 // @unocss-include
 import { definePreset, transformerVariantGroup } from "unocss";
 import { shortcuts } from "./shortcuts";
+import defaultOptions from "./options";
+import { deepMergeObj } from "./utils";
+import type { OptionTypes } from "./types/options";
 
-export default definePreset(() => {
+export default definePreset((options?: OptionTypes) => {
+  options = deepMergeObj(defaultOptions, options || {});
+
   return {
     name: "haze-ui",
     variants: [
@@ -30,6 +35,6 @@ export default definePreset(() => {
     },
 
     // @ts-ignore
-    shortcuts: shortcuts,
+    shortcuts: shortcuts(options.shortcuts),
   };
 });

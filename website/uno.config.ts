@@ -38,8 +38,7 @@ export default defineConfig({
         3: "#2d2d2d",
         4: "#3d3d3d",
         DEFAULT: "#4d4d4d",
-
-      }
+      },
     },
   },
 
