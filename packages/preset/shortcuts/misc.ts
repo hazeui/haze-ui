@@ -54,4 +54,9 @@ export default [
       return `after:(content-["*"] pl2 text-red)`;
     },
   ],
+
+  [
+    /^data-(\w+):(.+)$/,
+    ([, attr, val]: RegExpMatchArray) => `data-[${attr}=true]:${val}`,
+  ],
 ];
