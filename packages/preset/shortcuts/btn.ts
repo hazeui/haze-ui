@@ -26,7 +26,7 @@ export default [
 
       let css = variants[variant] || variants.primary;
 
-      if (variant == "primary") {
+      if (variant == "primary" || !variants[variant]) {
         css += ` bg-${variant}`;
       }
 
