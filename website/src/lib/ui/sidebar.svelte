@@ -7,7 +7,7 @@
     },
     {
       name: "Install",
-      href: "/docs/installation",
+      href: "/docs/install",
       icon: "i-line-md:downloading-loop",
     },
     {
@@ -34,7 +34,7 @@
 
 <aside class="flex-(~ col gap3) border-(r solid border) p8 pr20 h-screen">
   {#each links as link}
-    <a href="/" class="flex items-center gap2">
+    <a href={link.href} class="flex items-center gap2">
       <i class={link.icon}></i>
       {link.name}
     </a>
@@ -44,7 +44,7 @@
 
   {#each components as link}
     <a
-      href="/"
+      href={"/docs/" + link}
       class="flex items-center gap2 capitalize hover:text-primary"
     >
       {link}

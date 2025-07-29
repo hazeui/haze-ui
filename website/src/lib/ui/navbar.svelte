@@ -6,7 +6,7 @@
   const toggleTheme = () => {
     theme = theme == "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
-    document.querySelector("html").className=theme
+    document.querySelector("html").className = theme;
   };
 </script>
 
@@ -16,9 +16,9 @@
     <b>Haze UI</b>
   </a>
 
-  <a href="/">Docs</a>
-  <a href="/docs/button">Blocks</a>
-  <a href="/" class="mr-auto">Components</a>
+  <a href="/docs">Docs</a>
+  <a href="/docs">Blocks</a>
+  <a href="/docs/button" class="mr-auto">Components</a>
 
   <Btn
     placeholder="Search Docs"
@@ -27,7 +27,12 @@
     txt="Search Docs"
   />
 
-  <a href="/" class="i-bi:github text-xl" aria-label="github link"> </a>
+  <a
+    href="https://github.com/haze-ui"
+    class="i-bi:github text-xl"
+    aria-label="github link"
+  >
+  </a>
 
   <button
     class="btn-soft-eqlg rounded-full"
