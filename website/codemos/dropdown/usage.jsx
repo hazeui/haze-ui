@@ -6,7 +6,7 @@ import {
 } from "@haze-ui/react";
 
 export default () => {
-  <div>
+  <>
     <Dropdown>
       <DropdownTrigger> Dropdown</DropdownTrigger>
 
@@ -49,5 +49,5 @@ export default () => {
         </DropdownItem>
       </DropdownContent>
     </Dropdown>
-  </div>;
+  </>;
 };

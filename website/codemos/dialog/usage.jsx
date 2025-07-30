@@ -7,7 +7,7 @@ export default () => {
   const closeDialog = () => setOpen(false);
 
   return (
-    <div class="flex-(~ gap3 wrap) items-center brd p10 rounded">
+    <>
       <button className="btn-primary mx-auto" onClick={openDialog}>
         Open
       </button>
@@ -41,6 +41,6 @@ export default () => {
           <button className="btn-primary">Save</button>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 };

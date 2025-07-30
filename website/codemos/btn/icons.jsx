@@ -2,7 +2,7 @@ import { Btn } from "@haze-ui/react";
 
 export default () => {
   return (
-    <div class="flex-(~ gap3 wrap) items-center brd p5 rounded">
+    <>
       <Btn
         class="btn-emerald5 text-white"
         iconL="i-line-md:email-filled"
@@ -28,6 +28,6 @@ export default () => {
         class="btn-outline-eqmd rounded-full"
         aria-label="user button"
       />
-    </div>
+    </>
   );
 };

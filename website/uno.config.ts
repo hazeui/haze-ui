@@ -42,5 +42,20 @@ export default defineConfig({
     },
   },
 
+  shortcuts: [
+    [
+      /^demobox(?:-([\w]+))?(?:-([\w]+))?$/,
+      ([, a = "", b = ""]) => {
+        const parts = [a, b];
+        const pad = parts.find((x) => /^\d+$/.test(x)) || "10";
+        const start = parts.includes("start");
+
+        return `flex-(~ gap3 wrap) items-center brd ${
+          start ? "justify-start" : "justify-center"
+        } p${pad} rounded`;
+      },
+    ],
+  ],
+
   // ...UnoCSS options
 });

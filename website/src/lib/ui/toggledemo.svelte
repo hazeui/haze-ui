@@ -2,7 +2,7 @@
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 
   const opts = $props();
-  let { demo } = opts;
+  let { demo, class: css = "" } = opts;
 
   let codeContent: any = $state({
     svelte: "",
@@ -37,6 +37,8 @@
       codeContent.html = demo.code.html;
     }
   };
+
+  const Component = demo.preview;
 </script>
 
 <Tabs defaultValue="preview">
@@ -50,8 +52,9 @@
   </TabsList>
 
   <TabsContent value="preview">
-    {@const Component = demo.preview}
-    <Component />
+    <div class={css.includes("demobox") ? css : `demobox-center ${css}`}>
+      <Component />
+    </div>
   </TabsContent>
 
   <TabsContent value="code">

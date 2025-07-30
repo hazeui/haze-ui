@@ -27,25 +27,23 @@
   ];
 </script>
 
-<div class="flex-(~ gap3 wrap) justify-center brd p10 py20 rounded">
-  <div class="grid-(~ cols-2 gap3) w-2/3">
-    <Select
-      {options}
-      dropdownCss="bg-mutedbg border-0"
-      optionCss="data-active:bg-input"
-    />
+<div class="grid-(~ cols-2 gap3) w-2/3">
+  <Select
+    {options}
+    dropdownCss="bg-mutedbg border-0"
+    optionCss="data-active:bg-input"
+  />
 
-    <Select
-      options={options2}
-      triggerProps={{ class: "btn-outline" }}
-      placeholder="Select fruit"
-    />
+  <Select
+    options={options2}
+    triggerProps={{ class: "btn-outline" }}
+    placeholder="Select fruit"
+  />
 
-    <Select
-      options={options2}
-      triggerProps={{ class: "btn-outline", disabled: true }}
-      placeholder="Disabled Select"
-    />
-    <Select options={options3} placeholder="Select distro" optinCss="gap4" />
-  </div>
+  <Select
+    options={options2}
+    triggerProps={{ class: "btn-outline", disabled: true }}
+    placeholder="Disabled Select"
+  />
+  <Select options={options3} placeholder="Select distro" optinCss="gap4" />
 </div>

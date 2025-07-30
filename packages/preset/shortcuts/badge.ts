@@ -41,23 +41,22 @@ export default (opts: any) => {
     ],
 
     [
-      /^dtxtbg-([\w.]+)-(\d{1,3})(-brd)?$/,
-      ([, color, percent = "20", brd]: RegExpMatchArray) => {
+      /^(dtxtbg[r]?)-([\w]+(?:_[\w]+)?)(?:-(\d{1,3}))?$/,
+      ([, type, rawColor, percent = "50"]: RegExpMatchArray) => {
+        const color = rawColor.replace("_", ".");
         const main = mix(color, "black", percent);
-
-        return `bg-[${mix(color, "white", "50")}]
-                text-[${main}] ${brd ? `brd-[${main}]` : ""} `;
+        const border = type === "dtxtbgr" ? `brd-[${main}]` : "";
+        return `bg-[theme(colors.${color})] text-[${main}] ${border}`;
       },
     ],
 
     [
-      /^ltxtbg-([\w.]+)-(\d{1,3})(-brd)?$/,
-      ([, color, percent = "10", brd]: RegExpMatchArray) => {
-        const main = mix(color, "black", percent);
-
-        return `bg-[${main}]
-            text-[${mix(color, "white", "70")}] 
-            ${brd ? `brd-[${mix(color, "black", "40")}]` : ""}`;
+      /^(ltxtbg[r]?)-([\w]+(?:_[\w]+)?)(?:-(\d{1,3}))?$/,
+      ([, type, rawColor, percent = "70"]: RegExpMatchArray) => {
+        const color = rawColor.replace("_", ".");
+        const main = mix(color, "white", percent);
+        const border = type === "ltxtbgr" ? `brd-[${main}]` : "";
+        return `bg-[theme(colors.${color})] text-[${main}] ${border}`;
       },
     ],
   ];

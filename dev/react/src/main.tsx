@@ -29,7 +29,7 @@ function App() {
       <br />
 
       <div className="flex gap3 items-center">
-          <span className="badge dtxtbg-emerald-40-brd">
+          <span className="badge dtxtbg-emerald_3-60">
           <i className="i-icon-park-outline:check-one"></i>
           Badge
         </span>
@@ -37,9 +37,9 @@ function App() {
           <i className="i-line-md:star-filled"></i>
           Badge
         </span>
-        <span className="badge-secondary dtxtbg-pink-10-brd">Secondary</span>
-        <span className="badge-outline ltxtbg-pink-5-brd">Outline</span>
-        <span className="badge-surface ltxtbg-orange.3-20-brd">Surface</span>
+        <span className="badge-secondary dtxtbgr-pink_3">Secondary</span>
+        <span className="badge-outline ltxtbgr-pink_3">Outline</span>
+        <span className="badge-surface ltxtbgr-orange_3">Surface</span>
       </div>
 
       <br />
