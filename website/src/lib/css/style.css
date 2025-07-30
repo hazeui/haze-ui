@@ -21,7 +21,7 @@ html {
 html[data-theme="dark"] {
   --fg: #e0e0e0;
   --bg: #121212;
-  --primary: #5898ff;
+  --primary: #287aff;
   --secondary: #202020;
   --border: #343434;
   --input: #202020;
