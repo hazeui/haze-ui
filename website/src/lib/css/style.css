@@ -18,7 +18,7 @@ html {
   --danger: #ed3535; /* red-500 */
 }
 
-html[data-theme="dark"] {
+.dark {
   --fg: #e0e0e0;
   --bg: #121212;
   --primary: #287aff;
@@ -33,7 +33,6 @@ html[data-theme="dark"] {
   --warning: #fcdd37;
   --danger: #f87171;
 }
-
 
 body {
   @apply bg-bg text-fg;
@@ -65,7 +64,7 @@ h4 {
 }
 
 #docs blockquote {
-  @apply p3 bg-secondary w-fit rounded-r-lg ;
+  @apply p3 bg-secondary w-fit rounded-r-lg;
   @apply border-(0 l-5 solid border);
 }
 

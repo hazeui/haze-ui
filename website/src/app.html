@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%sveltekit.assets%/favicon.svg" />
@@ -11,6 +11,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <script>
+      document.querySelector("html").className = localStorage.theme;
+    </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     %sveltekit.head%

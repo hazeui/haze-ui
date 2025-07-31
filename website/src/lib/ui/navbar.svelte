@@ -1,11 +1,14 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { Btn } from "@haze-ui/svelte";
 
-  let theme = $state("dark");
+  let theme = $state();
+
+  onMount(() => theme = localStorage.theme);
 
   const toggleTheme = () => {
     theme = theme == "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.theme = theme;
     document.querySelector("html").className = theme;
   };
 </script>
