@@ -17,7 +17,7 @@ git clone https://github.com/nvchad/base46 --depth 1
 cd 
 
 log green 'Creating config nvim'
-ls 
+ls work
 cp -r work/haze-ui/website/nvim ~/.config
 ls ~/.config/nvim
 
