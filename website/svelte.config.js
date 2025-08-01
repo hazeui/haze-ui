@@ -13,6 +13,7 @@ const config = {
       "@haze-ui/svelte": "../packages/svelte/src/index",
       "content/*": "./content/*",
       "codemos/*": "./codemos/*",
+      "codemocomps/*": "./codemocomps/*",
     },
   },
   extensions: [".svelte", ".mdx"],

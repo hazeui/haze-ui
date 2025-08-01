@@ -12,12 +12,8 @@ M.open_files = function()
     local dirpath = cwd .. "/codemos/" .. dir
     local dirfiles = vim.fn.readdir(dirpath)
 
-    local compsdir = cwd .. "/codemocomps/" .. dir
-    local preveiewdir = compsdir .. "/preview"
-    local targetdir = compsdir .. "/codes"
-
+    local targetdir = cwd .. "/codemocomps/" .. dir
     vim.fn.mkdir(targetdir, "p")
-    vim.fn.mkdir(preveiewdir, "p")
 
     for _, file in pairs(dirfiles) do
       local fullpath = dirpath .. "/" .. file
@@ -36,7 +32,7 @@ M.open_files = function()
     end
   end
 
-  local cssfile = cwd .. "/codemocomps/style.css"
+  local cssfile = cwd .. "/src/lib/css/codesyn.css"
   utils.write_file(cssfile, css)
 end
 

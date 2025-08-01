@@ -58,6 +58,7 @@ return function(name, tb)
   table.remove(html_tb, 1)
   table.insert(html_tb, 1, string.format('<section class="%s boxbg pt7 pb3 bordered rounded-2xl">', theme))
   table.insert(html_tb, "</section>")
+  table.insert(html_tb,1, "<!-- @unocss-ignore -->")
 
   local html = table.concat(html_tb, "\n")
   html = html:gsub("{", "&#123;"):gsub("}", "&#125;")

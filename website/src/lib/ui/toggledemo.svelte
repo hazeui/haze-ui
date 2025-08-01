@@ -1,15 +1,15 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
-  import Nvim from "$lib/nvim.svelte"
+  import Nvim from "$lib/nvim.svelte";
 
   const opts = $props();
   let { demo, class: css = "" } = opts;
 
-  let codeContent: any = $state({
-    svelte: "",
-    react: "",
-    solid: "",
-    html: "",
+  let Codes: any = $state({
+    svelte: null,
+    react: null,
+    solid: null,
+    html: null,
   });
 
   let active = $state<string | null>(null);
@@ -17,25 +17,26 @@
   const setActive = (x: string) => {
     active = x;
 
-    if (x === "svelte" && !codeContent.svelte && demo.code.svelte) {
-      codeContent.svelte = demo.code.svelte;
+    if (x === "svelte" && !Codes.svelte && demo.code.svelte) {
+      console.log(demo.code.svelte(), "hiii");
+      Codes.svelte = demo.code.svelte();
     } //
 
-    else if (x === "react" && !codeContent.react && demo.code.react) {
-      const reactCode = demo.code.react;
-      codeContent.react = reactCode.replaceAll("class=", "className=");
-
-      if (!codeContent.solid && !demo.code.solid) {
-        codeContent.solid = reactCode.replaceAll("react", "solid");
-      }
+    else if (x === "react" && !Codes.react && demo.code.react) {
+      Codes.react = demo.code.react();
+      // codeContent.react = reactCode.replaceAll("class=", "className=");
+      //
+      // if (!codeContent.solid && !demo.code.solid) {
+      //   codeContent.solid = reactCode.replaceAll("react", "solid");
+      // }
     } //
 
-    else if (x === "solid" && !codeContent.solid && demo.code.solid) {
-      codeContent.solid = demo.code.solid;
+    else if (x === "solid" && !Codes.solid && demo.code.solid) {
+      Codes.solid = demo.code.solid();
     } //
 
-    else if (x === "html" && !codeContent.html && demo.code.html) {
-      codeContent.html = demo.code.html;
+    else if (x === "html" && !Codes.html && demo.code.html) {
+      Codes.html = demo.code.html();
     }
   };
 
@@ -73,7 +74,11 @@
         {/if}
       </TabsList>
 
-      <Nvim/>
+      {#await Codes[active]}
+        <div class="skeleton h-100"></div>
+      {:then Codecomp}
+        <Codecomp />
+      {/await}
     </Tabs>
   </TabsContent>
 </Tabs>
