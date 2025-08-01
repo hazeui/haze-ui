@@ -17,7 +17,8 @@ git clone https://github.com/nvchad/base46 --depth 1
 
 cd 
 
-ls work
+cd work/haze-ui
+ls
 
 
 
