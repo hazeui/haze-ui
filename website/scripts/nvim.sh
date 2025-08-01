@@ -19,7 +19,7 @@ cd
 log green 'Creating config nvim'
 # cp -r website/nvim ~/.config
 
-ls actions-runner
+ls work
 
 # log yellow "Downloading Neovim..."
 # curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
