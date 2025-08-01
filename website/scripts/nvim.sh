@@ -14,12 +14,12 @@ git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
 git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
 git clone https://github.com/nvchad/base46 --depth 1
 
-cd ..
+cd 
 
 log green 'Creating config nvim'
 # cp -r website/nvim ~/.config
 
-ls  start
+ls 
 
 # log yellow "Downloading Neovim..."
 # curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
