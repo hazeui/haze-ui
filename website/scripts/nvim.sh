@@ -19,7 +19,6 @@ cd
 log green 'Creating config nvim'
 # cp -r website/nvim ~/.config
 
-ls work
 ls actions-runner
 
 # log yellow "Downloading Neovim..."
