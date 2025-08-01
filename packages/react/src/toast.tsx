@@ -48,7 +48,8 @@ const Toast = ({
   id,
   title,
   txt,
-  type,
+  icon,
+  css = "",
   duration = 3000,
   pos = "topmid",
 }: ToastObj) => {
@@ -56,41 +57,31 @@ const Toast = ({
     setTimeout(() => store.remove(id, pos), duration);
   }, []);
 
-  const css = {
-    success: {
-      icon: "i-mingcute:check-circle-fill text-3xl bg-emerald",
-      wrapper: "bg-emerald1",
-    },
-    warning: {
-      icon: "i-ci:circle-warning text-3xl bg-amber",
-      wrapper: "bg-amber1",
-    },
-    error: {
-      icon: "i-mi:circle-error text-3xl bg-red",
-      wrapper: "bg-red1",
-    },
+  const icons: any = {
+    success: "i-mingcute:check-circle-fill",
+    warning: "i-jam:info-f",
+    danger: "i-mi:circle-error",
   };
+
+  const match = css.match(/\b\S*toast\S*(danger|success|warning)\S*\b/);
+
+  icon =
+    icon ||
+    (match && match[0] ? icons[match[0].split("-").at(-1)!] : undefined);
 
   const closeToast = () => store.remove(id, pos);
 
   return (
-    <div
-      className={`relative bg-white min-w-md animate-(fade-in-up duration-300)
-                  shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
-    >
-      {type && (
-        <div className={`p2 rounded-full my-auto ${css[type].wrapper}`}>
-          <div className={css[type].icon} />
-        </div>
-      )}
+    <div className={css.includes("toast") ? css : `toast ${css}`}>
+      {icon && <div className={icon + " my-auto text-3xl"} />}
 
-      <div className="grid gap2">
+      <div className="grid gap1">
         <b>{title}</b>
-        <p className="!m0 text-zinc6">{txt}</p>
+        <p>{txt}</p>
       </div>
 
       <button
-        className="btn-ghost-eqsm absolute right-2 top-2"
+        className="btn-ghost-eqsm absolute right-2 top-2 text-inherit"
         aria-label="close"
         onClick={closeToast}
       >

@@ -49,6 +49,4 @@ export default defineConfig({
       },
     ],
   ],
-
-  // ...UnoCSS options
 });

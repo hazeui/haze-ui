@@ -10,9 +10,10 @@ export interface ToastObj {
   id?: string;
   txt: string;
   title: string;
-  type?: "success" | "warning" | "error";
   pos?: posType;
   duration?: number;
+  css?: string;
+  icon?: string;
 }
 
 export type ToastFnProps = Omit<ToastObj, "id">;

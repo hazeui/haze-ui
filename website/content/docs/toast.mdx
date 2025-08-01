@@ -1,0 +1,24 @@
+<script lang="ts">
+ import ToggleDemo from "$lib/ui/toggledemo.svelte";
+ import { getDemo } from "$lib/codemos";
+
+</script>
+
+# Toast
+
+A UI element that displays a message in a pop-up box.
+
+## Usage
+
+Just call the toast function
+<ToggleDemo class='demobox-20' demo={getDemo("toast", "usage")} />
+
+## Positions
+<ToggleDemo class='demobox-5-start' demo={getDemo("toast", "pos")} />
+
+## Variants
+Add the variant to the class to the css param of the toast()
+<ToggleDemo class='demobox-5-start' demo={getDemo("toast", "variant")} />
+
+## Colors
+<ToggleDemo class='demobox-5-start' demo={getDemo("toast", "colors")} />

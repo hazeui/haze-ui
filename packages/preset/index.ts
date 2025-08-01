@@ -27,6 +27,9 @@ export default definePreset((options?: OptionTypes) => {
         ring: "#a9b0ff",
         mutedfg: "#557091",
         mutedbg: "#e6edf4",
+        danger: '#F87171',
+        success: '#34D399',
+        warning: '#FBBF24',
       },
 
       borderRadius: {

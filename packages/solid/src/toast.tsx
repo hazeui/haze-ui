@@ -1,4 +1,3 @@
-import Btn from "./button";
 import { render } from "solid-js/web";
 import { createSignal, For, createEffect } from "solid-js";
 import type { posType, ToastFnProps, ToastObj } from "types/toast";
@@ -31,7 +30,21 @@ const removeToast = (id: string, pos: posType = "topmid") => {
 };
 
 const ToastCard = (x: ToastObj) => {
+  x.css = x.css || "";
+
+  const icons: any = {
+    success: "i-mingcute:check-circle-fill",
+    warning: "i-jam:info-f",
+    danger: "i-mi:circle-error",
+  };
+
   x.duration = x.duration || 3000;
+
+  const match = x.css.match(/\b\S*toast\S*(danger|success|warning)\S*\b/);
+
+  x.icon =
+    x.icon ||
+    (match && match[0] ? icons[match[0].split("-").at(-1)!] : undefined);
 
   createEffect(() => {
     setTimeout(() => {
@@ -39,39 +52,17 @@ const ToastCard = (x: ToastObj) => {
     }, x.duration);
   });
 
-  const css = {
-    success: {
-      icon: "i-mingcute:check-circle-fill text-3xl bg-emerald",
-      wrapper: "bg-emerald1",
-    },
-    warning: {
-      icon: "i-ci:circle-warning text-3xl bg-amber",
-      wrapper: "bg-amber1",
-    },
-    error: {
-      icon: "i-mi:circle-error text-3xl bg-red",
-      wrapper: "bg-red1",
-    },
-  };
-
   const closeToast = () => {
     if (x.id) (removeToast(x.id, x.pos), x.duration);
   };
 
   return (
-    <div
-      class={`relative bg-white min-w-md animate-(fade-in-up duration-300)
-                  shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
-    >
-      {x.type && (
-        <div class={`p2 rounded-full my-auto ${css[x.type].wrapper}`}>
-          <div class={css[x.type].icon} />
-        </div>
-      )}
+    <div class={x.css.includes("toast") ? x.css : `toast ${x.css}`}>
+      {x.icon && <div class={x.icon + " my-auto text-3xl"} />}
 
-      <div class="grid gap2">
+      <div class="grid gap1">
         <b>{x.title}</b>
-        <p class="!m0 text-zinc6">{x.txt}</p>
+        <p>{x.txt}</p>
       </div>
 
       <button

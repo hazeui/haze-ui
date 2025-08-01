@@ -1,43 +1,40 @@
 <script lang="ts">
   import { removeToast } from "./utils.svelte";
   import { onMount } from "svelte";
-  let { id, title, txt, type, duration = 3000, pos } = $props();
+  import type { ToastObj } from "types/toast";
 
-  const css: any = {
-    success: {
-      icon: "i-mingcute:check-circle-fill text-3xl bg-emerald",
-      wrapper: "bg-emerald1",
-    },
-    warning: {
-      icon: "i-ci:circle-warning text-3xl bg-amber",
-      wrapper: "bg-amber1",
-    },
-    error: {
-      icon: "i-mi:circle-error text-3xl bg-red",
-      wrapper: "bg-red1",
-    },
+  let { pos, icon = $bindable(), css = "", ...rest }: ToastObj = $props();
+
+  const icons: any = {
+    success: "i-mingcute:check-circle-fill",
+    warning: "i-jam:info-f",
+    danger: "i-mi:circle-error",
   };
 
-  const closeToast = () => removeToast(id, pos);
+  const closeToast = () => removeToast(rest.id, pos);
+
+  const match = css?.match(/\b\S*toast\S*(danger|success|warning)\S*\b/);
+
+  if (!icon && match && match[0]) {
+    const tmp = match[0].split("-");
+    icon = icons[tmp.at(-1)];
+  }
 
   onMount(() => {
-    setTimeout(() => removeToast(id, pos), duration);
+    setTimeout(() => removeToast(rest.id, pos), rest.duration || 3000);
   });
 </script>
 
 <div
-  class={`relative bg-white min-w-md animate-(fade-in-up duration-300)
-                  shadow-lg rounded border-(1 solid border) flex gap3 p4 mb3`}
+  class={css.includes("toast") ? css : `toast ${css}`}
 >
-  {#if type}
-    <div class={`p2 rounded-full my-auto ${css[type].wrapper}`}>
-      <div class={css[type].icon}></div>
-    </div>
+  {#if icon}
+    <div class={icon + " my-auto text-3xl"}></div>
   {/if}
 
-  <div class="grid gap2">
-    <b>{title}</b>
-    <p class="!m0 text-zinc6">{txt}</p>
+  <div class="grid gap1">
+    <b>{rest.title}</b>
+    <span>{rest.txt}</span>
   </div>
 
   <button

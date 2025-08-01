@@ -8,10 +8,13 @@ import "virtual:uno.css";
 import "../../shared/style.css";
 
 // import { Userpic, Btn} from "../../../packages/solid/index";
-import { Btn, Tabs, Tab, TabsContent, TabsList } from "@haze-ui/solid";
+import { Btn, Tabs, Tab, TabsContent, TabsList, toast } from "@haze-ui/solid";
+import "@unocss/reset/tailwind.css";
 
 function App() {
   const [val, setVal] = createSignal();
+
+  toast({ title: "hello world", txt: "some long para over here", css:'toast-outline-warning' });
 
   return (
     <main class="gid gap4 items-center p5">
