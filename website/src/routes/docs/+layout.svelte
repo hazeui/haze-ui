@@ -3,6 +3,7 @@
   import Sidebar from "$lib/ui/sidebar.svelte";
   import Onthispage from "$lib/ui/onthispage.svelte";
 
+  import "$lib/chad.css"
 </script>
 
 <div class="grid-(~ cols-[auto_1fr_auto])">

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
+  import Nvim from "$lib/nvim.svelte"
 
   const opts = $props();
   let { demo, class: css = "" } = opts;
@@ -72,9 +73,7 @@
         {/if}
       </TabsList>
 
-      <pre
-        class="p5 rounded brd rounded-t-0 max-h-400px overflow-auto"
-      ><code>{active ? codeContent[active] : ''}</code></pre>
+      <Nvim/>
     </Tabs>
   </TabsContent>
 </Tabs>

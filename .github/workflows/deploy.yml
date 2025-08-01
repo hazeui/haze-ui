@@ -2,7 +2,7 @@ name: Deploy to hazeui.github.io
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
     paths:
       - 'website/**'
       - 'packages/**'
@@ -24,23 +24,5 @@ jobs:
       - name: Build website
         run: cd website && bun run build
 
-      - name: Add .nojekyll file
-        run: touch website/build/.nojekyll
-
-      - name: Add CNAME file
-        run: echo "haze-ui.com" > website/build/CNAME
-
-      - name: Push to hazeui.github.io
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          git clone https://x-access-token:${{ secrets.HAZEUI_SITE_TOKEN }}@github.com/hazeui/hazeui.github.io.git site-deploy
-
-          rm -rf site-deploy/*
-          cp -r website/build/* site-deploy/
-
-          cd site-deploy
-          git add .
-          git commit -m "Deploy website $(date +'%Y-%m-%d %H:%M:%S')" || echo "Nothing to commit"
-          git push
+      - name: ls
+        run: cd website && ls
