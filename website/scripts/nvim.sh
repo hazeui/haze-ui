@@ -3,23 +3,23 @@
 . "$(dirname "$0")/globals.sh"
 
 # Install plugins
+#
+
+ls website/nvim
+
+cp -r website/nvim ~/.config/nvim
+ls ~/.config/nvim
+
 
 log blue "Installing Neovim plugins..."
-
 mkdir -p ~/.local/share/vi/site/pack/plugins/start
-cd ~/.local/share/vi/site/pack/plugins/start
 
-git clone https://github.com/nvim-lua/plenary.nvim --depth 1
-git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
-git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
-git clone https://github.com/nvchad/base46 --depth 1
+# cd ~/.local/share/vi/site/pack/plugins/start
 
-cd 
-
-log green 'Creating config nvim'
-ls work/haze-ui/
-cp -r work/haze-ui/website/nvim ~/.config
-ls ~/.config/nvim
+# git clone https://github.com/nvim-lua/plenary.nvim --depth 1
+# git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
+# git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
+# git clone https://github.com/nvchad/base46 --depth 1
 
 
 # log yellow "Downloading Neovim..."
