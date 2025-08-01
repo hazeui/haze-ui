@@ -44,7 +44,7 @@ export const toast = (x: ToastFnProps) => {
   if (!div) {
     div = document.createElement("div");
     div.id = id;
-    div.className = "absolute " + positionCss[x.pos];
+    div.className = "fixed " + positionCss[x.pos];
     document.body.appendChild(div);
     mount(Manager, { target: div, props: { pos: x.pos } });
   }

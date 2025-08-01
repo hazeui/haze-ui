@@ -113,7 +113,7 @@ export const toast = (x: ToastFnProps) => {
   if (!div) {
     div = document.createElement("div");
     div.id = id;
-    div.className = "absolute " + positionCss[x.pos];
+    div.className = "fixed " + positionCss[x.pos];
     document.body.appendChild(div);
     createRoot(div).render(<ToastManager pos={x.pos} />);
   }
