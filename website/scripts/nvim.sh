@@ -17,9 +17,9 @@ git clone https://github.com/nvchad/base46 --depth 1
 cd 
 
 log green 'Creating config nvim'
-# cp -r website/nvim ~/.config
+cp -r work/haze-ui/website/nvim ~/.config
+ls ~/.config/nvim
 
-ls work
 
 # log yellow "Downloading Neovim..."
 # curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
