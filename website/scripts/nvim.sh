@@ -5,6 +5,7 @@
 # Install plugins
 #
 
+ls
 ls website/nvim
 
 cp -r website/nvim ~/.config/nvim
