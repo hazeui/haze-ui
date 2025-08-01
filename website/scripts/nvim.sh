@@ -15,30 +15,27 @@ git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
 git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
 git clone https://github.com/nvchad/base46 --depth 1
 
-
 cd 
 
-ls ~/.local/bin/
 
-# log yellow "Downloading Neovim..."
+log yellow "Downloading Neovim..."
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
 tar -zxf nvim-linux-x86_64.tar.gz
 
+log blue "Installing Neovim"
 mkdir -p "$HOME/.local/nvim"
 mv nvim-linux-x86_64/* "$HOME/.local/nvim"
 
-# Add it to PATH (current shell + future workflow steps)
 echo "$HOME/.local/nvim/bin" >> "$GITHUB_PATH"
 export PATH="$HOME/.local/nvim/bin:$PATH"
 
-nvim -v
+cd /home/runner/work/haze-ui/haze-ui/website
 
+log green "Compiling base46 themes"
+nvim --headless +"lua require('base46').compile()" +"q"
+nvim --headless +"TSUpdate" +"q"
 
-cd /home/runner/work/haze-ui/haze-ui
+log red "Generating svelte components from base46 themes"
+nvim --headless +":lua require 'vihtml'" +"q"
 
-# log green "Compiling base46 themes"
-# nv/bin/nvim --headless +"lua require('base46').compile()" +"q"
-# nv/bin/nvim --headless +"TSUpdate" +"q"
-#
-# log red "Generating svelte components from base46 themes"
-# nv/bin/nvim --headless +":lua require 'vihtml'" +"q"
+ls 
