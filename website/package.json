@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-    "setup-nvim": "sh scripts/nvim.sh",
+    "setup-nvim": "bash scripts/nvim.sh",
 		"build": "sh scripts/build.sh",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
