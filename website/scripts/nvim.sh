@@ -16,6 +16,8 @@ git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
 git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
 git clone https://github.com/nvchad/base46 --depth 1
 
+cd 
+
 ls -a
 
 # log green 'Creating config nvim'
