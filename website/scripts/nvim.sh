@@ -2,8 +2,6 @@
 
 . "$(dirname "$0")/globals.sh"
 
-echo $SHELL
-
 # Install plugins
 
 log blue "Installing Neovim plugins..."
@@ -16,13 +14,12 @@ git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
 git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
 git clone https://github.com/nvchad/base46 --depth 1
 
-cd 
+cd ..
 
-ls -a
+log green 'Creating config nvim'
+# cp -r website/nvim ~/.config
 
-# log green 'Creating config nvim'
-# mkdir ~/.config
-# mv nvim ~/.config/nvim
+ls 
 
 # log yellow "Downloading Neovim..."
 # curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
