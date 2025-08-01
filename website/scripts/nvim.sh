@@ -10,14 +10,19 @@ mkdir -p ~/.local/share/nvim/site/pack/plugins/start
 
 cd ~/.local/share/nvim/site/pack/plugins/start
 
-git clone https://github.com/nvim-lua/plenary.nvim --depth 1
-git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
-git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
-git clone https://github.com/nvchad/base46 --depth 1
+# git clone https://github.com/nvim-lua/plenary.nvim --depth 1
+# git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
+# git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
+# git clone https://github.com/nvchad/base46 --depth 1
 
 cd 
 
-cd work/haze-ui
+cd work
+
+ls
+cd haze-ui
+echo "what?"
+ls
 ls
 
 
