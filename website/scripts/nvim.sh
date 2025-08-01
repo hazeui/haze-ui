@@ -5,9 +5,7 @@
 # Install plugins
 #
 
-whoami
-
-ls nvim
+ls /
 
 cp -r nvim ~/.config/nvim
 ls ~/.config/nvim
