@@ -77,7 +77,9 @@
       {#await Codes[active]}
         <div class="skeleton h-100"></div>
       {:then Codecomp}
-        <Codecomp />
+        <div class='bg-[#1b1f27] text-white pt5 rounded-b'>
+          <Codecomp />
+        </div>
       {/await}
     </Tabs>
   </TabsContent>
