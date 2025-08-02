@@ -45,3 +45,6 @@ mv '[slug]' src/routes/docs
 
 log green "Removing tmpdocs..."
 rmdir tmpdocs
+
+touch build/.nojekyll
+cp -r CNAME build
