@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { page } from "$app/state";
+
+  let hash = $derived(page.url.hash.slice(1));
+  let slugifiedHash = $derived(slugify(hash));
+  let pathname = $derived(page.url.pathname);
 
   function slugify(text: string) {
     return text
@@ -19,6 +23,8 @@
     headings.forEach((el) => {
       if (!el.id) {
         el.id = slugify(el.textContent?.trim() || "");
+
+        if (el.id == hash) document.querySelector(hash)?.scrollIntoView();
       }
     });
 
@@ -31,14 +37,8 @@
 
   let lists: any = $state([]);
 
-  onMount(() => {
-    const hash = window.location.hash;
-
-    if (hash) {
-      document.querySelector(hash)?.scrollIntoView();
-    }
-
-    lists = getHeadings();
+  $effect(() => {
+    if (pathname) lists = getHeadings();
   });
 </script>
 
@@ -46,6 +46,9 @@
   <b>On this page</b>
 
   {#each lists as x}
-    <a href={"#" + x.id} class="text-mutedfg">{x.name}</a>
+    <a
+      href={"#" + x.id}
+      class={x.id == slugifiedHash ? "text-primary" : "text-mutedfg"}
+    >{x.name}</a>
   {/each}
 </aside>
