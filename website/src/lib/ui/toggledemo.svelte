@@ -1,40 +1,25 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 
-  let codeblockref: any;
+  import { reactStrRep, solidStrRep } from "$lib/utils";
+
+  let codeblockref: any = $state();
   const opts = $props();
+
   let { demo, class: css = "" } = opts;
-
-  console.log(demo);
-
-  let strTransformed = {
-    react: false,
-    solid: false,
-  };
 
   let active = $state<string | null>(null);
 
-  const react = (str: string) => {
-    return str.replaceAll(">class", ">className");
-  };
-
-  const solid = (str: string) => {
-    return str.replaceAll("react", "solid");
-  };
-
   const setActive = (x: string) => {
-    active = x;
+    // Replace code strings on react/solid respectively
+    if (x == "react" && active != "react") {
+      codeblockref.innerHTML = reactStrRep(codeblockref.innerHTML);
+    } //
+    else if (x == "solid" && active != "solid") {
+      codeblockref.innerHTML = solidStrRep(codeblockref.innerHTML);
+    }
 
-    setTimeout(() => {
-      if (x == "react" && !strTransformed.react) {
-        codeblockref.innerHTML = react(codeblockref.innerHTML);
-        strTransformed.react = true;
-      } //
-      else if (x == "solid" && !strTransformed.solid) {
-        codeblockref.innerHTML = solid(codeblockref.innerHTML);
-        strTransformed.solid = true;
-      }
-    });
+    active = x;
   };
 
   const Component = demo.preview;
@@ -70,20 +55,12 @@
           <Tab value="solid"><i class="i-devicon:solidjs"></i> Solid</Tab>
         {/if}
       </TabsList>
-
-      {#if active}
-        <div
-          class="bg-[#1b1f27] text-white pt5 rounded-b"
-        >
-          {#await demo.code[active]()}
-            <div class="skeleton h-50"></div>
-          {:then Codecomp}
-            <div bind:this={codeblockref}>
-              <Codecomp />
-            </div>
-          {/await}
-        </div>
-      {/if}
+      <div class="bg-[#1b1f27] text-white pt5 rounded-b">
+        {#if active && demo.code[active]}
+          {@const Component2 = demo.code[active]}
+          <Component2 bind:ref={codeblockref} />
+        {/if}
+      </div>
     </Tabs>
   </TabsContent>
 </Tabs>

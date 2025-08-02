@@ -1,3 +1,4 @@
+local script_tag = "<script> let {ref = $bindable() } = $props() </script> <pre bind:this={ref}>"
 local gen_css = function(theme)
   local colors = require("base46.themes." .. theme).base_16
   local bg = colors.base02
@@ -61,10 +62,16 @@ return function(name, tb)
   table.remove(html_tb, 1)
   -- table.insert(html_tb, 1, string.format('<section class="%s boxbg pt7 pb3 bordered rounded-2xl">', theme))
   -- table.insert(html_tb, "</section>")
+
+  -- Adding ref to <pre> and <script>
   table.insert(html_tb, 1, "<!-- @unocss-ignore -->")
 
   local html = table.concat(html_tb, "\n")
-  html = html:gsub("{", "&#123;"):gsub("}", "&#125;")
+
+  html = html
+    :gsub("{", "&#123;") -- Replace `{` with HTML entity cuz svelte doesnt support inside <markup> as str
+    :gsub("}", "&#125;") -- Replace `}` with HTML entity
+    :gsub("<pre>", script_tag) -- Replace `<pre>` with value of `script_tag`
 
   local css = table.concat(css_tb, "\n")
   css = css:gsub("italic", "normal")

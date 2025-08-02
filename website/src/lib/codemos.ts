@@ -3,8 +3,9 @@ const allPreviews = import.meta.glob("/codemos/**/*.svelte", {
   eager: true
 });
 
-const allCodes = import.meta.glob("/codemocomps/**/*", {
+const allCodes = import.meta.glob("/codemocomps/**/*.svelte", {
   import: "default",
+  eager: true,
 });
 
 export const getDemo = (component: string, filename: string) => {
