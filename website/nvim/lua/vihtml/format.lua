@@ -31,7 +31,7 @@ return function(name, tb)
   local css_tb = {}
   local theme = name:gsub("_[^_]+$", "")
 
-  for i, v in ipairs(tb) do
+  for _, v in ipairs(tb) do
     if v == "<style>" then
       cur_scope = "css"
     elseif v == "</style>" then
@@ -43,11 +43,13 @@ return function(name, tb)
     end
 
     if cur_scope == "css" then
+      -- .onedark .linenr
       -- table.insert(css_tb, "." .. theme .. v)
       table.insert(css_tb, v)
     elseif cur_scope == "body" then
-      local block = string.gsub(v, 'class="', 'class="' .. theme .. " ")
-      table.insert(html_tb, block)
+      -- class="onedark linenr"
+      -- local block = string.gsub(v, 'class="', 'class="' .. theme .. " ")
+      table.insert(html_tb, v)
     end
   end
 

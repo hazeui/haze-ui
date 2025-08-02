@@ -16,7 +16,7 @@ export const getDemo = (component: string, filename: string) => {
     code: {
       svelte: allCodes[`${basePath2}.svelte`],
       react: allCodes[`${basePath2}-jsx.svelte`],
-      // solid: allCodes[`${basePath}.jsx`],
+      solid: allCodes[`${basePath2}-jsx.svelte`],
     },
   };
 };

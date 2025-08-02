@@ -43,7 +43,7 @@ export default defineConfig({
         const pad = parts.find((x) => /^\d+$/.test(x)) || "10";
         const start = parts.includes("start");
 
-        return `flex-(~ gap3 wrap) items-center brd ${
+        return `animate-(fade-in duration-300)  flex-(~ gap3 wrap) items-center brd ${
           start ? "justify-start" : "justify-center"
         } p${pad} rounded`;
       },

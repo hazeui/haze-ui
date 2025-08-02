@@ -1,43 +1,40 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
-  import Nvim from "$lib/nvim.svelte";
 
+  let codeblockref: any;
   const opts = $props();
   let { demo, class: css = "" } = opts;
 
-  let Codes: any = $state({
-    svelte: null,
-    react: null,
-    solid: null,
-    html: null,
-  });
+  console.log(demo);
+
+  let strTransformed = {
+    react: false,
+    solid: false,
+  };
 
   let active = $state<string | null>(null);
+
+  const react = (str: string) => {
+    return str.replaceAll(">class", ">className");
+  };
+
+  const solid = (str: string) => {
+    return str.replaceAll("react", "solid");
+  };
 
   const setActive = (x: string) => {
     active = x;
 
-    if (x === "svelte" && !Codes.svelte && demo.code.svelte) {
-      console.log(demo.code.svelte(), "hiii");
-      Codes.svelte = demo.code.svelte();
-    } //
-
-    else if (x === "react" && !Codes.react && demo.code.react) {
-      Codes.react = demo.code.react();
-      // codeContent.react = reactCode.replaceAll("class=", "className=");
-      //
-      // if (!codeContent.solid && !demo.code.solid) {
-      //   codeContent.solid = reactCode.replaceAll("react", "solid");
-      // }
-    } //
-
-    else if (x === "solid" && !Codes.solid && demo.code.solid) {
-      Codes.solid = demo.code.solid();
-    } //
-
-    else if (x === "html" && !Codes.html && demo.code.html) {
-      Codes.html = demo.code.html();
-    }
+    setTimeout(() => {
+      if (x == "react" && !strTransformed.react) {
+        codeblockref.innerHTML = react(codeblockref.innerHTML);
+        strTransformed.react = true;
+      } //
+      else if (x == "solid" && !strTransformed.solid) {
+        codeblockref.innerHTML = solid(codeblockref.innerHTML);
+        strTransformed.solid = true;
+      }
+    });
   };
 
   const Component = demo.preview;
@@ -74,13 +71,19 @@
         {/if}
       </TabsList>
 
-      {#await Codes[active]}
-        <div class="skeleton h-100"></div>
-      {:then Codecomp}
-        <div class='bg-[#1b1f27] text-white pt5 rounded-b'>
-          <Codecomp />
+      {#if active}
+        <div
+          class="bg-[#1b1f27] text-white pt5 rounded-b"
+        >
+          {#await demo.code[active]()}
+            <div class="skeleton h-50"></div>
+          {:then Codecomp}
+            <div bind:this={codeblockref}>
+              <Codecomp />
+            </div>
+          {/await}
         </div>
-      {/await}
+      {/if}
     </Tabs>
   </TabsContent>
 </Tabs>
