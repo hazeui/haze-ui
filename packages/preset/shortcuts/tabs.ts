@@ -1,10 +1,10 @@
 // Tablist wrapper styles
 const variants: any = {
-  box: `rounded bg-input flex p-2`,
-  line: `border-(0 b solid border) flex`,
-  outline: `border-(0 b-2 solid border) flex pb-0`,
-  classic: `rounded bg-input flex p-2 pb-0`,
-  subtle: `flex`,
+  box: `rounded bg-input  p-2`,
+  line: `border-(0 b solid border) `,
+  outline: `border-(0 b-2 solid border)  pb-0`,
+  classic: `rounded bg-input  p-2 pb-0`,
+  subtle: ``,
 };
 
 export default () => {
@@ -28,7 +28,7 @@ export default () => {
           subtle: `${unsel} text-mutedfg ${aria}bg-${bg} text-${fg})`,
         };
 
-        const css = `${variants[variant]} ${tab[variant]}`;
+        const css = `flex items-center ${variants[variant]} ${tab[variant]}`;
         return css;
       },
     ],

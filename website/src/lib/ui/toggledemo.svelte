@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
 
-  import { reactStrRep, solidStrRep } from "$lib/utils";
+  import { codestr, reactStrRep, solidStrRep } from "$lib/utils";
 
   let codeblockref: any = $state();
   const opts = $props();
@@ -23,9 +23,21 @@
   };
 
   const Component = demo.preview;
+
+  let codecopied = $state(false);
+
+  const copyCodeToClipboard = () => {
+    const code = codestr(codeblockref.textContent);
+    navigator.clipboard.writeText(code);
+    codecopied = true;
+
+    setTimeout(() => {
+      codecopied = false;
+    }, 1000);
+  };
 </script>
 
-<Tabs defaultValue="preview">
+<Tabs defaultValue="code">
   <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
     <Tab value="preview">
       <i class="i-mage:preview-fill"></i> Preview
@@ -54,6 +66,18 @@
           <Tab value="react"><i class="i-devicon:react"></i> React</Tab>
           <Tab value="solid"><i class="i-devicon:solidjs"></i> Solid</Tab>
         {/if}
+
+        <button
+          class="!rounded-full m-(l-auto ) hover:text-primary"
+          onclick={copyCodeToClipboard}
+          aria-label="Copy to clipboard"
+        >
+          <i
+            class={codecopied
+            ? "i-line-md:confirm"
+            : "i-majesticons:clipboard-line"}
+          ></i>
+        </button>
       </TabsList>
       <div class="bg-[#1b1f27] text-white pt5 rounded-b">
         {#if active && demo.code[active]}

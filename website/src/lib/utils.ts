@@ -13,3 +13,6 @@ export const solidStrRep = (str: string) => {
     .replaceAll("className", "class")
     .replaceAll("useState", "createSignal");
 };
+
+export const codestr = (str: string) =>
+  str.replace(/^\s*\d+\s?/gm, '')
