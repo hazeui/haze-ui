@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout source repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v1
@@ -28,14 +30,16 @@ jobs:
         run: cd website && bun run build
 
       - name: Push to hazeui.github.io
+        env:
+          GIT_TOKEN: ${{ secrets.HAZEUI_SITE_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git clone https://x-access-token:${{ secrets.HAZEUI_SITE_TOKEN }}@github.com/hazeui/hazeui.github.io.git site-deploy
+          git clone --depth=1 https://x-access-token:${GIT_TOKEN}@github.com/hazeui/hazeui.github.io.git site-deploy
 
           rm -rf site-deploy/*
-          cp -r website/build/* site-deploy/
+          cp -a website/build/. site-deploy/
 
           cd site-deploy
           git add .
