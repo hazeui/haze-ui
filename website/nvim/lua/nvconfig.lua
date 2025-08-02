@@ -1,6 +1,6 @@
 return {
   base46 = {
-    theme = "onedark", -- default theme
+    theme = "tundra", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},

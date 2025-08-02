@@ -19,20 +19,20 @@ html {
 }
 
 .dark {
-  --fg: #e0e0e0;
-  --bg: #121212;
-  --primary: #287aff;
-  --secondary: #202020;
-  --border: #343434;
-  --input: #202020;
-  --ring: #03dac6;
-  --mutedfg: #9e9e9e;
-  --mutedbg: #1c1c1c; /* slightly lighter than dark bg */
-
-  --success: #22c55e;
-  --warning: #fcdd37;
-  --danger: #f87171;
+  --fg: #F3F4F6;
+  --bg: #0b1221;
+  --primary: #9baaf2;
+  --secondary: #151e31;
+  --border: #1f2739;
+  --input: #151e31;
+  --ring: #BAE6FD;
+  --mutedfg: #9CA3AF;
+  --mutedbg: #171e2d;
+  --success: #B5E8B0;
+  --warning: #E8D4B0;
+  --danger: #FCA5A5;
 }
+
 
 body {
   @apply bg-bg text-fg;

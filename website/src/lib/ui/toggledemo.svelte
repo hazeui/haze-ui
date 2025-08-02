@@ -37,7 +37,7 @@
   };
 </script>
 
-<Tabs defaultValue="code">
+<Tabs defaultValue="preview">
   <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
     <Tab value="preview">
       <i class="i-mage:preview-fill"></i> Preview
@@ -55,7 +55,7 @@
 
   <TabsContent value="code">
     <Tabs value={active} setValue={setActive}>
-      <TabsList class="tabs-line-primary brd rounded-t [&>button]:capitalize">
+      <TabsList class="tabs-line-primary brd border-b-0 rounded-t [&>button]:capitalize">
         {#if demo.code.html}
           <Tab value="html">
             <i class="i-devicon:html5"></i>
@@ -79,7 +79,7 @@
           ></i>
         </button>
       </TabsList>
-      <div class="bg-[#1b1f27] text-white pt5 rounded-b">
+      <div class="bg-[#232b3d] dark:bg-[#121a2a] text-white pt5 rounded-b">
         {#if active && demo.code[active]}
           {@const Component2 = demo.code[active]}
           <Component2 bind:ref={codeblockref} />
