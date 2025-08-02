@@ -15,5 +15,5 @@ vim.api.nvim_create_user_command("TSInstallParsers", function()
     "javascript",
   }
 
-  require("nvim-treesitter").install(langs)
+  require("nvim-treesitter").install(langs):wait()
 end, {})
