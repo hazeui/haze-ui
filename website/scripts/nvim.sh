@@ -2,6 +2,16 @@
 
 . "$(dirname "$0")/globals.sh"
 
+log blue "Powered by Neovim and......"
+
+echo " ____                 _  _    __   
+| __ )  __ _ ___  ___| || |  / /_  
+|  _ \ / _\` / __|/ _ \ || |_| '_ \ 
+| |_) | (_| \__ \  __/__   _| (_) |
+|____/ \__,_|___/\___|  |_|  \___/ "
+
+echo
+
 log yellow "Installing tree-sitter CLI..."
 
 curl -LO https://github.com/tree-sitter/tree-sitter/releases/latest/download/tree-sitter-linux-x64.gz
