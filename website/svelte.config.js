@@ -14,6 +14,7 @@ const config = {
       "content/*": "./content/*",
       "codemos/*": "./codemos/*",
       "codemocomps/*": "./codemocomps/*",
+      "css/*": "./src/css/*",
     },
   },
   extensions: [".svelte", ".mdx"],
