@@ -3,20 +3,19 @@ const allPreviews = import.meta.glob("/codemos/**/*.svelte", {
   eager: true
 });
 
-const allCodes = import.meta.glob("/codemos/**/*", {
-  eager: true,
-  query: "raw",
+const allCodes = import.meta.glob("/codemocomps/**/*", {
   import: "default",
 });
 
 export const getDemo = (component: string, filename: string) => {
   const basePath = `/codemos/${component}/${filename}`;
+  const basePath2 = `/codemocomps/${component}/${filename}`;
 
   return {
     preview: allPreviews[`${basePath}.svelte`],
     code: {
-      svelte: allCodes[`${basePath}.svelte`],
-      react: allCodes[`${basePath}.jsx`],
+      svelte: allCodes[`${basePath2}.svelte`],
+      react: allCodes[`${basePath2}-jsx.svelte`],
       // solid: allCodes[`${basePath}.jsx`],
     },
   };
@@ -24,11 +23,12 @@ export const getDemo = (component: string, filename: string) => {
 
 export const getDemoHtml = (component: string, filename: string) => {
   const basePath = `/codemos/${component}/${filename}`;
+  const basePath2 = `/codemocomps/${component}/${filename}`;
 
   return {
     preview: allPreviews[`${basePath}.svelte`],
     code: {
-      html: allCodes[`${basePath}.svelte`],
+      html: allCodes[`${basePath2}.svelte`],
     },
   };
 };

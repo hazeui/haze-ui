@@ -21,14 +21,11 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Setup Neovim & generate codedemo components
+        run: cd website && bun run setup-nvim
+
       - name: Build website
         run: cd website && bun run build
-
-      - name: Add .nojekyll file
-        run: touch website/build/.nojekyll
-
-      - name: Add CNAME file
-        run: echo "haze-ui.com" > website/build/CNAME
 
       - name: Push to hazeui.github.io
         run: |
