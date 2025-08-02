@@ -1,7 +1,7 @@
 <script lang="ts">
   import "virtual:uno.css";
   import "@unocss/reset/tailwind.css";
-  import "$lib/css/style.css";
+  import "css/style.css";
 
   import Navbar from "$lib/ui/navbar.svelte";
 
