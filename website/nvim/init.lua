@@ -12,29 +12,21 @@ o.termguicolors = true
 
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
-require("nvim-treesitter.configs").setup {
-  ensure_installed = {
-    "lua",
-    "html",
-    "css",
-    "svelte",
-    "tsx",
-    "typescript",
-    "javascript",
-  },
+require("nvim-treesitter").setup {}
 
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-  },
-  indent = { enable = true },
-  sync_install = true,
-}
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    pcall(function()
+      vim.treesitter.start()
+    end)
+  end,
+})
 
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "syntax")
-dofile(vim.g.base46_cache .. "treesitter")
+pcall(function()
+  dofile(vim.g.base46_cache .. "defaults")
+  dofile(vim.g.base46_cache .. "syntax")
+  dofile(vim.g.base46_cache .. "treesitter")
+end)
 
-vim.api.nvim_create_user_command("Kk", function()
-  require "vihtml"
-end, {})
+require "commands"

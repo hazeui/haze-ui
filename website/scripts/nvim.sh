@@ -11,7 +11,7 @@ mkdir -p ~/.local/share/nvim/site/pack/plugins/start
 cd ~/.local/share/nvim/site/pack/plugins/start
 
 git clone https://github.com/nvim-lua/plenary.nvim --depth 1
-git clone https://github.com/nvim-treesitter/nvim-treesitter --depth 1
+git clone https://github.com/nvim-treesitter/nvim-treesitter -b main --depth 1
 git clone https://github.com/lukas-reineke/indent-blankline.nvim --depth 1
 git clone https://github.com/nvchad/base46 --depth 1
 
@@ -30,9 +30,10 @@ export PATH="$HOME/.local/nvim/bin:$PATH"
 
 cd /home/runner/work/haze-ui/haze-ui/website
 
+nvim --headless +"TSInstallParsers" +"TSUpdate" +"q"
+
 log green "Compiling base46 themes"
 nvim --headless +"lua require('base46').compile()" +"q"
-nvim --headless +"TSUpdate" +"q"
 
 log red "Generating svelte components from base46 themes"
 nvim --headless +":lua require 'vihtml'" +"q"
