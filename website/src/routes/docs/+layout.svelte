@@ -4,6 +4,7 @@
   import Onthispage from "$lib/ui/onthispage.svelte";
 
   import "css/codesyn.css"
+  import "css/docs.css"
 </script>
 
 <div class="grid-(~ cols-[auto_1fr_auto])">

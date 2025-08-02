@@ -10,7 +10,7 @@ o.softtabstop = 2
 
 vim.opt.fillchars = { eob = " " }
 o.number = true
-o.signcolumn = "yes"
+o.signcolumn = "no"
 o.termguicolors = true
 
 require "commands"

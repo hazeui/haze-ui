@@ -1,6 +1,6 @@
 return {
   base46 = {
-    theme = "everforest", -- default theme
+    theme = "pastelDark", -- default theme
     hl_add = {},
     hl_override = {},
     integrations = {},

@@ -16,6 +16,7 @@ html {
   --success: #22c55e; /* green-500 */
   --warning: #bb9502; /* yellow-400 */
   --danger: #ed3535; /* red-500 */
+  --codeblock: #232b3d;
 }
 
 .dark {
@@ -31,6 +32,7 @@ html {
   --success: #B5E8B0;
   --warning: #E8D4B0;
   --danger: #FCA5A5;
+  --codeblock: #121a2a;
 }
 
 
@@ -57,15 +59,6 @@ h4 {
 
 .link {
   @apply text-primary underline;
-}
-
-#docs li {
-  @apply list-disc;
-}
-
-#docs blockquote {
-  @apply p3 bg-secondary w-fit rounded-r-lg;
-  @apply border-(0 l-5 solid border);
 }
 
 /* :focus { */

@@ -1,4 +1,13 @@
+local find_index = function(tb, val)
+  for i, v in ipairs(tb) do
+    if string.find(v, val) then
+      return i
+    end
+  end
+end
+
 local script_tag = "<script> let {ref = $bindable() } = $props() </script> <pre bind:this={ref}>"
+
 local gen_css = function(theme)
   local colors = require("base46.themes." .. theme).base_16
   local bg = colors.base02
@@ -73,8 +82,13 @@ return function(name, tb)
     :gsub("}", "&#125;") -- Replace `}` with HTML entity
     :gsub("<pre>", script_tag) -- Replace `<pre>` with value of `script_tag`
 
+  -- remove .linenr class
+  local linenr_css_i = find_index(css_tb, "LineNr")
+  table.remove(css_tb, linenr_css_i)
+
   local css = table.concat(css_tb, "\n")
   css = css:gsub("italic", "normal")
+
   -- css = gen_css(theme) .. css
   -- css = css:gsub("pre", "." .. theme .. " ")
   -- html_tb = vim.list_extend(css_tb, html_tb)
