@@ -1,6 +1,6 @@
 <script lang="ts">
  import ToggleDemo from "$lib/ui/toggledemo.svelte";
- import { getDemo } from "$lib/codemos";
+ import { getDemoHtml } from "$lib/codemos";
 
 </script>
 
@@ -9,10 +9,10 @@
 A UI element that displays a small label or status
 
 ## Usage
-<ToggleDemo class='demobox-start-5' demo={getDemo("badge", "usage")} />
+<ToggleDemo class='demobox-start-5' demo={getDemoHtml("badge", "usage")} />
 
 # Size
-<ToggleDemo class='demobox-start-5' demo={getDemo("badge", "size")} />
+<ToggleDemo class='demobox-start-5' demo={getDemoHtml("badge", "size")} />
 
 # Colors
-<ToggleDemo class='demobox-start-5' demo={getDemo("badge", "colors")} />
+<ToggleDemo class='demobox-start-5' demo={getDemoHtml("badge", "colors")} />
