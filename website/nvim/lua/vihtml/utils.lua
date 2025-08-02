@@ -21,4 +21,22 @@ M.write_file = function(path, str)
   end
 end
 
+M.dedupe_css = function(str)
+  local seen = {}
+  local result = {}
+
+  for line in str:gmatch "[^\r\n]+" do
+    local selector = line:match "^%S+"
+    local body = line:match "{%s*}"
+    if selector and not seen[selector] and not body then
+      seen[selector] = true
+      table.insert(result, line)
+    end
+  end
+
+  table.remove(result, 1)
+
+  return table.concat(result, "\n")
+end
+
 return M

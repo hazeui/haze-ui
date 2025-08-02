@@ -27,12 +27,15 @@ M.open_files = function()
 
       local component_file = targetdir .. "/" .. file
       utils.write_file(component_file, code.html)
-      css = css .. code.css
+      css = css .. "\n".. code.css
       -- api.nvim_buf_delete(0, { force = true })
     end
   end
 
   local cssfile = cwd .. "/src/lib/css/codesyn.css"
+
+  css = utils.dedupe_css(css)
+
   utils.write_file(cssfile, css)
 end
 

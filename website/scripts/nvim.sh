@@ -17,7 +17,6 @@ git clone https://github.com/nvchad/base46 --depth 1
 
 cd 
 
-
 log yellow "Downloading Neovim..."
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz
 tar -zxf nvim-linux-x86_64.tar.gz
@@ -37,5 +36,3 @@ nvim --headless +"TSUpdate" +"q"
 
 log red "Generating svelte components from base46 themes"
 nvim --headless +":lua require 'vihtml'" +"q"
-
-ls 
