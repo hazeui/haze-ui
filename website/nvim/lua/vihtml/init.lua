@@ -48,7 +48,7 @@ M.open_files = function()
     end
   end
 
-  local cssfile = cwd .. "/src/lib/css/codesyn.css"
+  local cssfile = cwd .. "/src/css/codesyn.css"
 
   echo { { "CSS file written at ", "String" }, { cssfile, "Removed" } }
 
