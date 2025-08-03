@@ -1,0 +1,50 @@
+<script lang="ts">
+  import { Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
+</script>
+
+<!-- Just for common use! -->
+{#snippet MyTabContent()}
+  <TabsContent value="account">
+    Account content
+  </TabsContent>
+  <TabsContent value="settings">
+    Settings content
+  </TabsContent>
+  <TabsContent value="Network">
+    Network content
+  </TabsContent>
+{/snippet}
+
+<!-- box variant -->
+<div class="grid">
+  <Tabs>
+    <TabsList
+      class="tabs-box tabon-(bg-red) tab-(text-white) bg-indigo rounded-b-0"
+    >
+      <Tab value="account">Account</Tab>
+      <Tab value="settings">Settings</Tab>
+      <Tab value="Network">Network</Tab>
+    </TabsList>
+
+    <div class="rounded-b p7 shadow-md brd-indigo flex justify-center">
+      {@render MyTabContent()}
+    </div>
+  </Tabs>
+</div>
+
+<!-- box variant -->
+<div class="grid">
+  <Tabs>
+    <TabsList
+      class="tabs-outline pt2 tabon-(border-primary) border-primary "
+    >
+      <Tab value="account">Account</Tab>
+      <Tab value="settings">Settings</Tab>
+      <Tab value="Network">Network</Tab>
+    </TabsList>
+
+    <div class="rounded-b p7 shadow-md brd-primary border-t-0 flex justify-center">
+      {@render MyTabContent()}
+    </div>
+  </Tabs>
+</div>

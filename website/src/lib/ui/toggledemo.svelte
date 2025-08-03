@@ -38,7 +38,7 @@
 </script>
 
 <Tabs defaultValue="preview">
-  <TabsList class="tabs w-fit p1 children:(!p2 !px3)">
+  <TabsList class="tabs w-fit p1">
     <Tab value="preview">
       <i class="i-mage:preview-fill"></i> Preview
     </Tab>
@@ -57,7 +57,7 @@
   <TabsContent value="code">
     <Tabs value={active} setValue={setActive}>
       <TabsList
-        class="tabs-line-primary brd border-b-0 rounded-t [&>button]:capitalize"
+        class="bg-[#323d58] dark:bg-[#1a2130] tabs-line-indigo brd-0 rounded-t !tab-(capitalize text-white) tab-(p3)"
       >
         {#if demo.code.html}
           <Tab value="html">

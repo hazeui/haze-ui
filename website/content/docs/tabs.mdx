@@ -1,0 +1,20 @@
+<script lang="ts">
+ import ToggleDemo from "$lib/ui/toggledemo.svelte";
+ import { getDemo, getDemoHtml} from "$lib/codemos";
+
+</script>
+
+# Tabs
+
+A UI element that displays a set of tabs, each tab can have a label and content.
+
+## Usage
+<ToggleDemo class='demobox-20 gap-10' demo={getDemo("tabs", "usage")} />
+
+## Tab styling
+<ToggleDemo class='demobox-20 gap-10' demo={getDemo("tabs", "style")} />
+
+## Html
+
+Add the `tabs-[variant]` class parent div and `aria-selected` attribute to tab buttons
+<ToggleDemo class='demobox-20 gap-10' demo={getDemoHtml("tabs", "html")} />

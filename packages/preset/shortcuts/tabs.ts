@@ -15,8 +15,9 @@ export default () => {
         if (variant == "box" && !bg) bg = "bg";
         if (variant == "outline" && !bg) bg = "border";
         if (variant == "subtle" && !bg) bg = "input";
+        if (variant == "line" && !bg) bg = "primary";
 
-        const base = `rounded inline-flex items-center justify-center gap2 border-0 py3 px4 bg-transparent`;
+        const base = `rounded inline-flex items-center justify-center gap2 border-0 py2 px3 bg-transparent`;
         const unsel = `[&>button]:(${base})`;
         const aria = `[&>button[aria-selected=true]]:(`;
 
