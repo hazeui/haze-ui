@@ -39,7 +39,7 @@
 </script>
 
 <button
-  class="btn-outline rounded-none border-x-0 justify-start md:hidden"
+  class="btn-outline rounded-none border-x-0 justify-start lg:hidden"
   onclick={toggleMobCss}
 >
   <i class="i-tabler:menu-2"></i>
@@ -47,7 +47,7 @@
 </button>
 
 <aside
-  class={`${mobcss ? "" : "lt-md:(hidden absolute top-35 w-full z-100)"} 
+  class={`${mobcss ? "" : "lt-lg:(hidden absolute top-35 w-full z-100)"} 
          flex-(~ col gap3) border-(r solid border) p8 pr20 h-screen bg-bg`}
 >
   {#each links as link}

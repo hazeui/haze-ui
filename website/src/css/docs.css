@@ -13,6 +13,10 @@
   @apply pt5 rounded-b
 }
 
+pre {
+  @apply overflow-x-auto
+}
+
 .LineNr {
   color: hsl(from var(--codeblock) h s 45%);
   padding: 0 .5rem;

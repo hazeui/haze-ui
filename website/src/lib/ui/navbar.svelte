@@ -16,7 +16,7 @@
   const toggleMobCss = () => mobcss = !mobcss;
 </script>
 
-<nav class="p5 border-(b solid border) flex lt-md:flex-col justify-between">
+<nav class="p5 border-(b solid border) flex lt-lg:flex-col justify-between">
   <div class="flex gap5 justify-between">
     <a class="flex gap2 items-center" href="/">
       <div class="i-mdi:radio-button-indeterminate"></div>
@@ -26,7 +26,7 @@
     <button
       onclick={toggleMobCss}
       aria-label="toggle menu"
-      class="btn-soft-eqmd md:hidden"
+      class="btn-soft-eqmd lg:hidden"
     >
       <i class="i-tabler:menu-2"></i>
     </button>
@@ -35,9 +35,9 @@
   <div
     class={` ${
       mobcss
-        ? "lt-md:(flex-col mt5 flex asolute top-10 w-full)"
-        : "lt-md:(hidden)"
-    } flex gap5 md:items-center`}
+        ? "lt-lg:(flex-col mt5 flex asolute top-10 w-full)"
+        : "lt-lg:(hidden)"
+    } flex gap5 lg:items-center`}
   >
     <a href="/docs">Docs</a>
     <a href="/docs">Blocks</a>

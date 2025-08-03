@@ -7,9 +7,9 @@
   import "css/docs.css"
 </script>
 
-<div class="grid md:grid-(~ cols-[auto_1fr_auto])">
+<div class="grid lg:grid-(~ cols-[auto_1fr_auto])">
   <Sidebar />
-  <div class="flex-(~ col gap5) p8 [&_p]:text-mutedfg" id="docs">
+  <div class="flex-(~ col gap5) p8 [&_p]:text-mutedfg overflow-hidden" id="docs">
     {@render children()}
   </div>
   <Onthispage />
