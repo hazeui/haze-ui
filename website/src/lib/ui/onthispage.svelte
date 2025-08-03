@@ -42,7 +42,7 @@
   });
 </script>
 
-<aside class="grid gap2 h-fit py10 px20">
+<aside class="hidden md:grid gap2 h-fit py10 px20">
   <b>On this page</b>
 
   {#each lists as x}

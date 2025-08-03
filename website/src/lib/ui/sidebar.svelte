@@ -31,9 +31,25 @@
     "toast",
     "userpic",
   ];
+
+  let mobcss = $state(false);
+
+  const toggleMobCss = () => mobcss = !mobcss;
+  const closeMob = () => (mobcss = false);
 </script>
 
-<aside class="flex-(~ col gap3) border-(r solid border) p8 pr20 h-screen">
+<button
+  class="btn-outline rounded-none border-x-0 justify-start md:hidden"
+  onclick={toggleMobCss}
+>
+  <i class="i-tabler:menu-2"></i>
+  Menu
+</button>
+
+<aside
+  class={`${mobcss ? "" : "lt-md:(hidden absolute top-35 w-full z-100)"} 
+         flex-(~ col gap3) border-(r solid border) p8 pr20 h-screen bg-bg`}
+>
   {#each links as link}
     <a href={link.href} class="flex items-center gap2">
       <i class={link.icon}></i>
@@ -47,6 +63,7 @@
     <a
       href={"/docs/" + link}
       class="flex items-center gap2 capitalize hover:text-primary"
+      onclick={closeMob}
     >
       {link}
     </a>

@@ -7,7 +7,7 @@
   import "css/docs.css"
 </script>
 
-<div class="grid-(~ cols-[auto_1fr_auto])">
+<div class="grid md:grid-(~ cols-[auto_1fr_auto])">
   <Sidebar />
   <div class="flex-(~ col gap5) p8 [&_p]:text-mutedfg" id="docs">
     {@render children()}
