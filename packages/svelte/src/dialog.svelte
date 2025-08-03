@@ -8,7 +8,7 @@
   let { class: css, closeIcon = true, ...rest }: Props = $props();
 
   const onClick = (e: MouseEvent) => {
-    if (e.currentTarget == e.target) close();
+    if (e.currentTarget == e.target) rest.close();
   };
 </script>
 
