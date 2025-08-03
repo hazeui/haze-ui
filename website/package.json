@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
     "setup-nvim": "bash scripts/nvim.sh",
 		"build": "bash scripts/build.sh",
 		"preview": "vite preview",

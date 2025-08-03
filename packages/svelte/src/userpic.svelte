@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { UserpicProps } from "types/userpic";
 
-  let { src, alt, class: css = "wh-8", name = "joe" } =
-    $props() as UserpicProps;
+  let { src, alt, class: css = "wh-8", name = "joe" }: UserpicProps =
+    $props();
 
   const colors = [
     "bg-blue",
@@ -37,7 +37,7 @@
 {#if src}
   <img {src} {alt} class="rounded-full {css}" />
 {:else}
-  <div class="rounded-full text-(xs white) centerfull {bg} {css}">
+  <div class="rounded-full text-(sm white) centerfull {bg} {css}">
     {formatName(name)}
   </div>
 {/if}

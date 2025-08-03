@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state";
+  import { mobasidebar } from "$lib/store.svelte";
 
   let pathname = $derived(page.url.pathname);
 
@@ -36,22 +37,10 @@
     "userpic",
   ];
 
-  let mobcss = $state(false);
-
-  const toggleMobCss = () => mobcss = !mobcss;
-  const closeMob = () => (mobcss = false);
 </script>
 
-<button
-  class="btn-outline rounded-none border-(0 b) justify-start lg:hidden"
-  onclick={toggleMobCss}
->
-  <i class="i-tabler:menu-2"></i>
-  Menu
-</button>
-
 <aside
-  class={`z-100 ${mobcss ? "" : "lt-lg:(hidden absolute top-35 w-full)"} 
+  class={`z-100 ${mobasidebar.value ? "" : "lt-lg:(hidden absolute top-35 w-full)"} 
          sticky top-17 h-[calc(100vh-5rem)] overflow-y-auto
          flex-(~ col gap3) border-(r solid border) p8 pr20 bg-bg`}
 >
@@ -73,7 +62,7 @@
       href={"/docs/" + link}
       class={`flex items-center gap2 capitalize hover:text-primary
              ${("/docs/" + link) == pathname ? "text-primary" : ""}`}
-      onclick={closeMob}
+      onclick={() => mobasidebar.close()}
     >
       {link}
     </a>
