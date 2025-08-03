@@ -16,7 +16,9 @@
   const toggleMobCss = () => mobcss = !mobcss;
 </script>
 
-<nav class="p5 border-(b solid border) flex lt-lg:flex-col justify-between">
+<nav
+  class="sticky top-0 z-50 bg-bg p5 border-(b solid border) flex lt-lg:flex-col justify-between"
+>
   <div class="flex gap5 justify-between">
     <a class="flex gap2 items-center" href="/">
       <div class="i-mdi:radio-button-indeterminate"></div>

@@ -48,7 +48,8 @@
 
 <aside
   class={`${mobcss ? "" : "lt-lg:(hidden absolute top-35 w-full z-100)"} 
-         flex-(~ col gap3) border-(r solid border) p8 pr20 h-screen bg-bg`}
+         sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto
+         flex-(~ col gap3) border-(r solid border) p8 pr20 bg-white`}
 >
   {#each links as link}
     <a href={link.href} class="flex items-center gap2">

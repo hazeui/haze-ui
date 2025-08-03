@@ -42,7 +42,7 @@
   });
 </script>
 
-<aside class="hidden lg:grid gap2 h-fit py10 px20">
+<aside class="hidden lg:grid sticky top-20 h-fit overflow-y-auto gap2 py10 px20">
   <b>On this page</b>
 
   {#each lists as x}
