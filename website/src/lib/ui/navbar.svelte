@@ -35,7 +35,7 @@
   </div>
 
   <div
-    class={` ${
+    class={`z-100 ${
       mobcss
         ? "lt-lg:(flex-col mt5 flex asolute top-10 w-full)"
         : "lt-lg:(hidden)"

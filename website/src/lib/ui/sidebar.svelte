@@ -39,7 +39,7 @@
 </script>
 
 <button
-  class="btn-outline rounded-none border-x-0 justify-start lg:hidden"
+  class="btn-outline rounded-none border-(0 b) justify-start lg:hidden"
   onclick={toggleMobCss}
 >
   <i class="i-tabler:menu-2"></i>
@@ -47,9 +47,9 @@
 </button>
 
 <aside
-  class={`${mobcss ? "" : "lt-lg:(hidden absolute top-35 w-full z-100)"} 
+  class={`z-100 ${mobcss ? "" : "lt-lg:(hidden absolute top-35 w-full)"} 
          sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto
-         flex-(~ col gap3) border-(r solid border) p8 pr20 bg-white`}
+         flex-(~ col gap3) border-(r solid border) p8 pr20 bg-bg`}
 >
   {#each links as link}
     <a href={link.href} class="flex items-center gap2">
