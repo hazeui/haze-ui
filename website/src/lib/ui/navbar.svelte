@@ -17,7 +17,7 @@
 </script>
 
 <nav
-  class="sticky top-0 z-50 bg-bg p5 border-(b solid border) flex lt-lg:flex-col justify-between"
+  class="sticky top-0 z-50 bg-bg px5 py3 border-(b solid border) flex lt-lg:flex-col justify-between"
 >
   <div class="flex gap5 justify-between">
     <a class="flex gap2 items-center" href="/">
