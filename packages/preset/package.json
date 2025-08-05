@@ -1,8 +1,9 @@
 {
   "name": "@haze-ui/preset",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "",
   "scripts": {
+    "dev": "tsdown --watch",
     "build": "tsdown"
   },
   "main": "./dist/index.mjs",
