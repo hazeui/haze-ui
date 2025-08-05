@@ -45,7 +45,7 @@
     },
     "packages/preset": {
       "name": "@haze-ui/preset",
-      "version": "0.0.1",
+      "version": "0.0.0",
       "devDependencies": {
         "unocss": "^66.3.3",
       },
@@ -70,7 +70,7 @@
     },
     "packages/solid": {
       "name": "@haze-ui/solid",
-      "version": "1.0.0",
+      "version": "0.0.0",
       "devDependencies": {
         "solid-js": "^1.9.7",
         "typescript": "~5.8.3",
@@ -81,7 +81,7 @@
     },
     "packages/svelte": {
       "name": "@haze-ui/svelte",
-      "version": "0.0.2",
+      "version": "0.0.0",
       "devDependencies": {
         "@sveltejs/package": "^2.0.0",
         "svelte": "^5.0.0",

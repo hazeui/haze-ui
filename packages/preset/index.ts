@@ -8,7 +8,7 @@ export default definePreset((options?: OptionTypes) => {
   const mergedOptions = deepMergeObj(defaultOptions, options || {});
 
   return {
-    name: "haze-ui",
+    name: "@haze-ui/preset",
 
     variants: [
       // You can define custom variants here

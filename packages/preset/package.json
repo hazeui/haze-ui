@@ -6,12 +6,12 @@
     "dev": "tsdown --watch",
     "build": "tsdown"
   },
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.mts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "keywords": [],
@@ -20,5 +20,8 @@
   "type": "module",
   "devDependencies": {
     "unocss": "^66.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
