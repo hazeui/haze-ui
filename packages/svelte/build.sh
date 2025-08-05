@@ -17,10 +17,3 @@ bunx tsc ../types/*.ts --outDir dist/types --declaration --module esnext --skipL
 
 echo -e "${yellow}Cleaning up generated type files...\n"
 rm ../types/*d.ts
-
-echo -e "${magenta}Building ${cyan}unocss preset...\n"
-cd ../preset/ && bun run build  
-mv dist ../svelte/dist/preset
-echo
-
-cd ../svelte/
