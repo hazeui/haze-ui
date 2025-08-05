@@ -1,4 +1,3 @@
-// @unocss-include
 import { definePreset, transformerVariantGroup } from "unocss";
 import { shortcuts } from "./shortcuts";
 import defaultOptions from "./options";
@@ -6,12 +5,13 @@ import { deepMergeObj } from "./utils";
 import type { OptionTypes } from "./types/options";
 
 export default definePreset((options?: OptionTypes) => {
-  options = deepMergeObj(defaultOptions, options || {});
+  const mergedOptions = deepMergeObj(defaultOptions, options || {});
 
   return {
     name: "haze-ui",
+
     variants: [
-      // ...
+      // You can define custom variants here
     ],
 
     transformers: [transformerVariantGroup()],
@@ -27,9 +27,9 @@ export default definePreset((options?: OptionTypes) => {
         ring: "#a9b0ff",
         mutedfg: "#557091",
         mutedbg: "#e6edf4",
-        danger: '#F87171',
-        success: '#34D399',
-        warning: '#FBBF24',
+        danger: "#F87171",
+        success: "#34D399",
+        warning: "#FBBF24",
       },
 
       borderRadius: {
@@ -37,7 +37,6 @@ export default definePreset((options?: OptionTypes) => {
       },
     },
 
-    // @ts-ignore
-    shortcuts: shortcuts(options.shortcuts),
+    shortcuts: shortcuts(mergedOptions.shortcuts),
   };
 });
