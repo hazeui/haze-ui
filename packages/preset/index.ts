@@ -1,11 +1,12 @@
 import { definePreset, transformerVariantGroup } from "unocss";
 import { shortcuts } from "./shortcuts";
-import defaultOptions from "./options";
-import { deepMergeObj } from "./utils";
-import type { OptionTypes } from "./types/options";
+// import defaultOptions from "./options";
+// import { deepMergeObj } from "./utils";
+// import type { OptionTypes } from "./types/options";
 
-export default definePreset((options?: OptionTypes) => {
-  const mergedOptions = deepMergeObj(defaultOptions, options || {});
+// export default definePreset((options?: OptionTypes) => {
+export default definePreset(() => {
+  // const mergedOptions = deepMergeObj(defaultOptions, options || {});
 
   return {
     name: "@haze-ui/preset",
@@ -37,6 +38,6 @@ export default definePreset((options?: OptionTypes) => {
       },
     },
 
-    shortcuts: shortcuts(mergedOptions.shortcuts),
+    shortcuts: shortcuts,
   };
 });

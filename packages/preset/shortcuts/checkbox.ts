@@ -1,25 +1,28 @@
-export default (opts: any) => {
-  const sizes = opts.sizes;
+const opts = {
+  variant: "primary",
+  sizes: { sm: 4, md: 6, lg: 8, xl: 10 },
+};
 
-  return [
-    [
-      /^checkbox(?:-([\w]+))?(?:-([\w]+))?$/,
-      ([, color = opts.variant, size = "md"]) => {
-        if (size && sizes[color]) {
-          size = color;
-          color = "primary";
-        }
+const sizes: any = opts.sizes;
 
-        size = sizes[size];
+export default [
+  [
+    /^checkbox(?:-([\w]+))?(?:-([\w]+))?$/,
+    ([, color = opts.variant, size = "md"]) => {
+      if (size && sizes[color]) {
+        size = color;
+        color = "primary";
+      }
 
-        const rounded = Number(size) < 7 ? "rounded-sm" : "rounded-md";
+      size = sizes[size];
 
-        return ` disabled:muted-70
+      const rounded = Number(size) < 7 ? "rounded-sm" : "rounded-md";
+
+      return ` disabled:muted-70
                appearance-none wh-${size} ${rounded}  border-(1.5 solid border)
                transition inline-flex justify-center items-center text-bg 
                checked:(bg-${color} border-${color}) align-middle 
                checked:after:(i-uil:check size-${size}) after:(content-empty)`;
-      },
-    ],
-  ];
-};
+    },
+  ],
+];
