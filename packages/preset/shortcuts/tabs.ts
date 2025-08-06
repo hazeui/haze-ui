@@ -23,10 +23,10 @@ export default () => {
 
         const tab: any = {
           box: `${unsel} ${aria}bg-${bg} text-${fg})`,
-          line: `${unsel} [&>button]:(rounded-b-0 -mb-2px text-mutedfg) ${aria}text-${fg} border-(b-2 solid ${bg}))`,
+          line: `${unsel} [&>button]:(rounded-b-0 -mb-2px text-muted-fg) ${aria}text-${fg} border-(b-2 solid ${bg}))`,
           outline: `${unsel} [&>button]:(rounded-b-0 -mb-2px) ${aria}text-${fg} bg-bg border-(2 solid ${bg} b-transparent))`,
-          classic: `${unsel} [&>button]:(rounded-b-0 -mb-2px text-mutedfg)  rounded-b-0 ${aria}text-fg bg-bg)`,
-          subtle: `${unsel} text-mutedfg ${aria}bg-${bg} text-${fg})`,
+          classic: `${unsel} [&>button]:(rounded-b-0 -mb-2px text-muted-fg)  rounded-b-0 ${aria}text-fg bg-bg)`,
+          subtle: `${unsel} text-muted-fg ${aria}bg-${bg} text-${fg})`,
         };
 
         const css = `flex items-center ${variants[variant]} ${tab[variant]}`;

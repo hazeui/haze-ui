@@ -33,8 +33,8 @@
   </div>
 
   <div class="grinput-outline p0 col-span-2">
-    <span class="bg-mutedbg p2 px3 rounded-l">$</span>
+    <span class="bg-muted p2 px3 rounded-l">$</span>
     <input placeholder="Enter name" />
-    <span class="bg-mutedbg p2 rounded-r">USD</span>
+    <span class="bg-muted p2 rounded-r">USD</span>
   </div>
 </div>

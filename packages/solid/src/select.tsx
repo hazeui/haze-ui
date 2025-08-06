@@ -49,7 +49,7 @@ export default function CustomSelect(props: SelectProps) {
 
   const activeCss = props.optionCss?.includes("data-")
     ? props.optionCss
-    : `data-active:bg-mutedbg ${props.optionCss}`;
+    : `data-active:bg-muted ${props.optionCss}`;
 
   const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
 

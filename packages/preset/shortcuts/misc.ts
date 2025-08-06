@@ -68,8 +68,8 @@ export default () => {
         const dhover = hsl(color, "20");
 
         const variants: any = {
-          solid: "bg-primary text-white dark:bg-mutedbg",
-          flat: "bg-bg dark:bg-mutedbg border-(1 solid border)",
+          solid: "bg-primary text-white dark:bg-muted",
+          flat: "bg-bg dark:bg-muted border-(1 solid border)",
           outline: "bg-bg brd",
         };
 

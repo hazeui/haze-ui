@@ -1,9 +1,9 @@
 const variants: any = {
-  primary: `text-bg hover:brightness-90`,
+  primary: `text-primary-fg hover:brightness-90`,
   soft: "bg-secondary text-fg hover:brightness-90",
   ghost: "bg-transparent text-fg hover:bg-input disabled:text-slate",
   outline:
-    "bg-bg text-fg border-(2 solid border) hover:bg-input disabled:bg-mutedbg",
+    "bg-bg text-fg border-(2 solid border) hover:bg-input disabled:bg-muted",
 };
 
 export default (opts: any) => {

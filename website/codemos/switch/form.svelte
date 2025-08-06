@@ -7,7 +7,7 @@
   <input type="checkbox" id="sms" class="switch-line" />
   <div>
     <label for="sms">SMS notifications</label><br />
-    <span class="text-(mutedfg sm)">Standard messaging rates may apply</span>
+    <span class="text-(muted-fg sm)">Standard messaging rates may apply</span>
   </div>
 
   <input type="checkbox" id="none" class="switch" />

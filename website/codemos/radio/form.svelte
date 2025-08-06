@@ -13,7 +13,7 @@
   <input type="radio" id="sms" name="x" class="radio-blue" />
   <div>
     <label for="sms">SMS notifications</label><br />
-    <span class="text-(mutedfg sm)">Standard messaging rates may apply</span>
+    <span class="text-(muted-fg sm)">Standard messaging rates may apply</span>
   </div>
 
   <input type="radio" id="none" name="x" class="radio-slate" />

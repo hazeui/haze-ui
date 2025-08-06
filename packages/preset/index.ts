@@ -20,16 +20,35 @@ export default definePreset((options?: OptionTypes) => {
       colors: {
         fg: "#1D293D",
         bg: "#ffffff",
-        primary: "#364153",
-        secondary: "#e6edf4",
+
+        primary: { DEFAULT: "#364153", fg: "#ffffff" },
+        secondary: { DEFAULT: "#e6edf4", fg: "#1D293D" },
+
         border: "#cfdce9",
         input: "#e6edf4",
         ring: "#a9b0ff",
-        mutedfg: "#557091",
-        mutedbg: "#e6edf4",
-        danger: "#F87171",
-        success: "#34D399",
-        warning: "#FBBF24",
+
+        muted: { DEFAULT: "#e6edf4", fg: "#557091" },
+
+        danger: {
+          DEFAULT: "#F87171",
+          subtle: "#FEE2E2",
+        },
+
+        success: {
+          DEFAULT: "#34D399",
+          subtle: "#D1FAE5",
+        },
+
+        warning: {
+          DEFAULT: "#FBBF24",
+          subtle: "#FEF3C7",
+        },
+
+        info: {
+          DEFAULT: "#60A5FA",
+          subtle: "#DBEAFE",
+        },
       },
 
       borderRadius: {

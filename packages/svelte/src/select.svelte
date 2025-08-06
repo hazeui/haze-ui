@@ -55,7 +55,7 @@
 
   const activeCss = optionCss?.includes("data-")
     ? optionCss
-    : `data-active:bg-mutedbg ${optionCss}`;
+    : `data-active:bg-muted ${optionCss}`;
 
   const optcss =
     `justify-start btn-ghost-eqmd transition-none ${activeCss}`;

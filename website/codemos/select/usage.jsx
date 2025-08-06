@@ -29,7 +29,7 @@ export default () => {
     <div class="grid-(~ cols-2 gap3) w-2/3">
       <Select
         options={options}
-        dropdownCss="bg-mutedbg border-0"
+        dropdownCss="bg-muted border-0"
         optionCss="data-active:bg-input"
       />
 

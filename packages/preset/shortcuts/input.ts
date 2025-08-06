@@ -27,12 +27,12 @@ export default (opts: any) => {
 
         [textSize, pad] = sizes[size] || sizes["md"];
 
-        const disabledbg = variant === "outline" ? "bg-mutedbg" : "";
+        const disabledbg = variant === "outline" ? "bg-muted" : "";
         const bg = variant === "outline" ? "bg-transparent" : "";
 
         const p = `py-${pad} px-${+(pad * 1.5).toFixed(3)}`;
         const base = `transition rounded outline-0 focus:(ring-2 ring-primary) 
-                     placeholder:text-mutedfg disabled:(muted-95 ${disabledbg})`;
+                     placeholder:text-muted-fg disabled:(muted-95 ${disabledbg})`;
 
         return `${base} ${inputVariants[variant]} ${textSize} ${p} ${bg}`;
       },
@@ -58,14 +58,14 @@ export default (opts: any) => {
 
         const py = round1(pad * 0.5);
         const px = round1(pad * 1.5);
-        const disabledbg = variant === "outline" ? "bg-mutedbg" : "";
+        const disabledbg = variant === "outline" ? "bg-muted" : "";
 
         return `
         inline-flex items-center gap2 px${px} py${py} rounded
         ${inputVariants[variant]} ${textSize} transition
         focus-within:(ring-2 ring-primary) align-middle 
         has-[input:disabled]:(muted-95 ${disabledbg})
-        [&>input]:(py1 px0 border-0 outline-0 bg-transparent w-full text-inherit placeholder:text-mutedfg)
+        [&>input]:(py1 px0 border-0 outline-0 bg-transparent w-full text-inherit placeholder:text-muted-fg)
         [&>input[disabled]]:(muted)
       `;
       },

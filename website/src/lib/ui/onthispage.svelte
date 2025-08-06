@@ -48,7 +48,7 @@
   {#each lists as x}
     <a
       href={"#" + x.id}
-      class={x.id == slugifiedHash ? "text-primary" : "text-mutedfg"}
+      class={x.id == slugifiedHash ? "text-primary" : "text-muted-fg"}
     >{x.name}</a>
   {/each}
 </aside>
