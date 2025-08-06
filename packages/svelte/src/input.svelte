@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { HTMLInputAttributes } from "svelte/elements";
-  import type { Snippet } from "svelte";
   import { type InputProps } from "types/input";
 
   type Props = InputProps & HTMLInputAttributes;
 
-  let { iconL, iconR, class: css = "", ...x }: Props = $props();
+  let { iconL, iconR, class: css = "", value = $bindable(), ...x }: Props = $props();
 </script>
 
 <div class={css?.includes("grinput") ? css : `grinput ${css}`}>
@@ -17,7 +16,7 @@
     {/if}
   {/if}
 
-  <input {...x} />
+  <input bind:value {...x} />
 
   {#if iconR}
     {#if typeof iconR === "string"}
