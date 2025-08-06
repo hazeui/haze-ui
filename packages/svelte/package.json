@@ -1,6 +1,6 @@
 {
   "name": "@haze-ui/svelte",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "devDependencies": {
     "svelte": "^5.0.0",
     "@sveltejs/package": "^2.0.0"
