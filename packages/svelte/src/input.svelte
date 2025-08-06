@@ -1,7 +1,9 @@
 <script lang="ts">
   import type { HTMLInputAttributes } from "svelte/elements";
   import type { Snippet } from "svelte";
-  import { type InputProps as Props } from "types/input";
+  import { type InputProps } from "types/input";
+
+  type Props = InputProps & HTMLInputAttributes;
 
   let { iconL, iconR, class: css = "", ...x }: Props = $props();
 </script>
