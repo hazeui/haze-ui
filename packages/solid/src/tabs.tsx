@@ -1,5 +1,6 @@
 import { createSignal, createContext } from "solid-js";
 import { useContext, onMount, Show } from "solid-js";
+import type { TabsProps } from "types/tabs";
 
 type CtxProps = {
   value: () => string;
@@ -44,6 +45,7 @@ export const TabsList = (x: any) => {
 interface Props {
   value: string;
   children: any;
+  class?: string;
 }
 
 export const Tab = (x: Props) => {
@@ -73,14 +75,18 @@ export const TabsContent = (x: Props) => {
 
   return (
     <Show when={value() === x.value}>
-      <div role="tabpanel" aria-labelledby={`tab-${value()}`}>
+      <div
+        role="tabpanel"
+        aria-labelledby={`tab-${value()}`}
+        class={x.class || ""}
+      >
         {x.children}
       </div>
     </Show>
   );
 };
 
-export const Tabs = (x: { children: any; defaultValue: string }) => {
+export const Tabs = (x: TabsProps) => {
   const [va, setVal] = createSignal(x.defaultValue);
   const [tabLabels, setTabLabels] = createSignal([]);
 

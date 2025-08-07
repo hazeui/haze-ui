@@ -1,6 +1,6 @@
 export interface TabsProps {
   defaultValue?: string;
   children: any;
-  setValue?: (x: string) => void;
+  setValue?: any;
   value?: string;
 }

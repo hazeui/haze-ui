@@ -76,11 +76,15 @@ const Tab = ({ iconL, value, children }: TabProps) => {
   );
 };
 
-const TabsContent = ({ value, children }: Props) => {
+const TabsContent = ({ value, children, className = "" }: Props) => {
   const { value: curval } = useContext(context) as CtxProps;
 
   return curval == value ? (
-    <div role="tabpanel" aria-labelledby={`tab-${curval}`}>
+    <div
+      role="tabpanel"
+      aria-labelledby={`tab-${curval}`}
+      className={className}
+    >
       {children}
     </div>
   ) : null;
