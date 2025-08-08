@@ -4,3 +4,5 @@ packages/**/.tsbuildinfo
 website/**/node_modules/
 website/**/dist/
 node_modules
+
+package-lock.json
