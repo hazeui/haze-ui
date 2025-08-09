@@ -77,7 +77,7 @@ export const TabsContent = (x: Props) => {
     <Show when={value() === x.value}>
       <div
         role="tabpanel"
-        aria-labelledby={`tab-${value()}`}
+        aria-labelledby={`tabpanel-${value()}`}
         class={x.class || ""}
       >
         {x.children}

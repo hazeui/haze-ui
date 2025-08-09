@@ -9,7 +9,7 @@ export default (opts: any) => {
 
         pos = tmp[pos] || tmp.bottom;
 
-        return `invisible absolute mt-2 w-48 rounded border bg-mutebg border-(1 solid gray2)
+        return `invisible absolute mt-2 w-48 rounded border bg-muted border-(1 solid gray2)
                   opacity-0 shadow-md transition-400 
                   group-focus-within:(opacity-100 visible) grid px1 py2 ${pos} ${mid}`;
       },

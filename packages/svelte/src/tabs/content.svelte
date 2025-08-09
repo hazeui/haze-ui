@@ -8,7 +8,7 @@
 </script>
 
 {#if active() == value}
-  <div role="tabpanel" aria-labelledby={`tab-${active()}`} class={css}>
+  <div role="tabpanel" aria-labelledby={`tabpanel-${active()}`} class={css}>
     {@render children()}
   </div>
 {/if}

@@ -82,7 +82,7 @@ const TabsContent = ({ value, children, className = "" }: Props) => {
   return curval == value ? (
     <div
       role="tabpanel"
-      aria-labelledby={`tab-${curval}`}
+      aria-labelledby={`tabpanel-${curval}`}
       className={className}
     >
       {children}
