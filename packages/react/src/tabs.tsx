@@ -12,11 +12,11 @@ type CtxProps = {
 
 const context = createContext<CtxProps | null>(null);
 
-interface Props {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   value?: string;
-  children: any;
+  children: React.ReactNode;
   className?: string;
-}
+};
 
 const TabsList = ({ children, className = "" }: Props) => {
   const { value, tabLabels, setValue } = useContext(context) as CtxProps;
@@ -76,15 +76,11 @@ const Tab = ({ iconL, value, children }: TabProps) => {
   );
 };
 
-const TabsContent = ({ value, children, className = "" }: Props) => {
+const TabsContent = ({ value, children, ...rest }: Props) => {
   const { value: curval } = useContext(context) as CtxProps;
 
   return curval == value ? (
-    <div
-      role="tabpanel"
-      aria-labelledby={`tabpanel-${curval}`}
-      className={className}
-    >
+    <div role="tabpanel" aria-labelledby={`tabpanel-${curval}`} {...rest}>
       {children}
     </div>
   ) : null;

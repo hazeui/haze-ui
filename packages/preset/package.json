@@ -1,6 +1,6 @@
 {
   "name": "@haze-ui/preset",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "scripts": {
     "dev": "tsdown --watch",

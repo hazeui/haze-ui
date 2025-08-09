@@ -1,6 +1,7 @@
+import { type JSX, splitProps } from "solid-js";
+import type { TabsProps } from "types/tabs";
 import { createSignal, createContext } from "solid-js";
 import { useContext, onMount, Show } from "solid-js";
-import type { TabsProps } from "types/tabs";
 
 type CtxProps = {
   value: () => string;
@@ -42,11 +43,11 @@ export const TabsList = (x: any) => {
   );
 };
 
-interface Props {
+type Props = JSX.HTMLAttributes<HTMLDivElement> & {
   value: string;
   children: any;
   class?: string;
-}
+};
 
 export const Tab = (x: Props) => {
   const { value, setValue, setTabLabels } = useContext(context) as CtxProps;
@@ -72,15 +73,12 @@ export const Tab = (x: Props) => {
 
 export const TabsContent = (x: Props) => {
   const { value } = useContext(context) as CtxProps;
+  const [local, others] = splitProps(x, ["value", "children"]);
 
   return (
-    <Show when={value() === x.value}>
-      <div
-        role="tabpanel"
-        aria-labelledby={`tabpanel-${value()}`}
-        class={x.class || ""}
-      >
-        {x.children}
+    <Show when={value() === local.value}>
+      <div role="tabpanel" aria-labelledby={`tabpanel-${value()}`} {...others}>
+        {local.children}
       </div>
     </Show>
   );
