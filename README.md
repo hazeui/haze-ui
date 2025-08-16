@@ -1,10 +1,14 @@
 # Haze-ui
 
-https://haze-ui.com/docs/button
+This is still WIP, not meant for production
 
-WIP
-- Docs for toast, tooltip, userpic
-- Responsive
-- landing page
-- Syntax highlighting in code blocks ( use shiki or Neovim :D )
-- Blocks page
+NOTE: (Docs for components are just examples only for now)
+
+# Todo 
+- Use portals for `<Select> and <Dropdown>`
+- Add landing page
+- Docs for overview, install pages
+
+## Sites made using this lib : 
+
+- https://github.com/siduck/quickcv
