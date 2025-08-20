@@ -1,4 +1,5 @@
 vim.api.nvim_create_user_command("Vihtml", function()
+  require("base46").load_all_highlights()
   require "vihtml"
 end, {})
 

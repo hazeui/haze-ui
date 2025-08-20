@@ -50,11 +50,11 @@ M.open_files = function()
 
   local cssfile = cwd .. "/src/css/codesyn.css"
 
-  echo { { "CSS file written at ", "String" }, { cssfile, "Removed" } }
+  echo { { "\nCSS file written at ", "String" }, { cssfile, "Removed" } }
 
   css = utils.dedupe_css(css)
 
-  echo { { "Deduped css ", "FloatBorder" } }
+  echo { { "Deduped css \n\n", "FloatBorder" } }
 
   utils.write_file(cssfile, css)
 end
