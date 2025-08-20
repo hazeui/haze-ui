@@ -14,5 +14,8 @@ export const solidStrRep = (str: string) => {
     .replaceAll("useState", "createSignal");
 };
 
-export const codestr = (str: string) =>
-  str.replace(/^\s*\d+\s?/gm, '')
+export const codestr = (node: any) => {
+  const clone = node.cloneNode(node);
+  clone.querySelectorAll(".LineNr").forEach((x:any) => x.remove());
+  return clone.textContent;
+};

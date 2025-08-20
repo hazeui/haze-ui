@@ -20,6 +20,7 @@ pre {
 .LineNr {
   color: hsl(from var(--codeblock) h s 45%);
   padding: 0 .5rem;
+  user-select: none;
 }
 
 .dark .LineNr {

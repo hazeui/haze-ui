@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("Kk", function()
+vim.api.nvim_create_user_command("Vihtml", function()
   require "vihtml"
 end, {})
 

@@ -27,7 +27,7 @@
   let codecopied = $state(false);
 
   const copyCodeToClipboard = () => {
-    const code = codestr(codeblockref.textContent);
+    const code = codestr(codeblockref);
     navigator.clipboard.writeText(code);
     codecopied = true;
 
