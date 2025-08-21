@@ -1,1 +1,3 @@
-*.sh linguist-language=Shell
+packages/react/** linguist-vendored
+packages/solid/** linguist-vendored
+packages/svelte/** linguist-vendored
