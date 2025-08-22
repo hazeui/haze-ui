@@ -15,37 +15,37 @@ export default () => {
         <DropdownItem>Billing</DropdownItem>
         <DropdownItem>Settings</DropdownItem>
         <DropdownItem>Keyboard shortcuts </DropdownItem>
-        <hr class="brd my1" />
+        <hr className="brd my1" />
 
         <DropdownItem>Team</DropdownItem>
         <DropdownItem>Invite users</DropdownItem>
         <DropdownItem>New Team</DropdownItem>
-        <hr class="brd my1" />
+        <hr className="brd my1" />
 
         <DropdownItem>GitHub</DropdownItem>
         <DropdownItem>Support</DropdownItem>
         <DropdownItem disabled={true}>API</DropdownItem>
 
-        <hr class="brd my1" />
+        <hr className="brd my1" />
         <DropdownItem>Log out</DropdownItem>
       </DropdownContent>
     </Dropdown>
 
     <Dropdown>
-      <DropdownTrigger class="btn-soft">
-        <i class="i-line-md:star-filled"></i>
+      <DropdownTrigger className="btn-soft">
+        <i className="i-line-md:star-filled"></i>
         With icons
       </DropdownTrigger>
 
       <DropdownContent>
         <DropdownItem>
-          <i class="i-line-md:account"></i>Profile
+          <i className="i-line-md:account"></i>Profile
         </DropdownItem>
         <DropdownItem>
-          <i class="i-nimbus:cog"></i>Settings
+          <i className="i-nimbus:cog"></i>Settings
         </DropdownItem>
         <DropdownItem>
-          <i class="i-line-md:logout"></i>Log out
+          <i className="i-line-md:logout"></i>Log out
         </DropdownItem>
       </DropdownContent>
     </Dropdown>

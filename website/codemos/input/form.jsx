@@ -20,12 +20,12 @@ export default () => {
   const iconR = () => (
     <button
       type="button"
-      class="btn-ghost-eqsm rounded-full mr--2"
+      className="btn-ghost-eqsm rounded-full mr--2"
       aria-label="Toggle password visibility"
       onclick={togglepasswdType}
     >
       <i
-        class={
+        className={
           inputPasswdType == "text"
             ? "i-heroicons-solid:eye"
             : "i-heroicons-solid:eye-off"
@@ -35,8 +35,8 @@ export default () => {
   );
 
   return (
-    <form class="grid gap3" onsubmit={handleSubmit}>
-      <label for="email" class="reqstar">
+    <form className="grid gap3" onsubmit={handleSubmit}>
+      <label for="email" className="reqstar">
         Email
       </label>
 
@@ -47,7 +47,6 @@ export default () => {
         placeholder="Enter email"
         type="email"
         iconL="i-line-md:email"
-        class="grinput-outline mb3"
       />
 
       <label for="passwd">Password</label>
@@ -58,11 +57,11 @@ export default () => {
         placeholder="Enter Password"
         type={inputPasswdType}
         iconL="i-lucide:key-round"
-        class="grinput-outline"
+        className="grinput-outline"
         iconR={iconR}
       ></Input>
 
-      <input type="submit" class="!btn-primary ml-auto mt3" />
+      <input type="submit" className="!btn-primary ml-auto mt3" />
     </form>
   );
 };
