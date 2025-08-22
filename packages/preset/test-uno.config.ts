@@ -1,8 +1,9 @@
-import { defineConfig, presetWind3, presetIcons, presetWind4 } from "unocss";
+import { defineConfig, presetWind3, presetIcons, presetWind4, transformerDirectives } from "unocss";
 import hazeuiPreset from "./index";
 
 export default defineConfig({
   presets: [presetIcons({ scale: 1.2 }), presetWind3(), hazeuiPreset()],
+  transformers: [transformerDirectives()],
 
   shortcuts: [
     [

@@ -17,7 +17,7 @@ for (const [path, Comp] of Object.entries(components)) {
   result[section][bb[1]] = Comp;
 }
 
-const active = ref("input");
+const active = ref("dialog");
 
 const sidebarLinks = Object.keys(result)
 </script>
