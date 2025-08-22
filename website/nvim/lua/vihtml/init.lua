@@ -7,7 +7,7 @@ local echo = function(txts)
   vim.api.nvim_echo(txts, false, {})
 end
 
-local line_sep = function ()
+local line_sep = function()
   echo { { string.rep("-", 100) } }
 end
 
@@ -32,7 +32,12 @@ M.open_files = function()
 
       local code = utils.win_to_html "onedark"
 
+      -- add jsx/vue suffix to filename
       if string.find(file, "jsx") then
+        file = file:gsub("%.", "-") .. ".svelte"
+      end
+
+      if string.find(file, "vue") then
         file = file:gsub("%.", "-") .. ".svelte"
       end
 

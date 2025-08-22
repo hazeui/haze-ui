@@ -10,6 +10,7 @@ vim.api.nvim_create_user_command("TSInstallParsers", function()
     "lua",
     "html",
     "css",
+    "vue",
     "svelte",
     "tsx",
     "typescript",
