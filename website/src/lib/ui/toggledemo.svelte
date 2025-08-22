@@ -68,6 +68,7 @@
           <Tab value="svelte"><i class="i-devicon:svelte"></i> Svelte</Tab>
           <Tab value="react"><i class="i-devicon:react"></i> React</Tab>
           <Tab value="solid"><i class="i-devicon:solidjs"></i> Solid</Tab>
+          <Tab value="vue"><i class="i-logos:vue"></i> Vue</Tab>
         {/if}
 
         <button
