@@ -1,0 +1,2 @@
+export { default as Btn } from './src/button.vue'
+export { default as Input } from './src/input.vue'
