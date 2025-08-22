@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type { DialogProps } from "types/dialog";
-import { type DialogHTMLAttributes, ref } from "vue";
+import { type DialogHTMLAttributes } from "vue";
 
 type Props = DialogProps & /* @vue-ignore */ DialogHTMLAttributes & {
   class: string;
 };
-
-const dialogref = ref(null);
 
 const { open, close, class: css = "", closeIcon = true } = defineProps<Props>();
 
@@ -18,12 +16,11 @@ const onClick = (e: MouseEvent) => {
 <template>
   <Teleport to="body">
     <dialog
-      ref="dialogref"
       v-if="open"
       class="backdrop:bg-black/60"
       @click="onClick"
       @close="close"
-      @vue:mounted="dialogref?.showModal()"
+      @vue:mounted="$event.el.showModal()"
     >
       <div :class="`dialog ${css}`">
         <button
