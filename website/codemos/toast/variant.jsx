@@ -10,16 +10,16 @@ const newToast = (css) => {
 
 export default () => {
   return (
-    <div class="flex flex-wrap gap-2">
-      <button class="btn-primary" onClick={() => newToast("toast-solid")}>
+    <div className="flex flex-wrap gap-2">
+      <button className="btn-primary" onClick={() => newToast("toast-solid")}>
         Solid
       </button>
 
-      <button class="btn" onClick={() => newToast("toast-flat")}>
+      <button className="btn" onClick={() => newToast("toast-flat")}>
         Flat
       </button>
 
-      <button class="btn-outline" onClick={() => newToast("toast-outline")}>
+      <button className="btn-outline" onClick={() => newToast("toast-outline")}>
         Outline
       </button>
     </div>

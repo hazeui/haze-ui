@@ -9,7 +9,7 @@ const createToast = () => {
 
 export default () => {
   return (
-    <button class="btn" onClick={createToast}>
+    <button className="btn" onClick={createToast}>
       Show toast
     </button>
   );

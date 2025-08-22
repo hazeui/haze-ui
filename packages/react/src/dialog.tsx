@@ -5,7 +5,13 @@ import { createPortal } from "react-dom";
 
 type Props = DialogProps & React.HTMLAttributes<HTMLElement>;
 
-export default ({ open, close, className, ...rest }: Props) => {
+export default ({
+  open,
+  close,
+  className,
+  closeIcon = true,
+  ...rest
+}: Props) => {
   if (!open) return null;
 
   const ref = useRef<HTMLDialogElement>(null);
@@ -26,7 +32,7 @@ export default ({ open, close, className, ...rest }: Props) => {
       onClose={close}
     >
       <div className={`dialog ${className || ""}`}>
-        {rest.closeIcon && (
+        {closeIcon && (
           <button
             className="i-pajamas:close absolute right-4 top-4 focus-visible:bg-red"
             aria-label="close"

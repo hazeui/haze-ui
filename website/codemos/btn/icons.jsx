@@ -4,11 +4,11 @@ export default () => {
   return (
     <>
       <Btn
-        class="btn-emerald5 text-white"
+        className="btn-emerald5 text-white"
         iconL="i-line-md:email-filled"
         txt="Email"
       />
-      <Btn iconL="i-iconamoon:send" txt="Send us" class="btn-outline" />
+      <Btn iconL="i-iconamoon:send" txt="Send us" className="btn-outline" />
 
       <Btn
         loading={true}
@@ -19,13 +19,13 @@ export default () => {
 
       <Btn
         iconL="i-tabler:plus"
-        class="btn-primary-eqmd"
+        className="btn-primary-eqmd"
         aria-label="plus button"
       />
 
       <Btn
         iconL="i-iconoir:user"
-        class="btn-outline-eqmd rounded-full"
+        className="btn-outline-eqmd rounded-full"
         aria-label="user button"
       />
     </>

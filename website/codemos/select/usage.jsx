@@ -26,7 +26,7 @@ const options3 = [
 
 export default () => {
   return (
-    <div class="grid-(~ cols-2 gap3) w-2/3">
+    <div className="grid-(~ cols-2 gap3) w-2/3">
       <Select
         options={options}
         dropdownCss="bg-muted border-0"
