@@ -2,59 +2,6 @@ html {
   scroll-behavior: smooth;
 }
 
-:root {
-  --fg: #1d293d;
-  --bg: #ffffff;
-  --primary: #364153;
-  --primary-fg: #ffffff;
-  --secondary: #e6edf4;
-  --secondary-fg: #253551;
-
-  --muted: #f5f7fa;
-  --muted-fg: #557091;
-
-  --input: #e6edf4;
-  --border: #c4d4e4;
-  --ring: #a9b0ff;
-
-  --success: #22c55e;
-  --success-subtle: #dcfce7;
-  --warning: #bb9502;
-  --warning-subtle: #fef9c3;
-  --danger: #ed3535;
-  --danger-subtle: #fee2e2;
-  --info: #60a5fa;
-  --info-subtle: #dbeafe;
-
-  --codeblock: #232b3d;
-}
-
-.dark {
-  --fg: #f3f4f6;
-  --bg: #0b1221;
-  --primary: #9baaf2;
-  --primary-fg: #0b1221;
-  --secondary: #19243b;
-  --secondary-fg: #f3f4f6;
-  --muted: #171e2d;
-  --muted-fg: #9ca3af;
-
-  --border: #1f2739;
-  --input: #151e31;
-  --ring: #bae6fd;
-
-  --success: #b5e8b0;
-  --success-subtle: #1d3d23;
-  --warning: #e8d4b0;
-  --warning-subtle: #3d3721;
-  --danger: #fca5a5;
-  --danger-subtle: #3f1d1d;
-  --info: #93c5fd;
-  --info-subtle: #1e293b;
-
-  --codeblock: #121a2a;
-}
-
 body {
   @apply bg-bg text-fg;
   font-family: "Inter", sans-serif;
