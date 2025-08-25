@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 
 import { defineConfig } from "vite";
 
-import UnocssConfig from "../../packages/preset/test-uno.config.ts";
+import UnocssConfig from "../../website/uno.config.ts";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 

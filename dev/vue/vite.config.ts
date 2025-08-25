@@ -5,7 +5,7 @@ import UnoCSS from "unocss/vite";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 
-import UnocssConfig from "../../packages/preset/test-uno.config.ts";
+import UnocssConfig from "../../website/uno.config.ts";
 
 // https://vite.dev/config/
 export default defineConfig({

@@ -1,21 +1,31 @@
-import { useState, useRef } from "react";
-import Btn from "./button";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useOnClickOutside } from "./domutils";
 
-import { type SelectProps } from "types/select";
+import { type SelectProps as SelProps } from "types/select";
+
+type Props = Omit<SelProps, "triggerProps"> & {
+  triggerProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+};
 
 export default ({
   options,
   onChange,
-  triggerProps,
+  triggerProps = {},
   dropdownCss,
   optionCss,
-}: SelectProps) => {
-  const ref = useRef(null);
-
+}: Props) => {
+  const ref = useRef<HTMLButtonElement>(null);
+  const popupRef = useRef<HTMLUListElement>(null);
+  const [popcss, setPopcss] = useState({});
+  const [hlIndex, setHlIndex] = useState(-1);
   const [isOpened, setIsOpened] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [hlIndex, setHlIndex] = useState(-1);
+
+  let { className: trigcss = "" } = triggerProps;
+
+  trigcss =
+    trigcss + (trigcss.includes("btn-") ? "" : " btn") + " justify-between";
 
   useOnClickOutside(ref, () => setIsOpened(false));
 
@@ -32,7 +42,7 @@ export default ({
       setSelectedIndex(index);
       onChange?.(options[index].value);
     }
-    setIsOpened(false);
+    setIsOpened(!isOpened);
   };
 
   const handleListKeyDown = (e: React.KeyboardEvent) => {
@@ -61,42 +71,74 @@ export default ({
 
   const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
 
+  const updatePos = (popupHeight: number) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - rect.bottom;
+    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
+    const toph = canOpenUp ? -popupHeight - rect.height + 10 : rect.height;
+    const top = rect.top + toph;
+
+    setPopcss({ minWidth: rect.width, top, left: window.scrollX + rect.left });
+  };
+
+  useEffect(() => {
+    if (!isOpened || !popupRef.current) return;
+
+    const popupHeight = popupRef.current.getBoundingClientRect().height;
+    updatePos(popupHeight);
+    window.addEventListener("resize", () => updatePos(popupHeight));
+
+    return () => {
+      window.removeEventListener("resize", () => updatePos(popupHeight));
+    };
+  }, [isOpened]);
+
   return (
-    <div className="inline-flex relative" ref={ref}>
-      <Btn
+    <>
+      <button
+        ref={ref}
         aria-haspopup="listbox"
         aria-expanded={isOpened}
         onClick={toggleOptions}
         onKeyDown={handleListKeyDown}
-        iconR="ml5 i-fa-solid:caret-down"
-        txt={options[selectedIndex]?.name || "Select"}
         {...triggerProps}
-      />
+        className={trigcss}
+      >
+        {options[selectedIndex]?.name || "Select"}
+        <i className="i-fa-solid:caret-down" />
+      </button>
 
-      {isOpened && (
-        <ul
-          className={`popover z-10 whitespace-nowrap ${dropdownCss}`}
-          role="listbox"
-          aria-activedescendant={`option-${hlIndex}`}
-          tabIndex={-1}
-        >
-          {options.map((option, i) => (
-            <li
-              key={option.value}
-              id={`option-${i}`}
-              role="option"
-              data-active={hlIndex === i}
-              aria-selected={selectedIndex === i}
-              tabIndex={-1}
-              onClick={() => setSelectedThenCloseDropdown(i)}
-              className={optcss}
-            >
-              {option.iconL && <span className={option.iconL}></span>}
-              {option.name}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      {isOpened &&
+        createPortal(
+          <ul
+            ref={popupRef}
+            className={`popover z-100 whitespace-nowrap ${dropdownCss}`}
+            role="listbox"
+            aria-activedescendant={`option-${hlIndex}`}
+            tabIndex={-1}
+            style={popcss}
+          >
+            {options.map((option, i) => (
+              <li
+                key={option.value}
+                id={`option-${i}`}
+                role="option"
+                data-active={hlIndex === i}
+                aria-selected={selectedIndex === i}
+                tabIndex={-1}
+                onClick={() => setSelectedThenCloseDropdown(i)}
+                className={optcss}
+              >
+                {option.iconL && <span className={option.iconL}></span>}
+                {option.name}
+              </li>
+            ))}
+          </ul>,
+          document.body,
+        )}
+    </>
   );
 };

@@ -1,5 +1,3 @@
-import type { BtnProps } from "./button";
-
 export type Option = {
   value: string;
   name: string;
@@ -7,9 +5,10 @@ export type Option = {
 };
 
 export interface SelectProps {
+  placeholder?: string;
   options: Option[];
   onChange?: (value: string) => void;
-  triggerProps?: BtnProps;
+  triggerProps?: any;
   dropdownCss?: string;
   optionCss?: string;
 }

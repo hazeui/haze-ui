@@ -3,7 +3,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import UnoCSS from "unocss/vite";
 import path from "path";
 
-import UnocssConfig from "../../packages/preset/test-uno.config.ts";
+import UnocssConfig from "../../website/uno.config.ts";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 

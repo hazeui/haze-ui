@@ -1,10 +1,9 @@
-import { createSignal, For } from "solid-js";
-import Btn from "./button";
+import { onMount, createEffect, createSignal, For, Show } from "solid-js";
 import { clickOutside } from "./domutils";
 import { type SelectProps } from "types/select";
+import { Portal } from "solid-js/web";
 
-export default function CustomSelect(props: SelectProps) {
-  let ref;
+export default (props: SelectProps) => {
   const [isOpened, setIsOpened] = createSignal(false);
   const [selectedIndex, setSelectedIndex] = createSignal(-1);
   const [hlIndex, setHlIndex] = createSignal(-1);
@@ -53,42 +52,88 @@ export default function CustomSelect(props: SelectProps) {
 
   const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
 
+  let { class: trigcss = "" } = props.triggerProps;
+
+  trigcss =
+    trigcss + (trigcss.includes("btn-") ? "" : " btn") + " justify-between";
+
+  let ref: HTMLButtonElement | undefined;
+  let popupRef: HTMLUListElement | undefined;
+  const [popupCss, setPopupCss] = createSignal("");
+
+  const updatePos = (popupHeight: number) => {
+    if (!ref) return;
+
+    const rect = ref.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - rect.bottom;
+    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
+    const toph = canOpenUp ? -popupHeight - rect.height + 10 : rect.height;
+    const top = rect.top + toph;
+
+    setPopupCss(`min-width: ${rect.width}px; top: ${top}px;
+               left: ${window.scrollX + rect.left}px;`);
+  };
+
+  createEffect(() => {
+    if (isOpened() && popupRef) {
+      updatePos(popupRef.getBoundingClientRect().height);
+    }
+  });
+
+  onMount(() => {
+    window.addEventListener("resize", () => setIsOpened(false));
+
+    return () => {
+      window.removeEventListener("resize", () => setIsOpened(false));
+    };
+  });
+
   return (
-    <div class="relative inline-flex" ref={ref} use:clickOutside={close}>
-      <Btn
+    <>
+      <button
+        ref={ref}
+        use:clickOutside={close}
         aria-haspopup="listbox"
         aria-expanded={isOpened()}
         onClick={toggleOptions}
         onKeyDown={handleListKeyDown}
-        iconR="ml5 i-fa-solid:caret-down"
-        txt={props.options[selectedIndex()]?.name || "Select"}
         {...props.triggerProps}
-      />
-      {isOpened() && (
-        <ul
-          class={`popover z-10 whitespace-nowrap ${props.dropdownCss || ""}`}
-          role="listbox"
-          aria-activedescendant={`option-${hlIndex()}`}
-          tabIndex={-1}
-        >
-          <For each={props.options}>
-            {(option, i) => (
-              <li
-                id={`option-${i()}`}
-                role="option"
-                aria-selected={selectedIndex() === i()}
-                tabIndex={-1}
-                onClick={() => setSelectedThenCloseDropdown(i())}
-                data-active={hlIndex() === i()}
-                class={optcss}
-              >
-                {option.iconL && <span class={option.iconL}></span>}
-                {option.name}
-              </li>
-            )}
-          </For>
-        </ul>
-      )}
-    </div>
+        class={trigcss}
+      >
+        {props.options[selectedIndex()]?.name || "Select"}
+        <i class="i-fa-solid:caret-down" />
+      </button>
+
+      <Show when={isOpened()}>
+        <Portal>
+          <ul
+            ref={popupRef}
+            style={popupCss()}
+            class={`popover z-10 whitespace-nowrap ${props.dropdownCss || ""}`}
+            role="listbox"
+            aria-activedescendant={`option-${hlIndex()}`}
+            tabIndex={-1}
+          >
+            <For each={props.options}>
+              {(option, i) => (
+                <li
+                  id={`option-${i()}`}
+                  role="option"
+                  aria-selected={selectedIndex() === i()}
+                  tabIndex={-1}
+                  onClick={() => setSelectedThenCloseDropdown(i())}
+                  data-active={hlIndex() === i()}
+                  class={optcss}
+                >
+                  {option.iconL && <span class={option.iconL}></span>}
+                  {option.name}
+                </li>
+              )}
+            </For>
+          </ul>
+        </Portal>
+      </Show>
+    </>
   );
-}
+};

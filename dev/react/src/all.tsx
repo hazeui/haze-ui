@@ -5,8 +5,6 @@ const components = import.meta.glob("../../../website/codemos/**/*.jsx", {
   eager: true,
 });
 
-console.log(components); // keys are paths, values are components
-
 const parentDir = "../../../website/codemos/";
 let result: any = {};
 
@@ -17,8 +15,6 @@ for (const [path, Comp] of Object.entries(components)) {
   result[section] = result[section] || {};
   result[section][bb[1]] = Comp;
 }
-
-console.log(result);
 
 export default () => {
   const [active, setActive] = useState("btn");

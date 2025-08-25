@@ -2,31 +2,34 @@
   import "virtual:uno.css";
   import "../../shared/style.css";
   // import Btn from "haze-ui/button.svelte";
-  // import Input from "haze-ui/input.svelte";
+  import { Select } from "@haze-ui/svelte";
 
-  import { Btn, Tab, Tabs, TabsContent, TabsList } from "@haze-ui/svelte";
+  const options = [
+    { name: "one", value: "one" },
+    { name: "two", value: "two" },
+    { name: "three", value: "three" },
+  ];
 
-  let val = $state();
-  const setVal = (x: string) => (val = x);
 </script>
 
 <main class="m-10">
-  <Tabs value={val} setValue={setVal} >
-    <TabsList class="tabs">
-      <Tab value="preview">Preview</Tab>
-      <Tab value="code">Code</Tab>
-    </TabsList>
-
-    <TabsContent value="preview">
-      <div class="p4 rounded brd mt9">
-        some preview here
-      </div>
-    </TabsContent>
-
-    <TabsContent value="code">
-      <div class="p4 rounded brd mt9">
-        some code here
-      </div>
-    </TabsContent>
-  </Tabs>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class="grid gap3 grid-cols-2 w-1/2">
+    <Select triggerProps={{ class: "btn-primary" }} {options} />
+  </div>
 </main>

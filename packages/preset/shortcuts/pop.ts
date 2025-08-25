@@ -22,7 +22,7 @@ export default (opts: any) => {
 
         pos = tmp[pos] || tmp.bottom;
 
-        return `absolute mt-2 min-w-full rounded border bg-bg brd
+        return `absolute mt-2 min-w-full rounded border bg-secondary brd
                   shadow-md grid p2 animate-(fade-in duration-300) ${pos} ${mid}`;
       },
     ],

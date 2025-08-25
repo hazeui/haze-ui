@@ -1,6 +1,7 @@
 /* @refresh reload */
 import { render } from "solid-js/web";
 import { createSignal, createEffect, onMount } from "solid-js";
+import "@unocss/reset/tailwind.css";
 
 // @ts-ignore
 import "virtual:uno.css";
@@ -8,32 +9,44 @@ import "virtual:uno.css";
 import "../../shared/style.css";
 
 // import { Userpic, Btn} from "../../../packages/solid/index";
-import { Btn, Tabs, Tab, TabsContent, TabsList, toast } from "@haze-ui/solid";
-import "@unocss/reset/tailwind.css";
+import { Select } from "@haze-ui/solid";
 
 function App() {
+  const options = [
+    { name: "one", value: "one" },
+    { name: "two", value: "two" },
+    { name: "three", value: "three" },
+  ];
   const [val, setVal] = createSignal();
-
-  toast({ title: "hello world", txt: "some long para over here", css:'toast-outline-warning' });
 
   return (
     <main class="gid gap4 items-center p5">
       <input class="input-outline" />
-      <Btn txt="hello" class="btn-blue" />
       <br />
       <br />
 
-      <Tabs setValue={setVal} value={val}>
-        <TabsList class="tabs-outline">
-          <Tab value="preview">Preview</Tab>
-          <Tab value="code">Code</Tab>
-        </TabsList>
-
-        <div class="p4 rounded brd mt9">
-          {val() == "preview" && <div>some preview here</div>}
-          {val() == "code" && <div>some code here</div>}
-        </div>
-      </Tabs>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="grid gap3 grid-cols-2 w-1/2">
+        <Select
+          triggerProps={{ class: "btn-primary justify-between", txt: "Select brooo" }}
+          options={options}
+        />
+      </div>
     </main>
   );
 }
