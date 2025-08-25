@@ -17,6 +17,7 @@ export default ({
 }: Props) => {
   const ref = useRef<HTMLButtonElement>(null);
   const popupRef = useRef<HTMLUListElement>(null);
+
   const [popcss, setPopcss] = useState({});
   const [hlIndex, setHlIndex] = useState(-1);
   const [isOpened, setIsOpened] = useState(false);
@@ -78,7 +79,7 @@ export default ({
     const viewportHeight = window.innerHeight;
     const spaceBelow = viewportHeight - rect.bottom;
     const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - rect.height + 10 : rect.height;
+    const toph = canOpenUp ? -popupHeight - 10 : rect.height + 10;
     const top = rect.top + toph;
 
     setPopcss({ minWidth: rect.width, top, left: window.scrollX + rect.left });
@@ -115,7 +116,7 @@ export default ({
         createPortal(
           <ul
             ref={popupRef}
-            className={`popover z-100 whitespace-nowrap ${dropdownCss}`}
+            className="absolute rounded border bg-secondary brd shadow-md grid p2 animate-(fade-in duration-300)"
             role="listbox"
             aria-activedescendant={`option-${hlIndex}`}
             tabIndex={-1}

@@ -68,7 +68,7 @@ export default (props: SelectProps) => {
     const viewportHeight = window.innerHeight;
     const spaceBelow = viewportHeight - rect.bottom;
     const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - rect.height + 10 : rect.height;
+    const toph = canOpenUp ? -popupHeight - 10 : rect.height + 10;
     const top = rect.top + toph;
 
     setPopupCss(`min-width: ${rect.width}px; top: ${top}px;
@@ -110,7 +110,7 @@ export default (props: SelectProps) => {
           <ul
             ref={popupRef}
             style={popupCss()}
-            class={`popover z-10 whitespace-nowrap ${props.dropdownCss || ""}`}
+            class="absolute rounded border bg-secondary brd shadow-md grid p2 animate-(fade-in duration-300)"
             role="listbox"
             aria-activedescendant={`option-${hlIndex()}`}
             tabIndex={-1}
