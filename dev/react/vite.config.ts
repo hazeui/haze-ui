@@ -3,8 +3,7 @@ import UnoCSS from "unocss/vite";
 import react from "@vitejs/plugin-react";
 
 import { defineConfig } from "vite";
-
-import UnocssConfig from "../../website/uno.config.ts";
+import UnocssConfig from "../../packages/preset/test-uno.ts";
 
 const resolvePath = (dir) => path.resolve(__dirname, dir);
 
@@ -16,7 +15,7 @@ export default defineConfig({
     alias: [
       {
         find: "@haze-ui/react",
-        replacement: resolvePath( "../../packages/react/index.ts"),
+        replacement: resolvePath("../../packages/react/index.ts"),
       },
     ],
   },
