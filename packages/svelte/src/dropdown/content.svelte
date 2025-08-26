@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { portal } from "../portal";
   import { getContext } from "svelte";
   import type { PassedProps } from "./types";
 
@@ -8,45 +9,66 @@
   }
 
   let { children, class: css = "" }: Props = $props();
+  let popupStyle = $state("");
 
-  let focusedIndex = $state(-1);
-  let popoverRef: HTMLDivElement | null = $state(null);
-  const { open } = getContext("dropdown") as PassedProps;
+  let popupRef: HTMLDivElement | null = $state(null);
+  let ctx = getContext("dropdown") as PassedProps;
 
-  const getFocusableElements = (): HTMLElement[] => {
-    if (!popoverRef) return [];
-    return Array.from(popoverRef.querySelectorAll('[role="menuitem"]'));
-  };
+  const updatePos = (popupHeight: number) => {
+    if (!ctx.ref) return;
 
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (!open()) return;
+    const rect = ctx.ref.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
 
-    const focusableElements = getFocusableElements();
-    if (focusableElements.length === 0) return;
+    let toph = canOpenUp ? -popupHeight - rect.height : rect.height;
+    let top = rect.top + toph + 10;
+    let left = window.scrollX + rect.left;
+    let transformOrigin = canOpenUp ? "bottom left" : "top left";
 
-    if (e.key == "ArrowDown" && focusedIndex < focusableElements.length) {
-      e.preventDefault();
-      focusedIndex = focusedIndex + 1;
-      focusableElements[focusedIndex]?.focus();
-    } //
-    else if (e.key == "ArrowUp" && focusedIndex > 0) {
-      focusedIndex = focusedIndex - 1;
-      focusableElements[focusedIndex]?.focus();
+    if (ctx.nested) {
+      toph = canOpenUp ? -popupHeight + rect.height : 0;
+      top = rect.top + toph;
+
+      left = window.scrollX + rect.left + rect.width +
+        (ctx.nested ? 2 : 1) * 10;
     }
+
+    popupStyle = `min-width: ${rect.width}px; top: ${top}px;
+               left: ${left}px; transform-origin: ${transformOrigin}`;
   };
 
   $effect(() => {
-    if (open()) popoverRef?.focus();
+    if (!ctx.open() || !popupRef) return;
+
+    const popupHeight = popupRef.getBoundingClientRect().height;
+    updatePos(popupHeight);
+
+    const outsideClick = (e: MouseEvent) => {
+      const refs = [popupRef, ctx.ref];
+      const clickedIn = refs.some((x) => x && x.contains(e.target as Node));
+      if (!clickedIn) ctx.closeDropdown();
+    };
+
+    document.body.addEventListener("click", outsideClick);
+
+    window.addEventListener("resize", () => updatePos(popupHeight));
+
+    return () => {
+      window.removeEventListener("resize", () => updatePos(popupHeight));
+      document.body.removeEventListener("click", outsideClick);
+    };
   });
 </script>
 
-{#if open()}
+{#if ctx.open()}
   <div
-    class={css.includes("popover") ? css : `popover ${css}`}
-    onkeydown={handleKeydown}
-    bind:this={popoverRef}
+    use:portal
+    class="pop grid p2"
+    bind:this={popupRef}
     role="menu"
     tabindex="0"
+    style={popupStyle}
   >
     {@render children?.()}
   </div>

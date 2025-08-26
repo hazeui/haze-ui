@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { clickOutside } from ".././domutils";
   import type { PassedProps } from "./types";
 
-  let { children } = $props();
+  let { children, nested } = $props();
   let open = $state(false);
+  let ref: HTMLButtonElement;
   import { setContext } from "svelte";
 
   const toggleDropdown = () => open = !open;
   const closeDropdown = () => open = false;
 
   const context: PassedProps = {
+    ref,
+    nested,
     open: () => open,
     toggleDropdown,
     closeDropdown,
@@ -18,9 +20,4 @@
   setContext("dropdown", context);
 </script>
 
-<div
-  class="relative inline-block"
-  use:clickOutside={closeDropdown}
->
-  {@render children?.()}
-</div>
+{@render children()}

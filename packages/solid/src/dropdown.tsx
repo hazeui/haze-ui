@@ -3,27 +3,33 @@ import {
   createContext,
   useContext,
   createEffect,
+  Show,
   type JSX,
 } from "solid-js";
+
+import { Portal } from "solid-js/web";
 
 import { type ComponentProps } from "solid-js";
 
 type CtxProps = {
-  open: () => boolean;
-  toggleDropdown: () => void;
-  closeDropdown: () => void;
+  nested?: boolean;
+  opened: () => boolean;
+  toggle: () => void;
+  close: () => void;
+  ref: HTMLButtonElement | undefined;
 };
-
-import { clickOutside } from "./domutils";
 
 const context = createContext<CtxProps>();
 
 export const DropdownTrigger = (props: ComponentProps<"button">) => {
   const ctx = useContext(context) as CtxProps;
+
   return (
     <button
+      ref={ctx.ref}
       class={props.class?.includes("btn") ? props.class : `btn ${props.class}`}
-      onClick={ctx.toggleDropdown}
+      onClick={ctx.toggle}
+      tabindex={0}
       {...props}
     >
       {props.children}
@@ -36,7 +42,7 @@ export const DropdownItem = (props: ComponentProps<"button">) => {
   return (
     <button
       class={`btn-ghost-eqmd focus:bg-input justify-start whitespace-nowrap ${props.class}`}
-      onClick={ctx.closeDropdown}
+      onClick={ctx.close}
       role="menuitem"
       {...props}
     >
@@ -50,80 +56,86 @@ export const DropdownContent = (props: {
   className?: string;
   children?: JSX.Element;
 }) => {
+  let popupRef: HTMLUListElement | undefined;
   const ctx = useContext(context) as CtxProps;
-  let popoverRef: HTMLDivElement | undefined;
-  const [focusedIndex, setFocusedIndex] = createSignal(-1);
+  const [popcss, setPopcss] = createSignal("");
 
-  const getFocusableElements = (): HTMLElement[] => {
-    if (!popoverRef) return [];
-    return Array.from(popoverRef.querySelectorAll('[role="menuitem"]'));
-  };
+  const updatePos = (popupHeight: number) => {
+    if (!ctx.ref) return;
 
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (!ctx.open()) return;
+    const rect = ctx.ref.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
 
-    const focusables = getFocusableElements();
-    if (focusables.length === 0) return;
+    let toph = canOpenUp ? -popupHeight - rect.height : rect.height;
+    let top = rect.top + toph + 10;
+    let left = window.scrollX + rect.left;
+    let transformOrigin = canOpenUp ? "bottom left" : "top left";
 
-    e.preventDefault();
+    if (ctx.nested) {
+      toph = canOpenUp ? -popupHeight + rect.height : 0;
+      top = rect.top + toph;
 
-    if (e.key === "ArrowDown" && focusedIndex() < focusables.length - 1) {
-      const next = focusedIndex() + 1;
-      setFocusedIndex(next);
-      focusables[next]?.focus();
-    } //
-    else if (e.key === "ArrowUp" && focusedIndex() > 0) {
-      const prev = focusedIndex() - 1;
-      setFocusedIndex(prev);
-      focusables[prev]?.focus();
+      left =
+        window.scrollX + rect.left + rect.width + (ctx.nested ? 2 : 1) * 10;
     }
+
+    setPopcss(`min-width: ${rect.width}px; top: ${top}px;
+               left: ${left}px; transform-origin: ${transformOrigin}`);
   };
 
   createEffect(() => {
-    if (ctx.open() && popoverRef) {
-      popoverRef.focus();
-    }
+    if (!ctx.opened() || !popupRef) return;
+
+    popupRef.focus();
+
+    const popupHeight = popupRef.getBoundingClientRect().height;
+    updatePos(popupHeight);
+
+    const outsideClick = (e: MouseEvent) => {
+      const elements = [popupRef, ctx.ref];
+      const target = e.target as Node;
+      const clickedInside = elements.some((el) => el && el.contains(target));
+
+      if (!clickedInside) ctx.close();
+    };
+
+    document.body.addEventListener("click", outsideClick);
+
+    window.addEventListener("resize", () => updatePos(popupHeight));
+
+    return () => {
+      window.removeEventListener("resize", () => updatePos(popupHeight));
+      document.body.removeEventListener("click", outsideClick);
+    };
   });
 
-  const className = props.class || props.className || "";
-
   return (
-    <>
-      {ctx.open() && (
-        <div
-          class={
-            className.includes("popover") ? className : `popover ${className}`
-          }
-          onKeyDown={handleKeyDown}
-          ref={popoverRef!}
-          role="menu"
-          tabIndex={0}
-        >
+    <Show when={ctx.opened()}>
+      <Portal>
+        <ul ref={popupRef} class="pop grid p2" role="menu" style={popcss()}>
           {props.children}
-        </div>
-      )}
-    </>
+        </ul>
+      </Portal>
+    </Show>
   );
 };
 
 export const Dropdown = (props: any) => {
-  const [open, setOpen] = createSignal(false);
-  let ref;
+  const [opened, setOpen] = createSignal(false);
 
-  const toggleDropdown = () => setOpen((o) => !o);
-  const closeDropdown = () => setOpen(false);
+  let ref: HTMLButtonElement | undefined;
 
-  const ctxValue: CtxProps = { open, toggleDropdown, closeDropdown };
+  const toggle = () => setOpen((o) => !o);
+  const close = () => setOpen(false);
 
-  return (
-    <context.Provider value={ctxValue}>
-      <div
-        class="relative inline-block"
-        ref={ref}
-        use:clickOutside={closeDropdown}
-      >
-        {props.children}
-      </div>
-    </context.Provider>
-  );
+  const ctxValue: CtxProps = {
+    opened,
+    ref,
+    nested: props.nested,
+    toggle: toggle,
+    close: close,
+  };
+
+  return <context.Provider value={ctxValue}>{props.children}</context.Provider>;
 };

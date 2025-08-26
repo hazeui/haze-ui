@@ -2,10 +2,10 @@ import React, { useState, useContext, createContext } from "react";
 import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
 import { type ReactNode, type ButtonHTMLAttributes } from "react";
-import { useOnClickOutside } from "./domutils";
 
 type CtxProps = {
-  open: boolean;
+  nested?: boolean | undefined;
+  opened: boolean;
   popcss: React.CSSProperties;
   toggleDropdown: () => void;
   closeDropdown: () => void;
@@ -60,64 +60,12 @@ export const DropdownContent = ({
   className?: string;
   children?: ReactNode;
 }) => {
-  const { open, popupRef, popcss } = useContext(context) as CtxProps;
-  const [focusedIndex, setFocusedIndex] = useState(-1);
-
-  const getFocusableElements = (): HTMLElement[] => {
-    if (!popupRef.current) return [];
-    return Array.from(popupRef.current.querySelectorAll('[role="menuitem"]'));
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!open) return;
-
-    const focusables = getFocusableElements();
-    if (focusables.length === 0) return;
-
-    if (e.key === "ArrowDown" && focusedIndex < focusables.length - 1) {
-      const next = focusedIndex + 1;
-      setFocusedIndex(next);
-      focusables[next]?.focus();
-    } //
-    else if (e.key === "ArrowUp" && focusedIndex > 0) {
-      const prev = focusedIndex - 1;
-      setFocusedIndex(prev);
-      focusables[prev]?.focus();
-    }
-  };
-
-  useEffect(() => {
-    // if (open && popoverRef.current) popoverRef.current.focus();
-  }, [open]);
-
-  if (!open) return null;
-
-  return createPortal(
-    <div
-      ref={popupRef}
-      style={popcss}
-      className="absolute min-w-full rounded border bg-secondary brd shadow-md grid p2 animscale"
-      onKeyDown={handleKeyDown}
-      role="menu"
-      tabIndex={0}
-    >
-      {children}
-    </div>,
-    document.body,
-  );
-};
-
-export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
-  const ref = useRef<HTMLButtonElement>(null);
-  const popupRef = useRef<HTMLUListElement>(null);
-
-  const [open, setOpen] = useState(false);
+  let popupRef = useRef<HTMLUListElement>(null);
   const [popcss, setPopcss] = useState({});
 
-  const toggleDropdown = () => setOpen((o) => !o);
-  const closeDropdown = () => setOpen(false);
-
-  useOnClickOutside([popupRef, ref], closeDropdown);
+  const { ref, opened, nested, closeDropdown } = useContext(
+    context,
+  ) as CtxProps;
 
   const updatePos = (popupHeight: number) => {
     if (!ref.current) return;
@@ -131,36 +79,70 @@ export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
     let left = window.scrollX + rect.left;
     let transformOrigin = canOpenUp ? "bottom left" : "top left";
 
-    if (props.nested) {
+    if (nested) {
       toph = canOpenUp ? -popupHeight + rect.height : 0;
       top = rect.top + toph;
-
-      left =
-        window.scrollX + rect.left + rect.width + (props.nested ? 2 : 1) * 10;
+      left = window.scrollX + rect.left + rect.width + (nested ? 2 : 1) * 10;
     }
 
     setPopcss({ minWidth: rect.width, top, left, transformOrigin });
   };
 
   useEffect(() => {
-    if (!open || !popupRef.current) return;
+    if (!opened || !popupRef.current) return;
 
     const popupHeight = popupRef.current.getBoundingClientRect().height;
     updatePos(popupHeight);
     window.addEventListener("resize", () => updatePos(popupHeight));
 
+    const outsideClick = (e: MouseEvent) => {
+      const elements = [popupRef, ref];
+      const target = e.target as Node;
+      const clickedInside = elements.some(
+        (el) => el && el.current.contains(target),
+      );
+
+      if (!clickedInside) closeDropdown();
+    };
+
+    document.body.addEventListener("click", outsideClick);
+
     return () => {
+      document.body.removeEventListener("click", outsideClick);
       window.removeEventListener("resize", () => updatePos(popupHeight));
     };
-  }, [open]);
+  }, [opened]);
+
+  if (!opened) return null;
+
+  return createPortal(
+    <ul
+      ref={popupRef}
+      style={popcss}
+      className="absolute min-w-full rounded border bg-secondary brd shadow-md grid p2 animscale"
+      role="menu"
+      tabIndex={0}
+    >
+      {children}
+    </ul>,
+    document.body,
+  );
+};
+
+export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const [opened, setOpen] = useState(false);
+
+  const toggleDropdown = () => setOpen((o) => !o);
+  const closeDropdown = () => setOpen(false);
 
   const ctxValue: CtxProps = {
-    open,
-    popcss,
+    opened,
+    nested: props.nested,
     toggleDropdown,
     closeDropdown,
     ref,
-    popupRef,
   };
 
   return <context.Provider value={ctxValue}>{props.children}</context.Provider>;
