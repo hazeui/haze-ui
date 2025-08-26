@@ -28,7 +28,7 @@ export default ({
   trigcss =
     trigcss + (trigcss.includes("btn-") ? "" : " btn") + " justify-between";
 
-  useOnClickOutside(ref, () => setIsOpened(false));
+  useOnClickOutside([ref], () => setIsOpened(false));
 
   const toggleOptions = () => {
     setIsOpened((prev) => {

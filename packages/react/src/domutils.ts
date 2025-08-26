@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 
 export const useOnClickOutside = (
-  element: React.RefObject<HTMLElement | null>,
+  elements: Array<React.RefObject<HTMLElement | null>>,
   callback: () => void,
 ) => {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (!element.current) return;
-      if (!element.current.contains(e.target as Node)) callback();
+      if (elements.some((ref) => ref.current?.contains(e.target as Node))) {
+        return;
+      }
+      callback();
     };
 
     const handleEscapeKeyPress = (e: KeyboardEvent) => {
@@ -21,5 +23,5 @@ export const useOnClickOutside = (
       document.removeEventListener("click", handleClickOutside);
       document.removeEventListener("keydown", handleEscapeKeyPress);
     };
-  }, [element, callback]);
+  }, [elements, callback]);
 };

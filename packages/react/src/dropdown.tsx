@@ -1,12 +1,16 @@
 import React, { useState, useContext, createContext } from "react";
+import { createPortal } from "react-dom";
 import { useEffect, useRef } from "react";
 import { type ReactNode, type ButtonHTMLAttributes } from "react";
 import { useOnClickOutside } from "./domutils";
 
 type CtxProps = {
   open: boolean;
+  popcss: React.CSSProperties;
   toggleDropdown: () => void;
   closeDropdown: () => void;
+  ref: React.RefObject<HTMLButtonElement | null>;
+  popupRef: React.RefObject<HTMLUListElement | null>;
 };
 
 const context = createContext<CtxProps | null>(null);
@@ -16,10 +20,11 @@ export const DropdownTrigger = ({
   children,
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const { toggleDropdown } = useContext(context) as CtxProps;
+  const { ref, toggleDropdown } = useContext(context) as CtxProps;
 
   return (
     <button
+      ref={ref}
       className={className?.includes("btn") ? className : `btn ${className}`}
       onClick={toggleDropdown}
       {...rest}
@@ -55,13 +60,12 @@ export const DropdownContent = ({
   className?: string;
   children?: ReactNode;
 }) => {
-  const { open } = useContext(context) as CtxProps;
-  const popoverRef = useRef<HTMLDivElement>(null);
+  const { open, popupRef, popcss } = useContext(context) as CtxProps;
   const [focusedIndex, setFocusedIndex] = useState(-1);
 
   const getFocusableElements = (): HTMLElement[] => {
-    if (!popoverRef.current) return [];
-    return Array.from(popoverRef.current.querySelectorAll('[role="menuitem"]'));
+    if (!popupRef.current) return [];
+    return Array.from(popupRef.current.querySelectorAll('[role="menuitem"]'));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -83,41 +87,81 @@ export const DropdownContent = ({
   };
 
   useEffect(() => {
-    if (open && popoverRef.current) popoverRef.current.focus();
+    // if (open && popoverRef.current) popoverRef.current.focus();
   }, [open]);
 
   if (!open) return null;
 
-  return (
+  return createPortal(
     <div
-      className={
-        className.includes("popover") ? className : `popover ${className}`
-      }
+      ref={popupRef}
+      style={popcss}
+      className="absolute min-w-full rounded border bg-secondary brd shadow-md grid p2 animscale"
       onKeyDown={handleKeyDown}
-      ref={popoverRef}
       role="menu"
       tabIndex={0}
     >
       {children}
-    </div>
+    </div>,
+    document.body,
   );
 };
 
-export const Dropdown = ({ children }: { children: ReactNode }) => {
-  const ref = useRef<HTMLDivElement>(null);
+export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
+  const ref = useRef<HTMLButtonElement>(null);
+  const popupRef = useRef<HTMLUListElement>(null);
 
   const [open, setOpen] = useState(false);
+  const [popcss, setPopcss] = useState({});
+
   const toggleDropdown = () => setOpen((o) => !o);
   const closeDropdown = () => setOpen(false);
 
-  useOnClickOutside(ref, closeDropdown);
+  useOnClickOutside([popupRef, ref], closeDropdown);
 
-  const ctxValue: CtxProps = { open, toggleDropdown, closeDropdown };
-  return (
-    <context.Provider value={ctxValue}>
-      <div className="relative inline-block" ref={ref}>
-        {children}
-      </div>
-    </context.Provider>
-  );
+  const updatePos = (popupHeight: number) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - rect.bottom;
+    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
+    let toph = canOpenUp ? -popupHeight - rect.height : rect.height;
+    let top = rect.top + toph + 10;
+    let left = window.scrollX + rect.left;
+    let transformOrigin = canOpenUp ? "bottom left" : "top left";
+
+    if (props.nested) {
+      toph = canOpenUp ? -popupHeight + rect.height : 0;
+      top = rect.top + toph;
+
+      left =
+        window.scrollX + rect.left + rect.width + (props.nested ? 2 : 1) * 10;
+    }
+
+    setPopcss({ minWidth: rect.width, top, left, transformOrigin });
+  };
+
+  useEffect(() => {
+    if (!open || !popupRef.current) return;
+
+    const popupHeight = popupRef.current.getBoundingClientRect().height;
+    updatePos(popupHeight);
+    window.addEventListener("resize", () => updatePos(popupHeight));
+
+    return () => {
+      window.removeEventListener("resize", () => updatePos(popupHeight));
+    };
+  }, [open]);
+
+  const ctxValue: CtxProps = {
+    open,
+    popcss,
+    toggleDropdown,
+    closeDropdown,
+    ref,
+    popupRef,
+  };
+
+  return <context.Provider value={ctxValue}>{props.children}</context.Provider>;
 };
