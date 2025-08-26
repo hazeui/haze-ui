@@ -2,9 +2,14 @@ export default (opts: any) => {
   const tmp = opts.pos;
 
   return [
+    {
+      animscale: "starting:(scale-90 opacity-0) transition transition-discrete",
+      pop: 'absolute rounded bg-bg dark:bg-secondary brd shadow-md animscale',
+    },
+        
     [
       /^dropdown(?:-(\w+)(?:-(\w+))?)?$/,
-      ([, pos, center]:RegExpMatchArray) => {
+      ([, pos, center]: RegExpMatchArray) => {
         const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
         pos = tmp[pos] || tmp.bottom;
@@ -17,19 +22,19 @@ export default (opts: any) => {
 
     [
       /^popover(?:-(\w+)(?:-(\w+))?)?$/,
-      ([, pos, center]:RegExpMatchArray) => {
+      ([, pos, center]: RegExpMatchArray) => {
         const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
         pos = tmp[pos] || tmp.bottom;
 
-        return `absolute mt-2 min-w-full rounded border bg-secondary brd
+        return `absolute min-w-full rounded border bg-secondary brd
                   shadow-md grid p2 animate-(fade-in duration-300) ${pos} ${mid}`;
       },
     ],
 
     [
       /^tooltip(?:-(\w+)(?:-(\w+))?)?$/,
-      ([, pos, center]:RegExpMatchArray) => {
+      ([, pos, center]: RegExpMatchArray) => {
         const mid = center || pos == "mid" ? "left-1/2 translate-x--1/2" : "";
 
         pos = tmp[pos] || tmp.bottom;

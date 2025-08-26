@@ -76,11 +76,10 @@ export default ({
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceBelow = window.innerHeight - rect.bottom;
     const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 10 : rect.height + 10;
-    const top = rect.top + toph;
+    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
+    const top = window.scrollY + rect.top + toph;
 
     setPopcss({ minWidth: rect.width, top, left: window.scrollX + rect.left });
   };
@@ -116,7 +115,7 @@ export default ({
         createPortal(
           <ul
             ref={popupRef}
-            className="absolute rounded border bg-secondary brd shadow-md grid p2 animate-(fade-in duration-300)"
+            className="pop grid p2"
             role="listbox"
             aria-activedescendant={`option-${hlIndex}`}
             tabIndex={-1}

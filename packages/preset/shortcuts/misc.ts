@@ -32,10 +32,8 @@ export default () => {
       /^dialog(?:-(\w+))?(?:-(.+))?$/,
       ([, opt1, opt2]: RegExpMatchArray) => {
         return ` 
-            fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-           w-[90%] max-w-md bg-bg text-fg p-5 rounded shadow-lg z-100 
-           animate-(fade-in duration-300)
-`;
+           animscale fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+           w-[90%] max-w-md bg-bg text-fg p-5 rounded shadow-lg z-100`;
       },
     ],
 

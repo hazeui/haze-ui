@@ -65,11 +65,10 @@ export default (props: SelectProps) => {
     if (!ref) return;
 
     const rect = ref.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceBelow = window.innerHeight - rect.bottom;
     const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 10 : rect.height + 10;
-    const top = rect.top + toph;
+    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
+    const top = window.scrollY + rect.top + toph;
 
     setPopupCss(`min-width: ${rect.width}px; top: ${top}px;
                left: ${window.scrollX + rect.left}px;`);
@@ -110,7 +109,7 @@ export default (props: SelectProps) => {
           <ul
             ref={popupRef}
             style={popupCss()}
-            class="absolute rounded border bg-secondary brd shadow-md grid p2 animate-(fade-in duration-300)"
+            class="pop grid p2"
             role="listbox"
             aria-activedescendant={`option-${hlIndex()}`}
             tabIndex={-1}

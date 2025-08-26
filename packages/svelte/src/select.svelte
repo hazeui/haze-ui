@@ -71,11 +71,10 @@
 
   const updatePos = (popupHeight: number) => {
     const rect = ref.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const spaceBelow = viewportHeight - rect.bottom;
+    const spaceBelow = window.innerHeight - rect.bottom;
     const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 10 : rect.height;
-    const top = rect.top + toph;
+    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
+    const top = window.scrollY + rect.top + toph;
 
     popupCss = `min-width: ${rect.width}px; top: ${top}px;
                left: ${window.scrollX + rect.left}px;`;
@@ -119,7 +118,7 @@
   <ul
     bind:this={popupRef}
     use:portal
-    class="absolute rounded border bg-secondary brd shadow-md grid p2 animate-(fade-in duration-300)"
+    class="pop grid p2"
     role="listbox"
     aria-activedescendant={`option-${hlIndex}`}
     tabindex={-1}
