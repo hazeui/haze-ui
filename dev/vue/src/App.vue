@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import All from "./all.vue";
-import { Input } from "@haze-ui/vue";
+// import { Input, Tab, Tabs, TabsContent, TabsList } from "@haze-ui/vue";
 
 const path = window.location.pathname;
 
@@ -11,5 +11,5 @@ const path = window.location.pathname;
 
 <template>
   <a v-if='path == "/"' class="btn" href="/all">go to /all</a>
-  <All v-else />
+  <All v-if='path == "/all"' />
 </template>
