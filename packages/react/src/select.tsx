@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useOnClickOutside } from "./domutils";
+import { useFloating, shift, flip, offset } from "@floating-ui/react";
 
 import { type SelectProps as SelProps } from "types/select";
 
@@ -15,20 +16,26 @@ export default ({
   dropdownCss,
   optionCss,
 }: Props) => {
-  const ref = useRef<HTMLButtonElement>(null);
-  const popupRef = useRef<HTMLUListElement>(null);
-
-  const [popcss, setPopcss] = useState({});
   const [hlIndex, setHlIndex] = useState(-1);
   const [isOpened, setIsOpened] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const { refs, floatingStyles } = useFloating({
+    transform: false,
+    placement: "bottom-start",
+    middleware: [shift(), flip(), offset(10)],
+  });
 
   let { className: trigcss = "" } = triggerProps;
 
   trigcss =
     trigcss + (trigcss.includes("btn-") ? "" : " btn") + " justify-between";
 
-  useOnClickOutside([ref], () => setIsOpened(false));
+  useOnClickOutside([refs.reference], () => setIsOpened(false));
+
+  const closeMe = () => {
+    if (isOpened) setIsOpened(false);
+  };
 
   const toggleOptions = () => {
     setIsOpened((prev) => {
@@ -72,34 +79,18 @@ export default ({
 
   const optcss = `justify-start btn-ghost-eqmd transition-none ${activeCss}`;
 
-  const updatePos = (popupHeight: number) => {
-    if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
-    const top = window.scrollY + rect.top + toph;
-
-    setPopcss({ minWidth: rect.width, top, left: window.scrollX + rect.left });
-  };
-
   useEffect(() => {
-    if (!isOpened || !popupRef.current) return;
-
-    const popupHeight = popupRef.current.getBoundingClientRect().height;
-    updatePos(popupHeight);
-    window.addEventListener("resize", () => updatePos(popupHeight));
+    window.addEventListener("resize", closeMe);
 
     return () => {
-      window.removeEventListener("resize", () => updatePos(popupHeight));
+      window.removeEventListener("resize", closeMe);
     };
   }, [isOpened]);
 
   return (
     <>
       <button
-        ref={ref}
+        ref={refs.setReference}
         aria-haspopup="listbox"
         aria-expanded={isOpened}
         onClick={toggleOptions}
@@ -114,12 +105,15 @@ export default ({
       {isOpened &&
         createPortal(
           <ul
-            ref={popupRef}
+            ref={refs.setFloating}
+            style={{
+              ...floatingStyles,
+              minWidth: refs.reference.current?.offsetWidth,
+            }}
             className="pop grid p2"
             role="listbox"
             aria-activedescendant={`option-${hlIndex}`}
             tabIndex={-1}
-            style={popcss}
           >
             {options.map((option, i) => (
               <li

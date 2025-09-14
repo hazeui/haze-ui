@@ -5,6 +5,8 @@
   import { type SelectProps as SelProps } from "types/select";
   import type { HTMLButtonAttributes } from "svelte/elements";
 
+  import { computePosition, flip, offset, shift } from "@floating-ui/dom";
+
   type Props = Omit<SelProps, "triggerProps"> & {
     triggerProps?: HTMLButtonAttributes;
   };
@@ -21,6 +23,10 @@
   let isOpened = $state(false);
   let selectedIndex = $state(-1);
   let hlIndex = $state(-1);
+
+  const closeMe = () => {
+    if (isOpened) isOpened = false;
+  };
 
   const toggleOptions = () => {
     isOpened = !isOpened;
@@ -45,7 +51,7 @@
         setSelectedThenCloseDropdown(hlIndex);
         break;
       case "Escape":
-        isOpened = false;
+        closeMe();
         break;
       case "ArrowUp":
         hlIndex = hlIndex > 0 ? hlIndex - 1 : 0;
@@ -67,37 +73,36 @@
 
   let ref = null;
   let popupRef = $state(null);
-  let popupCss = $state("");
-
-  const updatePos = (popupHeight: number) => {
-    const rect = ref.getBoundingClientRect();
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
-    const top = window.scrollY + rect.top + toph;
-
-    popupCss = `min-width: ${rect.width}px; top: ${top}px;
-               left: ${window.scrollX + rect.left}px;`;
-  };
-
-  $effect(() => {
-    if (isOpened) {
-      updatePos(popupRef.getBoundingClientRect().height);
-    }
-  });
-
-  onMount(() => {
-    window.addEventListener("resize", () => isOpened = false);
-
-    return () => {
-      window.removeEventListener("resize", () => isOpened = false);
-    };
-  });
 
   let { class: trigcss = "" } = triggerProps;
 
   trigcss = trigcss + (trigcss.includes("btn-") ? "" : " btn") +
     " justify-between";
+
+  const updatePosition = async () => {
+    const pos = await computePosition(ref, popupRef, {
+      placement: "bottom-start",
+      middleware: [offset(10), flip(), shift()],
+    });
+
+    Object.assign(popupRef.style, {
+      left: `${pos.x}px`,
+      top: `${pos.y}px`,
+      minWidth: `${ref.offsetWidth}px`,
+    });
+  };
+
+  $effect(() => {
+    if (isOpened) updatePosition();
+  });
+
+  onMount(() => {
+    window.addEventListener("resize", closeMe);
+
+    return () => {
+      window.removeEventListener("resize", closeMe);
+    };
+  });
 </script>
 
 <button
@@ -106,7 +111,7 @@
   aria-expanded={isOpened}
   onclick={toggleOptions}
   onkeydown={handleListKeyDown}
-  use:clickOutside={() => isOpened = false}
+  use:clickOutside={closeMe}
   {...triggerProps}
   class={trigcss}
 >
@@ -122,7 +127,6 @@
     role="listbox"
     aria-activedescendant={`option-${hlIndex}`}
     tabindex={-1}
-    style={popupCss}
   >
     {#each options as option, i (option.value)}
       <li

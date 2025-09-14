@@ -5,6 +5,8 @@ export { default as Dialog } from "./src/dialog.vue";
 
 export { Tabs, Tab, TabsContent, TabsList } from "./src/tabs";
 
+export { default as Select } from "./src/select.vue";
+
 export {
   Dropdown,
   DropdownTrigger,

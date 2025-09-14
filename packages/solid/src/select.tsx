@@ -2,6 +2,7 @@ import { onMount, createEffect, createSignal, For, Show } from "solid-js";
 import { clickOutside } from "./domutils";
 import { type SelectProps } from "types/select";
 import { Portal } from "solid-js/web";
+import { computePosition, flip, offset, shift } from "@floating-ui/dom";
 
 export default (props: SelectProps) => {
   const [isOpened, setIsOpened] = createSignal(false);
@@ -16,7 +17,9 @@ export default (props: SelectProps) => {
     });
   };
 
-  const close = () => setIsOpened(false);
+  const closeMe = () => {
+    if (isOpened()) setIsOpened(false);
+  };
 
   const setSelectedThenCloseDropdown = (index: number) => {
     if (index !== selectedIndex()) {
@@ -59,32 +62,29 @@ export default (props: SelectProps) => {
 
   let ref: HTMLButtonElement | undefined;
   let popupRef: HTMLUListElement | undefined;
-  const [popupCss, setPopupCss] = createSignal("");
 
-  const updatePos = (popupHeight: number) => {
-    if (!ref) return;
+  const updatePosition = async () => {
+    const pos = await computePosition(ref, popupRef, {
+      placement: "bottom-start",
+      middleware: [offset(10), flip(), shift()],
+    });
 
-    const rect = ref.getBoundingClientRect();
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    const toph = canOpenUp ? -popupHeight - 30 : rect.height + 10;
-    const top = window.scrollY + rect.top + toph;
-
-    setPopupCss(`min-width: ${rect.width}px; top: ${top}px;
-               left: ${window.scrollX + rect.left}px;`);
+    Object.assign(popupRef.style, {
+      left: `${pos.x}px`,
+      top: `${pos.y}px`,
+      minWidth: `${ref.offsetWidth}px`,
+    });
   };
 
   createEffect(() => {
-    if (isOpened() && popupRef) {
-      updatePos(popupRef.getBoundingClientRect().height);
-    }
+    if (isOpened()) updatePosition();
   });
 
   onMount(() => {
-    window.addEventListener("resize", () => setIsOpened(false));
+    window.addEventListener("resize", () => closeMe);
 
     return () => {
-      window.removeEventListener("resize", () => setIsOpened(false));
+      window.removeEventListener("resize", () => closeMe);
     };
   });
 
@@ -92,7 +92,7 @@ export default (props: SelectProps) => {
     <>
       <button
         ref={ref}
-        use:clickOutside={close}
+        use:clickOutside={closeMe}
         aria-haspopup="listbox"
         aria-expanded={isOpened()}
         onClick={toggleOptions}
@@ -108,7 +108,6 @@ export default (props: SelectProps) => {
         <Portal>
           <ul
             ref={popupRef}
-            style={popupCss()}
             class="pop grid p2"
             role="listbox"
             aria-activedescendant={`option-${hlIndex()}`}

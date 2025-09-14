@@ -33,5 +33,8 @@
   ],
   "svelte": "./dist/index.js",
   "type": "module",
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.4"
+  }
 }
