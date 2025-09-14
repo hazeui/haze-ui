@@ -67,7 +67,7 @@
 
     <div class="flex gap5 items-center justify-center">
       <a
-        href="https://github.com/haze-ui"
+        href="https://github.com/hazeui/haze-ui"
         class="i-bi:github text-xl"
         aria-label="github link"
       >
