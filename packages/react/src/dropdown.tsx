@@ -1,16 +1,22 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState, useContext, createContext, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useEffect, useRef } from "react";
 import { type ReactNode, type ButtonHTMLAttributes } from "react";
+import { useFloating, shift, flip, offset } from "@floating-ui/react";
+import { useOnClickOutside } from "./domutils";
 
 type CtxProps = {
+  refs: {
+    reference: React.RefObject<HTMLButtonElement | null>;
+    floating: React.RefObject<HTMLUListElement | null>;
+    setReference: (node: HTMLButtonElement | null) => void;
+    setFloating: (node: HTMLUListElement | null) => void;
+  };
+  floatingStyles: React.CSSProperties;
   nested?: boolean | undefined;
   opened: boolean;
   popcss: React.CSSProperties;
   toggleDropdown: () => void;
   closeDropdown: () => void;
-  ref: React.RefObject<HTMLButtonElement | null>;
-  popupRef: React.RefObject<HTMLUListElement | null>;
 };
 
 const context = createContext<CtxProps | null>(null);
@@ -20,11 +26,11 @@ export const DropdownTrigger = ({
   children,
   ...rest
 }: ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const { ref, toggleDropdown } = useContext(context) as CtxProps;
+  const { refs, toggleDropdown } = useContext(context) as CtxProps;
 
   return (
     <button
-      ref={ref}
+      ref={refs.setReference}
       className={className?.includes("btn") ? className : `btn ${className}`}
       onClick={toggleDropdown}
       {...rest}
@@ -60,46 +66,19 @@ export const DropdownContent = ({
   className?: string;
   children?: ReactNode;
 }) => {
-  let popupRef = useRef<HTMLUListElement>(null);
-  const [popcss, setPopcss] = useState({});
-
-  const { ref, opened, nested, closeDropdown } = useContext(
+  const { refs, opened, nested, closeDropdown, floatingStyles } = useContext(
     context,
   ) as CtxProps;
 
-  const updatePos = (popupHeight: number) => {
-    if (!ref.current) return;
-
-    const rect = ref.current.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const spaceBelow = viewportHeight - rect.bottom;
-    const canOpenUp = spaceBelow < popupHeight && rect.top > spaceBelow;
-    let toph = canOpenUp ? -popupHeight - rect.height : rect.height;
-    let top = rect.top + toph + 10;
-    let left = window.scrollX + rect.left;
-    let transformOrigin = canOpenUp ? "bottom left" : "top left";
-
-    if (nested) {
-      toph = canOpenUp ? -popupHeight + rect.height : 0;
-      top = rect.top + toph;
-      left = window.scrollX + rect.left + rect.width + (nested ? 2 : 1) * 10;
-    }
-
-    setPopcss({ minWidth: rect.width, top, left, transformOrigin });
-  };
+  // useOnClickOutside([refs.reference, refs.floating], closeDropdown);
 
   useEffect(() => {
-    if (!opened || !popupRef.current) return;
-
-    const popupHeight = popupRef.current.getBoundingClientRect().height;
-    updatePos(popupHeight);
-    window.addEventListener("resize", () => updatePos(popupHeight));
+    if (!opened) return;
 
     const outsideClick = (e: MouseEvent) => {
-      const elements = [popupRef, ref];
-      const target = e.target as Node;
-      const clickedInside = elements.some(
-        (el) => el && el.current.contains(target),
+      const elements = [refs.floating, refs.reference];
+      const clickedInside = elements.some((el) =>
+        el.current.contains(e.target),
       );
 
       if (!clickedInside) closeDropdown();
@@ -109,7 +88,7 @@ export const DropdownContent = ({
 
     return () => {
       document.body.removeEventListener("click", outsideClick);
-      window.removeEventListener("resize", () => updatePos(popupHeight));
+      // window.removeEventListener("resize", () => updatePos(popupHeight));
     };
   }, [opened]);
 
@@ -117,11 +96,11 @@ export const DropdownContent = ({
 
   return createPortal(
     <ul
-      ref={popupRef}
-      style={popcss}
-      className="absolute min-w-full rounded border bg-secondary brd shadow-md grid p2 animscale"
+      ref={refs.setFloating}
+      className="absolute  rounded border bg-secondary brd shadow-md grid p2 animscale"
       role="menu"
       tabIndex={0}
+      style={floatingStyles}
     >
       {children}
     </ul>,
@@ -130,7 +109,11 @@ export const DropdownContent = ({
 };
 
 export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const { refs, floatingStyles } = useFloating({
+    transform: false,
+    placement: props.nested ? "right-start" : "bottom-start",
+    middleware: [shift(), flip(), offset(10)],
+  });
 
   const [opened, setOpen] = useState(false);
 
@@ -142,7 +125,8 @@ export const Dropdown = (props: { children: ReactNode; nested?: boolean }) => {
     nested: props.nested,
     toggleDropdown,
     closeDropdown,
-    ref,
+    refs,
+    floatingStyles,
   };
 
   return <context.Provider value={ctxValue}>{props.children}</context.Provider>;

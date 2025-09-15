@@ -8,6 +8,13 @@ import "@unocss/reset/tailwind.css";
 import All from "./all";
 import { Select } from "@haze-ui/react";
 
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem,
+  DropdownTrigger,
+} from "@haze-ui/react";
+
 function App() {
   const path = window.location.pathname;
 
@@ -25,23 +32,49 @@ function App() {
         {" "}
         go to /all
       </a>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
 
-      <div className="grid gap3 grid-cols-2 w-1/2">
-        <Select options={options} triggerProps={{ className: "btn-primary" }} />
-      </div>
+      <Dropdown>
+        <DropdownTrigger>Dropdown</DropdownTrigger>
+        <DropdownContent>
+          <DropdownItem>one</DropdownItem>
+          <DropdownItem>one</DropdownItem>
+          <DropdownItem>one</DropdownItem>
+
+          <Dropdown nested>
+            <DropdownTrigger className="justify-between btn-primary-eqmd">
+              nested :) <i className="i-prime:caret-right" />
+            </DropdownTrigger>
+            <DropdownContent>
+              <DropdownItem>one</DropdownItem>
+              <DropdownItem>one</DropdownItem>
+              <DropdownItem>one</DropdownItem>
+            </DropdownContent>
+          </Dropdown>
+
+          <Dropdown nested>
+            <DropdownTrigger className="justify-between btn-ghost-eqmd">
+              nested :) <i className="i-prime:caret-right" />
+            </DropdownTrigger>
+            <DropdownContent>
+              <DropdownItem>one</DropdownItem>
+              <DropdownItem>one</DropdownItem>
+              <DropdownItem>one</DropdownItem>
+              lol
+              <Dropdown nested>
+                <DropdownTrigger className="justify-between btn-ghost-eqmd">
+                  broooooo <i className="i-prime:caret-right" />
+                </DropdownTrigger>
+                <DropdownContent>
+                  <DropdownItem>one</DropdownItem>
+                  <DropdownItem>one</DropdownItem>
+                  <DropdownItem>one</DropdownItem>
+                  lol
+                </DropdownContent>
+              </Dropdown>
+            </DropdownContent>
+          </Dropdown>
+        </DropdownContent>
+      </Dropdown>
     </main>
   );
 }
