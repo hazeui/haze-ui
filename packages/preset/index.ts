@@ -51,7 +51,7 @@ export default definePreset((options?: OptionTypes) => {
         },
       },
 
-      borderRadius: {
+      radius: {
         DEFAULT: "0.4rem", // now `rounded` uses your custom radius
       },
     },

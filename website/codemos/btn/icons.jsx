@@ -4,7 +4,7 @@ export default () => {
   return (
     <>
       <Btn
-        className="btn-emerald5 text-white"
+        className="btn-emerald500 text-white"
         iconL="i-line-md:email-filled"
         txt="Email"
       />

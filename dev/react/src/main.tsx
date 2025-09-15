@@ -4,7 +4,6 @@ import { createRoot } from "react-dom/client";
 import "../../shared/style.css";
 // @ts-ignore
 import "virtual:uno.css";
-import "@unocss/reset/tailwind.css";
 import All from "./all";
 import { Select } from "@haze-ui/react";
 
@@ -27,8 +26,8 @@ function App() {
   ];
 
   return (
-    <main className="m10 min-h-[100rem]">
-      <a className="btn" href="/all">
+    <main className="m10 min-h-[100rem]  ">
+      <a className="btn mr3" href="/all">
         {" "}
         go to /all
       </a>

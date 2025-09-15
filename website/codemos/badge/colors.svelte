@@ -12,9 +12,9 @@
   Badge
 </span>
 <span class="badge ltxtbg-blue-80">Light blue</span>
-<span class="badge dtxtbgr-pink_3">Badge</span>
+<span class="badge dtxtbgr-pink_300">Badge</span>
 <span class="badge ltxtbgr-orange">Badge</span>
-<span class="badge ltxtbg-emerald_5-80">
+<span class="badge ltxtbg-emerald_500-80">
   <i class="i-icon-park-outline:check-one"></i>
   Badge
 </span>

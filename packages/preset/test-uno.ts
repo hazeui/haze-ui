@@ -1,6 +1,6 @@
 import {
   defineConfig,
-  presetWind3,
+  presetWind4,
   presetIcons,
   // presetTypography,
   transformerDirectives,
@@ -11,7 +11,7 @@ import hazeuiPreset from "./index";
 export default defineConfig({
   presets: [
     presetIcons({ scale: 1.2 }),
-    presetWind3(),
+    presetWind4(),
     // presetTypography(),
     hazeuiPreset(),
   ],

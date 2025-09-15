@@ -1,7 +1,7 @@
 <input type="checkbox" class="switch" defaultChecked />
 <input type="checkbox" class="switch-flat-md-primary" />
 <input type="checkbox" class="switch-flat-md-red" />
-<input type="checkbox" class="switch-flat-md-amber4" />
+<input type="checkbox" class="switch-flat-md-amber400" />
 
 <hr class="w-full brd border-input my2" />
 

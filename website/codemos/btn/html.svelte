@@ -3,7 +3,7 @@
 <button class="btn-outline">Outline</button>
 <button class="btn-ghost">Ghost</button>
 
-<button class="btn-emerald5 text-white">
+<button class="btn-emerald500 text-white">
   <i class="i-line-md:email-filled"></i> Email
 </button>
 

@@ -3,7 +3,7 @@
 <span class="badge-outline">Outline</span>
 <span class="badge-surface">Surface</span>
 
-<span class="badge bg-emerald6">
+<span class="badge bg-emerald600">
   <i class="i-uil:check-circle"></i> Checked!
 </span>
 

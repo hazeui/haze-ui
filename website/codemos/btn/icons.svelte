@@ -3,7 +3,7 @@
 </script>
 
 <Btn
-  class="btn-emerald5 text-white"
+  class="btn-emerald500 text-white"
   iconL="i-line-md:email-filled"
   txt="Email"
 />
