@@ -30,7 +30,7 @@ export default () => {
 
     [
       /^dialog(?:-(\w+))?(?:-(.+))?$/,
-      ([, opt1, opt2]: RegExpMatchArray) => {
+      ([]: RegExpMatchArray) => {
         return ` 
            animscale fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
            w-[90%] max-w-md bg-bg text-fg p-5 rounded shadow-lg z-100`;
@@ -46,7 +46,7 @@ export default () => {
 
     [
       /^reqstar(?:-(\w+))?(?:-(.+))?$/,
-      ([, arg1, arg2]: RegExpMatchArray) => {
+      ([]: RegExpMatchArray) => {
         return `after:(content-["*"] pl2 text-red)`;
       },
     ],

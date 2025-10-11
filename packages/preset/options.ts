@@ -5,9 +5,9 @@ const options = {
       sizes: {
         xs: ["text-xs", 1],
         sm: ["text-sm", 1.5],
-        md: ["text-base", 2],
-        lg: ["text-lg", 2.5],
-        xl: ["text-xl", 3],
+        md: ["text-sm", 1.70],
+        lg: ["text-base", 2.25],
+        xl: ["text-lg", 2.75],
       },
     },
 
@@ -20,7 +20,7 @@ const options = {
       variant: "solid",
       sizes: {
         sm: ["text-sm", 1.5],
-        md: ["text-base", 2],
+        md: ["text-base", 1.65],
         lg: ["text-lg", 2.5],
         xl: ["text-xl", 3],
       },

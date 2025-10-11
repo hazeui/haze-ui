@@ -3,7 +3,7 @@ const variants: any = {
   box: `rounded bg-input  p-2`,
   line: `border-(0 b solid border) `,
   outline: `border-(0 b-2 solid border)  pb-0`,
-  classic: `rounded bg-input  p-2 pb-0`,
+  classic: `rounded bg-input p-2 pb-0`,
   subtle: ``,
 };
 
@@ -17,7 +17,7 @@ export default () => {
         if (variant == "subtle" && !bg) bg = "input";
         if (variant == "line" && !bg) bg = "primary";
 
-        const base = `rounded inline-flex items-center justify-center gap2 border-0 py2 px3 bg-transparent`;
+        const base = `rounded inline-flex items-center justify-center gap2 border-0 pad bg-transparent`;
         const unsel = `[&>button]:(${base})`;
         const aria = `[&>button[aria-selected=true]]:(`;
 

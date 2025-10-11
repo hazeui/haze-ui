@@ -7,9 +7,11 @@ import misc from "./misc";
 import checkbox from "./checkbox";
 import radio from "./radio";
 import badge from "./badge";
+import pad from "./pad";
 
-export const shortcuts = (opts:any) => {
+export const shortcuts = (opts: any) => {
   return [
+    pad,
     btn(opts.btn),
     input(opts.input),
     pop(opts.popover),
