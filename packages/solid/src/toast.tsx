@@ -100,7 +100,7 @@ export const toast = ({ pos = "topmid", ...x }: ToastFnProps) => {
   if (!div) {
     div = document.createElement("div");
     div.id = id;
-    div.className = "fixed " + positionCss[pos];
+    div.className = "fixed z-100 " + positionCss[pos];
     document.body.appendChild(div);
     render(() => <ToastManager pos={pos} />, div);
   }
